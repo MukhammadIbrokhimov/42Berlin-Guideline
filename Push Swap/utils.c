@@ -3,14 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
+/*   By: muxammad <muxammad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 09:51:25 by muxammad          #+#    #+#             */
-/*   Updated: 2024/12/19 20:06:50 by mukibrok         ###   ########.fr       */
+/*   Updated: 2024/12/20 15:22:38 by muxammad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Push Swap.h"
+
+void	init_stack(t_list_node **stack, char **argv)
+{
+	int		i;
+	long	nbr;
+
+	while (argv[i])
+	{
+		if (error_syntax(argv[i]))
+			free_stack(stack); //not done
+		nbr = atol(argv[i]);
+		if (nbr > INT_MAX || nbr < INT_MIN)
+			free_stack(stack); // not done
+		if (dup_error(*stack, (int) nbr)) // not done
+			free_stack(stack);
+		append(&stack, (int) nbr); // completed
+		i++;
+	}
+}
 
 size_t	stack_len(t_list_node *stack)
 {
@@ -39,7 +58,7 @@ void	free_stack(t_list_node **stack)
 	}
 }
 
-t_list_node	*find_last(t_list_node *stack)
+struct t_list_node	*find_last(t_list_node *stack)
 {
 	if (!stack) return (NULL);
 	while (stack->next)
@@ -69,6 +88,61 @@ struct t_list_node	*ft_max(t_list_node *b)
 		if (b->nbr > max->nbr)
 			max->nbr = b->nbr;
 		b = b->next;
+	}
+	return (max);
+}
+
+struct t_list_node	*ft_min(t_list_node *b)
+{
+	t_list_node		*min;
+
+	min = b;
+	while (b)
+	{
+		if (b->nbr < min->nbr)
+			min->nbr = b->nbr;
+		b = b->next;
+	}
+	return (min);
+}
+
+struct t_list_node	*find_cheapest(t_list_node *stack)
+{
+	t_list_node	*cheapest_node;
+	long	cheapest;
+
+	cheapest = LONG_MAX;
+	while (stack)
+	{
+		if (stack->push_cost < cheapest)
+		{
+			cheapest = stack->push_cost;
+			cheapest_node = stack;
+		}
+		stack = stack->next;
+	}
+	cheapest_node->above_median = true;
+	return (cheapest_node);
+}
+
+void	cost_alanysis_a(t_list_node *a, t_list_node *b)
+{
+	int	length_a;
+	int	length_b;
+
+	length_a = stack_len(a);
+	length_b = stack_len(b);
+
+	while (a)
+	{
+		a->push_cost = a->index;
+		if (!a->above_median)
+			a->push_cost = length_a - a->index;
+		if (a->target->above_median)
+			a->push_cost += a->target->index;
+		else
+			a->push_cost += length_b - (a->target->index);
+		a = a->next;
 	}
 }
 

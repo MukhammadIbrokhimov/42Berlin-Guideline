@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Push Swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
+/*   By: muxammad <muxammad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 17:00:39 by mukibrok          #+#    #+#             */
-/*   Updated: 2024/12/19 20:06:53 by mukibrok         ###   ########.fr       */
+/*   Updated: 2024/12/20 15:55:35 by muxammad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ void	sort(t_list_node **a, t_list_node **b)
 		push(b, a, "pb\n"); // completed
 	while (length-- > 3 && !sorted(*a)) // completed
 	{
-		init_nodes_a(*a, *b);
+		init_nodes_a(*a, *b); // completed
 		MoveAtoB(a, b);
 	}
 	sort_three(a); // completed
 	while (*b)
 	{
-		init_nodes_b(*a, *b);
-		MoveAtoB(a, b);
+		init_nodes_b(*a, *b); // progress
+		MoveBtoA(a, b); // completed
 	}
 	current_index(*a); // completed
 	min_on_top(a);

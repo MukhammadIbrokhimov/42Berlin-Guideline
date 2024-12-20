@@ -3,32 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   stack_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
+/*   By: muxammad <muxammad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 11:46:01 by mukibrok          #+#    #+#             */
-/*   Updated: 2024/12/19 19:50:34 by mukibrok         ###   ########.fr       */
+/*   Updated: 2024/12/20 15:55:16 by muxammad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Push Swap.h"
 
-void	init_stack(t_list_node **stack, char **argv)
+void	init_nodes_a(t_list_node *a, t_list_node *b)
 {
-	int		i;
-	long	nbr;
-
-	while (argv[i])
-	{
-		if (error_syntax(argv[i]))
-			free_stack(stack); //not done
-		nbr = atol(argv[i]);
-		if (nbr > INT_MAX || nbr < INT_MIN)
-			free_stack(stack); // not done
-		if (dup_error(*stack, (int) nbr)) // not done
-			free_stack(stack);
-		append(&stack, (int) nbr); // completed
-		i++;
-	}
+	current_index(a); // done
+	current_index(b); // done
+	set_target_a(a, b); // done
+	cost_alanysis_a(a, b); // done
+	find_cheapest(a); // done
 }
 
 void	append(t_list_node **stack, int nbr)
@@ -105,3 +95,24 @@ void	set_target_a(t_list_node *a, t_list_node *b)
 		a = a->next;
 	}
 }
+
+void	MoveAtoB(t_list_node **a, t_list_node **b)
+{
+	t_list_node	*cheapest_node;
+
+	cheapest_node = find_cheapest(*a);
+	if (cheapest_node->above_median && cheapest_node->target->above_median)
+		rotate_both(a, b, cheapest_node);
+	else if (!cheapest_node->above_median && !cheapest_node->target->above_median)
+		rev_rotate_both(a, b, cheapest_node);
+	prep_for_push(a, cheapest_node, 'a');
+	prep_for_push(a, b, 'b');
+	pb(b, a, false);
+}
+
+void	MoveBtoA(t_list_node **a, t_list_node **b)
+{
+	prep_for_push(a, (*b)->target, 'a');
+	pa(a, b, false);
+}
+
