@@ -6,7 +6,7 @@
 /*   By: muxammad <muxammad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 11:46:01 by mukibrok          #+#    #+#             */
-/*   Updated: 2024/12/20 15:55:16 by muxammad         ###   ########.fr       */
+/*   Updated: 2024/12/20 16:05:10 by muxammad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void	MoveAtoB(t_list_node **a, t_list_node **b)
 
 	cheapest_node = find_cheapest(*a);
 	if (cheapest_node->above_median && cheapest_node->target->above_median)
-		rotate_both(a, b, cheapest_node);
+		rotate_both(a, b, cheapest_node); // completed
 	else if (!cheapest_node->above_median && !cheapest_node->target->above_median)
 		rev_rotate_both(a, b, cheapest_node);
 	prep_for_push(a, cheapest_node, 'a');

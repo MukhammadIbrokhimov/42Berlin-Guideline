@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   moves.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
+/*   By: muxammad <muxammad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 16:23:12 by mukibrok          #+#    #+#             */
-/*   Updated: 2024/12/19 18:33:03 by mukibrok         ###   ########.fr       */
+/*   Updated: 2024/12/20 16:05:36 by muxammad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	sa(t_list_node **stack, bool value)
 	printf("ra\n");
 }
 
-void	ra(t_list_node **stack, bool value)
+void	rotate(t_list_node **stack)
 {
 	t_list_node	*head;
 	t_list_node *tail;
@@ -38,7 +38,6 @@ void	ra(t_list_node **stack, bool value)
 	head->next = NULL;
 	tail->next = head;
 	head->prev = tail;
-	printf("ra\n");
 }
 
 void	rra(t_list_node **stack, bool value)
@@ -80,4 +79,20 @@ void	push(t_list_node **src, t_list_node **dst, char *str)
 		*dst = head_src;
 	}
 	printf("%s\n", str);
+}
+
+void	rotate_both(t_list_node **a, t_list_node **b, t_list_node *cheapest_node)
+{
+	while (*b != cheapest_node->target && *a != cheapest_node)
+		rr(a, b, false); // completed
+	current_index(a);
+	current_index(b);
+}
+
+void	rr(t_list_node **a, t_list_node **b, bool print)
+{
+	rotate(a); // completed
+	rotate(b);
+	if (!print)
+		printf("rr\n");
 }

@@ -6,7 +6,7 @@
 /*   By: muxammad <muxammad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 16:58:36 by mukibrok          #+#    #+#             */
-/*   Updated: 2024/12/20 15:30:42 by muxammad         ###   ########.fr       */
+/*   Updated: 2024/12/20 16:03:43 by muxammad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void	current_index(t_list_node *stack);
 void	init_nodes_a(t_list_node *a, t_list_node *b);
 void	set_target_a(t_list_node *a, t_list_node *b);
 void	cost_alanysis_a(t_list_node *a, t_list_node *b);
+void	rr(t_list_node **a, t_list_node **b, bool print);
+void	rotate_both(t_list_node **a, t_list_node **b, t_list_node *cheapest_node);
 struct t_list_node	*find_last(t_list_node *stack);
 struct t_list_node	*ft_min(t_list_node *b);
 struct t_list_node	*ft_max(t_list_node *b);
