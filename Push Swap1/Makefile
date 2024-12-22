@@ -18,7 +18,7 @@ LIBFT_LIB = $(LIBFT_DIR)/libft.a
 FT_PRINTF_LIB = $(FT_PRINTF_DIR)/libftprintf.a
 
 # Sources
-PUSH_SWAP_SRC = push_swap.c utils.c init_stack.c
+PUSH_SWAP_SRC = push_swap.c utils.c sorting.c steps.c
 # CHECKER_SRC = checker.c operations.c utils.c
 
 # Object files
