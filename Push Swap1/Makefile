@@ -2,6 +2,9 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
+# Debugger flags
+DEBUG_FLAGS = -fsanitize=address -g
+
 # Executables
 PUSH_SWAP = push_swap
 # CHECKER = checker
@@ -29,6 +32,11 @@ all: $(LIBFT_LIB) $(FT_PRINTF_LIB) $(PUSH_SWAP) $(CHECKER)
 $(PUSH_SWAP): $(PUSH_SWAP_OBJ) $(LIBFT_LIB) $(FT_PRINTF_LIB)
 	@$(CC) $(CFLAGS) $(PUSH_SWAP_OBJ) $(LIBFT_LIB) $(FT_PRINTF_LIB) -o $(PUSH_SWAP)
 	@echo "\033[0;32mpush_swap compiled successfully!\033[0m"
+
+# Debug build for push_swap
+debug: CFLAGS += $(DEBUG_FLAGS)
+debug: re
+	@echo "\033[0;36mDebug build with AddressSanitizer enabled!\033[0m"
 
 # Build the checker executable
 # $(CHECKER): $(CHECKER_OBJ) $(LIBFT_LIB) $(FT_PRINTF_LIB)
@@ -63,4 +71,4 @@ fclean: clean
 re: fclean all
 
 # PHONY targets
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re debug

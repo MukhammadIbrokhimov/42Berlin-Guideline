@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
+/*   By: muxammad <muxammad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 17:12:57 by mukibrok          #+#    #+#             */
-/*   Updated: 2024/12/21 20:31:33 by mukibrok         ###   ########.fr       */
+/*   Updated: 2024/12/22 18:28:10 by muxammad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@
 // util functions
 bool	ft_sorted(t_list *stack);
 void	delete_content(void *content);
+void	ft_free(t_list *stack);
+bool	ft_iserror(char **argv);
+bool	ft_isdouble(t_list *stack);
 
 //  initializing stack
 
