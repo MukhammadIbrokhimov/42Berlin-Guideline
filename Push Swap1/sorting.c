@@ -6,7 +6,7 @@
 /*   By: muxammad <muxammad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 19:03:39 by mukibrok          #+#    #+#             */
-/*   Updated: 2024/12/22 19:35:37 by muxammad         ###   ########.fr       */
+/*   Updated: 2024/12/22 20:24:30 by muxammad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 // main sorting function
 void	ft_sort(t_list **a, t_list **b)
 {
-	t_list	*tmp;
+	//t_list	*tmp;
+
+	(void) b;
 	if (ft_lstsize(*a) == 3)
-		ft_three(a);
+		sort_three(a);
 }
 
 // hard-coded sorting, if stack len == 3
@@ -39,5 +41,11 @@ void	print_list(t_list *stack)
 	{
 		printf("%d->", stack->content);
 		stack = stack->next;
+	}
+
+	while (stack->prev)
+	{
+		ft_printf("%d->", stack->content);
+		stack = stack->prev;
 	}
 }

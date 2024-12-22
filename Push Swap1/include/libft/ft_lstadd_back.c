@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
+/*   By: muxammad <muxammad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 19:25:30 by mukibrok          #+#    #+#             */
-/*   Updated: 2024/11/15 19:36:13 by mukibrok         ###   ########.fr       */
+/*   Updated: 2024/12/22 20:17:19 by muxammad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 		while (node->next != NULL)
 			node = node->next;
 		node->next = new;
+		new->prev = node;
 	}
 }

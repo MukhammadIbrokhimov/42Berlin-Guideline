@@ -6,7 +6,7 @@
 /*   By: muxammad <muxammad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 17:22:41 by mukibrok          #+#    #+#             */
-/*   Updated: 2024/12/22 19:48:50 by muxammad         ###   ########.fr       */
+/*   Updated: 2024/12/22 20:23:20 by muxammad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,11 @@ int	main(int argc, char **argv)
 	i = 0;
 	while (argv[i])
 		ft_lstadd_back(&a, ft_lstnew((int) ft_atol(argv[i++])));
-	if (!ft_sorted(a) && !ft_isdouble(a)) // completed
-		ft_sort(&a, &b); // develop
+	if (ft_sorted(a) && !ft_isdouble(a)) // completed
+		return (ft_printf("Already sorted\n", 0));
 	else if (ft_isdouble(a)) // completed
 		return (ft_printf("doubled number\n", 1));
-	else if (ft_sorted) // completed
-		return (ft_printf("Already Sorted\n"), 1);
-	print_list(a); 
-	// ft_sort(&a, &b); // progress
+	else
+		ft_sort(&a, &b); // progress
 	return (ft_free(a), 0);
 }
