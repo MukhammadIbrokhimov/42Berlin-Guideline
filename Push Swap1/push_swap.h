@@ -6,7 +6,7 @@
 /*   By: muxammad <muxammad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 17:12:57 by mukibrok          #+#    #+#             */
-/*   Updated: 2024/12/23 04:13:40 by muxammad         ###   ########.fr       */
+/*   Updated: 2024/12/23 20:17:02 by muxammad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_list	*find_Value(t_list *stack, int index);
 //  sorting functions
 void	ft_sort(t_list **a);
 void	sort_three(t_list **stack);
-void	recursive_push(t_list **a, t_list **b, int length);
+void	recursive_push(t_list **a, t_list **b, int length, int chunk);
 void	sort_three(t_list **stack);
 
 // move

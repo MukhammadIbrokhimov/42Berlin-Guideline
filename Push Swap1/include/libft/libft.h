@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
+/*   By: muxammad <muxammad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 16:03:25 by mukibrok          #+#    #+#             */
-/*   Updated: 2024/12/21 20:26:10 by mukibrok         ###   ########.fr       */
+/*   Updated: 2024/12/23 20:17:57 by muxammad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 typedef struct s_list
 {
 	int			content;
+	int			chunk;
 	struct s_list	*next;
 	struct s_list	*prev;
 }					t_list;

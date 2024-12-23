@@ -6,7 +6,7 @@
 /*   By: muxammad <muxammad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 19:03:39 by mukibrok          #+#    #+#             */
-/*   Updated: 2024/12/23 19:37:54 by muxammad         ###   ########.fr       */
+/*   Updated: 2024/12/23 20:27:01 by muxammad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@ void	ft_sort(t_list **stack)
 {
 	t_list	*b;
 	int	len;
+	int chunk;
 
 	b = NULL;
+	chunk = 1;
 	ft_printf("stack a\n");
 	print_list(*stack);
 	len = ft_lstsize(*stack); // completed
@@ -27,7 +29,7 @@ void	ft_sort(t_list **stack)
 	else if (len == 2 && !ft_sorted(*stack))
 		swap(stack, true, "sa");
 	else
-		recursive_push(stack, &b, len); // progress
+		recursive_push(stack, &b, len, chunk); // progress
 	ft_printf("stack b\n");
 	print_list(b);
 	ft_printf("stack a\n");
@@ -47,7 +49,7 @@ void	sort_three(t_list **stack)
 		swap(stack, true, "sa");
 }
 
-void	recursive_push(t_list **a, t_list **b, int length)
+void	recursive_push(t_list **a, t_list **b, int length, int chunk)
 {
 	int	min;
 	t_list	*mid;
@@ -71,7 +73,10 @@ void	recursive_push(t_list **a, t_list **b, int length)
 	while (*a && *a != first_greater && ft_lstsize(*a) > 2)
 	{
 		if ((*a)->content < mid->content)
-			push(a, b, true, "pb");	
+		{
+			(*a)->chunk = chunk;
+			push(a, b, true, "pb");
+		}
 		if ((*a)->content >= mid->content)
 		{
 			if (!flag)
@@ -86,9 +91,16 @@ void	recursive_push(t_list **a, t_list **b, int length)
 	ft_printf("loop finished and recursion started");
 	print_list(*a);
 	if(*a == first_greater && ft_lstsize(*a) > 2)
-		recursive_push(a, b, ft_lstsize(*a));
+		recursive_push(a, b, ft_lstsize(*a), chunk + 1);
 	else if (!(ft_sorted(*a)))
-		swap(a, true, "sa");	
+		swap(a, true, "sa");
+	push_from_b_to_a()
+	
+}
+
+void	push_from_b_to_a(t_list **a, t_list **b, int chunk)
+{
+	
 }
 
 void	print_list(t_list *stack)
@@ -100,7 +112,7 @@ void	print_list(t_list *stack)
 	}
 	while (stack)
 	{
-		ft_printf("%d->", stack->content);
+		ft_printf("%d->%d\n", stack->content, stack->chunk);
 		stack = stack->next;
 	}
 	ft_printf("\n");

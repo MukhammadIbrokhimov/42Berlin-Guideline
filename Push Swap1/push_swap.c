@@ -6,7 +6,7 @@
 /*   By: muxammad <muxammad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 17:22:41 by mukibrok          #+#    #+#             */
-/*   Updated: 2024/12/23 04:45:40 by muxammad         ###   ########.fr       */
+/*   Updated: 2024/12/23 20:22:18 by muxammad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int	main(int argc, char **argv)
 		return (ft_printf("Only Digit\n"), 1);
 	while (argv[i])
 		ft_lstadd_back(&a, ft_lstnew((int) ft_atol(argv[i++])));
-	print_list(a);
 	if (ft_sorted(a) && !ft_isdouble(a)) // completed
 		return (ft_printf("Already sorted\n", 0));
 	else if (ft_isdouble(a)) // completed
