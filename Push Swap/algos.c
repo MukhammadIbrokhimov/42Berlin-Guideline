@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algos.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
+/*   By: muxammad <muxammad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:40:52 by mukibrok          #+#    #+#             */
-/*   Updated: 2024/12/19 19:49:39 by mukibrok         ###   ########.fr       */
+/*   Updated: 2024/12/22 19:31:39 by muxammad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	sort_three(t_list_node **stack)
 	if (((*stack)->nbr > (*stack)->next->nbr) &&
 		((*stack)->nbr > (*stack)->next->next->nbr))
 			ra(stack, false);
-
 	if (((*stack)->next->nbr > (*stack)->next->next->nbr) &&
 		((*stack)->next->nbr > (*stack)->nbr))
 		rra(stack, false);

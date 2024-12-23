@@ -6,13 +6,13 @@
 /*   By: muxammad <muxammad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 19:42:04 by muxammad          #+#    #+#             */
-/*   Updated: 2024/12/23 02:08:57 by muxammad         ###   ########.fr       */
+/*   Updated: 2024/12/23 04:32:42 by muxammad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ra(t_list **stack, bool print)
+void	rotate(t_list **stack, bool print, char *s)
 {
 	t_list	*head;
 	t_list	*tail;
@@ -24,7 +24,7 @@ void	ra(t_list **stack, bool print)
 	head->next = NULL;
 
 	if (print)
-		ft_printf("ra\n");
+		ft_printf("%s\n", s);
 }
 
 void	rra(t_list **stack, bool print)
@@ -44,7 +44,7 @@ void	rra(t_list **stack, bool print)
 		ft_printf("rra\n");
 }
 
-void	sa(t_list **stack, bool print)
+void	swap(t_list **stack, bool print, char *s)
 {
 	t_list *tmp;
 
@@ -54,5 +54,30 @@ void	sa(t_list **stack, bool print)
 	(*stack)->next = *stack;
 	*stack = tmp;
 	if (print)
-		ft_printf("sa\n");
+		ft_printf("%s\n", s);
+}
+
+void	push(t_list **from, t_list **to, bool print, char *s)
+{
+	t_list	*head_src;
+
+	if (!from || !*from)
+		return ;
+	head_src = *from;
+	*from = (*from)->next;
+	(*from)->prev = NULL;
+	if (!*to || !to)
+	{
+		*to = head_src;
+		(*to)->next = NULL;
+		(*to)->prev = NULL;
+	}
+	else
+	{
+		head_src->next = *to;
+		(*to)->prev = head_src;
+		*to = head_src;
+	}
+	if (print)
+		ft_printf("%s\n", s);
 }

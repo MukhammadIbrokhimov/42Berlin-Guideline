@@ -6,7 +6,7 @@
 /*   By: muxammad <muxammad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 18:38:02 by mukibrok          #+#    #+#             */
-/*   Updated: 2024/12/23 02:02:11 by muxammad         ###   ########.fr       */
+/*   Updated: 2024/12/23 03:51:00 by muxammad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,3 +81,29 @@ void	ft_free(t_list **stack)
 	}
 }
 
+// find max or min number
+int	Max_Min(t_list *stack, int nbr)
+{
+	int	max_min;
+
+	max_min = nbr;
+	if (max_min == INT_MAX)
+	{
+		while (stack)
+		{
+			if(stack->content < max_min)
+				max_min = stack->content;
+			stack = stack->next;
+		}
+	}
+	else
+	{
+		while (stack)
+		{
+			if(stack->content > max_min)
+				max_min = stack->content;
+			stack = stack->next;
+		}
+	}
+	return (max_min);
+}
