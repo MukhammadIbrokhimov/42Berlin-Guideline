@@ -6,7 +6,7 @@
 /*   By: muxammad <muxammad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 19:03:39 by mukibrok          #+#    #+#             */
-/*   Updated: 2024/12/23 04:53:49 by muxammad         ###   ########.fr       */
+/*   Updated: 2024/12/23 19:37:54 by muxammad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_sort(t_list **stack)
 	t_list	*b;
 	int	len;
 
-	b = (t_list *) malloc(sizeof(t_list));
+	b = NULL;
 	ft_printf("stack a\n");
 	print_list(*stack);
 	len = ft_lstsize(*stack); // completed
@@ -49,9 +49,10 @@ void	sort_three(t_list **stack)
 
 void	recursive_push(t_list **a, t_list **b, int length)
 {
-	int	max;
 	int	min;
 	t_list	*mid;
+	t_list	*first_greater;
+	int	flag;
 
 	if (length <= 2)
 	{
@@ -59,26 +60,42 @@ void	recursive_push(t_list **a, t_list **b, int length)
 			swap(a, true, "sa"); // completed
 		return ;
 	}
-	max = Max_Min(*a, INT_MIN); // completed
 	min = Max_Min(*a, INT_MAX); // completed
-	mid = find_Value(*a, length / 2); // completed
-	if (mid->content == max || mid->content == min)
+	ft_printf("length %d\n", length);
+	mid = find_Value(*a, (length - 2) / 2); // completed
+	ft_printf("mid_value %d\n", mid->content);
+	if (mid->content == min)
 		mid = mid->prev;
-	while ((*a)->content < mid->content)
+	ft_printf("mid_value %d\n", mid->content);
+	flag = 0;
+	while (*a && *a != first_greater && ft_lstsize(*a) > 2)
 	{
-		push(a, b, true, "pb");	
-		if ((*a)->content > mid->content)
+		if ((*a)->content < mid->content)
+			push(a, b, true, "pb");	
+		if ((*a)->content >= mid->content)
+		{
+			if (!flag)
+			{
+				first_greater = *a;
+				flag = 1;	
+			}
+			ft_printf("first greater: %d\n", first_greater->content);
 			rotate(a, true, "ra");
+		}
 	}
-	if((*a)->content == mid->content)
+	ft_printf("loop finished and recursion started");
+	print_list(*a);
+	if(*a == first_greater && ft_lstsize(*a) > 2)
 		recursive_push(a, b, ft_lstsize(*a));
+	else if (!(ft_sorted(*a)))
+		swap(a, true, "sa");	
 }
 
 void	print_list(t_list *stack)
 {
 	if (!stack)
 	{
-		ft_printf("Empty");
+		ft_printf("Empty\n");
 		return ;
 	}
 	while (stack)

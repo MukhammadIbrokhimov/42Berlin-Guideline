@@ -6,7 +6,7 @@
 /*   By: muxammad <muxammad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 19:42:04 by muxammad          #+#    #+#             */
-/*   Updated: 2024/12/23 04:32:42 by muxammad         ###   ########.fr       */
+/*   Updated: 2024/12/23 16:56:25 by muxammad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,11 @@ void	swap(t_list **stack, bool print, char *s)
 {
 	t_list *tmp;
 
-	if (!*stack ||!stack)
-		return ;
-	tmp =(*stack)->next;
-	(*stack)->next = *stack;
+	if (!stack || !*stack || !(*stack)->next)
+		return;
+	tmp = (*stack)->next;
+	(*stack)->next = tmp->next;
+	tmp->next = *stack;
 	*stack = tmp;
 	if (print)
 		ft_printf("%s\n", s);
