@@ -6,7 +6,7 @@
 /*   By: muxammad <muxammad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 17:22:41 by mukibrok          #+#    #+#             */
-/*   Updated: 2024/12/22 20:23:20 by muxammad         ###   ########.fr       */
+/*   Updated: 2024/12/23 02:02:35 by muxammad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int argc, char **argv)
 		return (ft_printf("./push_swap [numbers]\n"), 1);
 	if (argc == 2)
 		argv = ft_split(argv[1], ' '); // completed
-	if (ft_iserror(argv)) // completed
+	if (ft_iserror(argv + 1)) // completed
 		return (ft_printf("Only Digit\n"), 1);
 	i = 0;
 	while (argv[i])
@@ -35,5 +35,5 @@ int	main(int argc, char **argv)
 		return (ft_printf("doubled number\n", 1));
 	else
 		ft_sort(&a, &b); // progress
-	return (ft_free(a), 0);
+	return (ft_free(&a), 0);
 }

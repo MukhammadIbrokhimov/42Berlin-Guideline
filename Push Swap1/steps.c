@@ -6,7 +6,7 @@
 /*   By: muxammad <muxammad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 19:42:04 by muxammad          #+#    #+#             */
-/*   Updated: 2024/12/22 20:23:05 by muxammad         ###   ########.fr       */
+/*   Updated: 2024/12/23 02:08:57 by muxammad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,14 @@ void	rra(t_list **stack, bool print)
 	t_list	*head;
 	t_list	*tail;
 
+	if (!stack || !*stack)
+		return ;
 	head = *stack;
 	tail = ft_lstlast(*stack);
 	tail->next = head;
-	*stack = tail;
 	tail->prev->next = NULL;
+	tail->prev = NULL;
+	*stack = tail;
 	if (print)
 		ft_printf("rra\n");
 }
@@ -45,9 +48,11 @@ void	sa(t_list **stack, bool print)
 {
 	t_list *tmp;
 
-	tmp = *stack;
-	*stack = (*stack)->next;
-	(*stack)->next = tmp;
+	if (!*stack ||!stack)
+		return ;
+	tmp =(*stack)->next;
+	(*stack)->next = *stack;
+	*stack = tmp;
 	if (print)
 		ft_printf("sa\n");
 }
