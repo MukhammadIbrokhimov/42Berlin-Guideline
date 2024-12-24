@@ -6,7 +6,7 @@
 /*   By: muxammad <muxammad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 19:03:39 by mukibrok          #+#    #+#             */
-/*   Updated: 2024/12/24 02:33:28 by muxammad         ###   ########.fr       */
+/*   Updated: 2024/12/24 20:41:41 by muxammad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,11 @@ void	sort_three(t_list **stack)
 		swap(stack, true, "sa");
 }
 
-void recursive_push(t_list **a, t_list **b, int length, int chunk) {
-    int min;
-    t_list *mid;
-    t_list *first_greater = NULL;
+void recursive_push(t_list **a, t_list **b, int length, int chunk) 
+{
+    int mid;
+	//int	min;
+    t_list *first_greater;
     int flag = 0;
 
     if (length <= 2) {
@@ -61,21 +62,23 @@ void recursive_push(t_list **a, t_list **b, int length, int chunk) {
         return;
     }
 
-    min = Max_Min(*a, INT_MAX, 0);
-    mid = find_Value(*a, (length - 2) / 2);
-    if (mid->content == min)
-        mid = mid->prev;
-
-    while (*a && *a != first_greater && ft_lstsize(*a) > 2) {
-        if ((*a)->content < mid->content) {
-            (*a)->chunk = chunk;
-            push(a, b, true, "pb");
-        } else {
-            if (!flag) {
-                first_greater = *a;
-                flag = 1;
-            }
-            rotate(a, true, "ra");
+	//min = Max_Min(*a, INT_MAX, 0);
+	mid = findMedian(*a, 0);
+	while (*a && *a != first_greater && ft_lstsize(*a) > 2)
+	{
+		if ((*a)->content < mid) 
+		{
+			(*a)->chunk = chunk;
+			push(a, b, true, "pb");
+		}
+		else
+		{
+			if (!flag)
+			{
+				first_greater = *a;
+				flag = 1;
+        	}
+        	rotate(a, true, "ra");
         }
     }
 

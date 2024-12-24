@@ -6,7 +6,7 @@
 /*   By: muxammad <muxammad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 17:12:57 by mukibrok          #+#    #+#             */
-/*   Updated: 2024/12/24 00:43:24 by muxammad         ###   ########.fr       */
+/*   Updated: 2024/12/24 20:37:03 by muxammad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	ft_free(t_list **stack);
 int		Max_Min(t_list *stack, int nbr, int chunk);
 int		ft_chunksize(t_list *stack, int chunk);
 t_list	*find_Value(t_list *stack, int index);
+int 	findMedian(t_list *list, int chunk);
 //  sorting functions
 void	ft_sort(t_list **a);
 void	sort_three(t_list **stack);
