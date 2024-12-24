@@ -6,7 +6,7 @@
 /*   By: muxammad <muxammad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 19:42:04 by muxammad          #+#    #+#             */
-/*   Updated: 2024/12/23 16:56:25 by muxammad         ###   ########.fr       */
+/*   Updated: 2024/12/24 02:28:48 by muxammad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,22 +27,53 @@ void	rotate(t_list **stack, bool print, char *s)
 		ft_printf("%s\n", s);
 }
 
-void	rra(t_list **stack, bool print)
+//void	chunk_rotate(t_list **stack, bool print, char *s, int chunk)
+//{
+//	t_list	*head;
+//	t_list	*tail;
+//	int		len;
+
+//	len = ft_chunksize(*stack, chunk);
+//	ft_printf("chunk rotate length :%d\n", len);
+//	head = *stack;
+//	while (*stack && (*stack)->chunk == chunk && len)
+//	{
+//		tail = *stack;
+//		*stack = (*stack)->next;
+//		len--;
+//	}
+//	*stack = (*stack)->next;
+//	tail->next = head;
+//	head->next = NULL;
+
+//	if (print)
+//		ft_printf("%s\n", s);
+//}
+
+void	reverse_rotate(t_list **stack, bool print, char *s)
 {
 	t_list	*head;
 	t_list	*tail;
 
-	if (!stack || !*stack)
+	if (ft_lstsize(*stack) < 2)
 		return ;
 	head = *stack;
-	tail = ft_lstlast(*stack);
-	tail->next = head;
-	tail->prev->next = NULL;
-	tail->prev = NULL;
+	tail = ft_lstlast(head);
+	while (head)
+	{
+		if (head->next->next == NULL)
+		{
+			 head->next = NULL;
+			 break ;
+		}
+		head = head->next;
+	}
+	tail->next = *stack;
 	*stack = tail;
 	if (print)
-		ft_printf("rra\n");
+		ft_printf("%s\n", s);
 }
+
 
 void	swap(t_list **stack, bool print, char *s)
 {
@@ -60,24 +91,27 @@ void	swap(t_list **stack, bool print, char *s)
 
 void	push(t_list **from, t_list **to, bool print, char *s)
 {
-	t_list	*head_src;
+	t_list	*tmp;
+	t_list	*head_to;
+	t_list	*head_from;
 
-	if (!from || !*from)
+	if (ft_lstsize(*from) == 0)
 		return ;
-	head_src = *from;
-	*from = (*from)->next;
-	(*from)->prev = NULL;
-	if (!*to || !to)
+	head_to = *to;
+	head_from = *from;
+	tmp = head_from;
+	head_from = head_from->next;
+	*from = head_from;
+	if (!head_to)
 	{
-		*to = head_src;
-		(*to)->next = NULL;
-		(*to)->prev = NULL;
+		head_to = tmp;
+		head_to->next = NULL;
+		*to = head_to;
 	}
 	else
 	{
-		head_src->next = *to;
-		(*to)->prev = head_src;
-		*to = head_src;
+		tmp->next = head_to;
+		*to = tmp;
 	}
 	if (print)
 		ft_printf("%s\n", s);

@@ -6,7 +6,7 @@
 /*   By: muxammad <muxammad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 18:38:02 by mukibrok          #+#    #+#             */
-/*   Updated: 2024/12/23 03:51:00 by muxammad         ###   ########.fr       */
+/*   Updated: 2024/12/23 23:50:22 by muxammad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	ft_free(t_list **stack)
 }
 
 // find max or min number
-int	Max_Min(t_list *stack, int nbr)
+int	Max_Min(t_list *stack, int nbr, int chunk)
 {
 	int	max_min;
 
@@ -91,7 +91,7 @@ int	Max_Min(t_list *stack, int nbr)
 	{
 		while (stack)
 		{
-			if(stack->content < max_min)
+			if(stack->content < max_min && stack->chunk == chunk)
 				max_min = stack->content;
 			stack = stack->next;
 		}
@@ -100,7 +100,7 @@ int	Max_Min(t_list *stack, int nbr)
 	{
 		while (stack)
 		{
-			if(stack->content > max_min)
+			if(stack->content > max_min && stack->chunk == chunk)
 				max_min = stack->content;
 			stack = stack->next;
 		}
