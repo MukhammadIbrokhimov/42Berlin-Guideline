@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   findMedian.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muxammad <muxammad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 21:23:35 by muxammad          #+#    #+#             */
-/*   Updated: 2024/12/24 22:05:21 by muxammad         ###   ########.fr       */
+/*   Updated: 2024/12/25 17:30:03 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void	extract_chunk_elements(t_list *list, int chunk, int *arr)
 {
 	int	index;
-	
+
 	index = 0;
 	while (list)
 	{
@@ -77,13 +77,12 @@ int	quickselect(int arr[], int left, int right, int k)
 }
 
 // Find the median of elements with the same chunk
-int	findMedian(t_list *list, int chunk) 
+int	findMedian(t_list *list, int chunk, float percentile)
 {
 	int	median;
 	int	n;
 	int	*arr;
-	int	mid1;
-	int	mid2;
+	int	target_index;
 
 	if (!list)
 		return (-1);
@@ -92,14 +91,19 @@ int	findMedian(t_list *list, int chunk)
 		return (-1);
 	arr = (int *)malloc(n * sizeof(int));
 	extract_chunk_elements(list, chunk, arr);
-	if (n % 2 == 1)
-		median = quickselect(arr, 0, n - 1, n / 2);
-	else
-	{
-		mid1 = quickselect(arr, 0, n - 1, n / 2 - 1);
-		mid2 = quickselect(arr, 0, n - 1, n / 2);
-		median = (mid1 + mid2) / 2;
-	}
+	target_index = (int)((percentile / 100.0) * n);
+	if (target_index >= n)
+		target_index = n - 1;
+	median = quickselect(arr, 0, n - 1, target_index);
+
+	// if (n % 2 == 1)
+	// 	median = quickselect(arr, 0, n - 1, n / 2);
+	// else
+	// {
+	// 	mid1 = quickselect(arr, 0, n - 1, n / 2 - 1);
+	// 	mid2 = quickselect(arr, 0, n - 1, n / 2);
+	// 	median = (mid1 + mid2) / 2;
+	// }
 	ft_printf("findmedian: %d\n", median);
 	return (free(arr), median);
 }

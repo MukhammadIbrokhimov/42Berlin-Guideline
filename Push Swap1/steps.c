@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   steps.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muxammad <muxammad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 19:42:04 by muxammad          #+#    #+#             */
-/*   Updated: 2024/12/24 02:28:48 by muxammad         ###   ########.fr       */
+/*   Updated: 2024/12/25 14:13:11 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	rotate(t_list **stack, bool print, char *s)
+void	rotate(t_list **stack, bool print, char *s, int *counter)
 {
 	t_list	*head;
 	t_list	*tail;
@@ -25,6 +25,7 @@ void	rotate(t_list **stack, bool print, char *s)
 
 	if (print)
 		ft_printf("%s\n", s);
+	*counter += 1;
 }
 
 //void	chunk_rotate(t_list **stack, bool print, char *s, int chunk)
@@ -50,7 +51,7 @@ void	rotate(t_list **stack, bool print, char *s)
 //		ft_printf("%s\n", s);
 //}
 
-void	reverse_rotate(t_list **stack, bool print, char *s)
+void	reverse_rotate(t_list **stack, bool print, char *s, int *counter)
 {
 	t_list	*head;
 	t_list	*tail;
@@ -72,10 +73,11 @@ void	reverse_rotate(t_list **stack, bool print, char *s)
 	*stack = tail;
 	if (print)
 		ft_printf("%s\n", s);
+	*counter += 1;
 }
 
 
-void	swap(t_list **stack, bool print, char *s)
+void	swap(t_list **stack, bool print, char *s, int *counter)
 {
 	t_list *tmp;
 
@@ -87,16 +89,17 @@ void	swap(t_list **stack, bool print, char *s)
 	*stack = tmp;
 	if (print)
 		ft_printf("%s\n", s);
+	counter++;
 }
 
-void	push(t_list **from, t_list **to, bool print, char *s)
+int	push(t_list **from, t_list **to, bool print, char *s)
 {
 	t_list	*tmp;
 	t_list	*head_to;
 	t_list	*head_from;
 
 	if (ft_lstsize(*from) == 0)
-		return ;
+		return (0);
 	head_to = *to;
 	head_from = *from;
 	tmp = head_from;
@@ -115,4 +118,5 @@ void	push(t_list **from, t_list **to, bool print, char *s)
 	}
 	if (print)
 		ft_printf("%s\n", s);
+	return (1);
 }
