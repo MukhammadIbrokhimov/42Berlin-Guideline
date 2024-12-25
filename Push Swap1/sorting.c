@@ -6,7 +6,7 @@
 /*   By: muxammad <muxammad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 19:03:39 by mukibrok          #+#    #+#             */
-/*   Updated: 2024/12/24 20:41:41 by muxammad         ###   ########.fr       */
+/*   Updated: 2024/12/24 21:58:49 by muxammad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,18 +51,16 @@ void	sort_three(t_list **stack)
 
 void recursive_push(t_list **a, t_list **b, int length, int chunk) 
 {
-    int mid;
-	//int	min;
-    t_list *first_greater;
-    int flag = 0;
-
-    if (length <= 2) {
-        if (!ft_sorted(*a)) // Sort the last two elements
-            swap(a, true, "sa");
-        return;
-    }
-
-	//min = Max_Min(*a, INT_MAX, 0);
+	int	mid;
+	t_list	*first_greater;
+	int flag;
+	
+	flag = 0;
+	if (length <= 2) {
+		if (!ft_sorted(*a))
+			swap(a, true, "sa");
+		return ;
+	}
 	mid = findMedian(*a, 0);
 	while (*a && *a != first_greater && ft_lstsize(*a) > 2)
 	{
@@ -77,51 +75,57 @@ void recursive_push(t_list **a, t_list **b, int length, int chunk)
 			{
 				first_greater = *a;
 				flag = 1;
-        	}
-        	rotate(a, true, "ra");
-        }
-    }
-
-    if (*a == first_greater && ft_lstsize(*a) > 2) {
-        recursive_push(a, b, ft_lstsize(*a), chunk + 1);
-    } else if (!ft_sorted(*a)) {
-        swap(a, true, "sa");
-    }
-    push_from_b_to_a(a, b, chunk);
+			}
+		rotate(a, true, "ra");
+		}
+	}
+	if (*a == first_greater && ft_lstsize(*a) > 2)
+		recursive_push(a, b, ft_lstsize(*a), chunk + 1);
+	else if (!ft_sorted(*a))
+		swap(a, true, "sa");
+	push_from_b_to_a(a, b, chunk);
 }
-
 
 void push_from_b_to_a(t_list **a, t_list **b, int chunk)
 {
-    int min;
-	int flag;
+	int	mid;
+	int	flag;
 
-    if (!b || !*b)
-        return;
-
-    min = Max_Min(*b, INT_MAX, chunk);
+	if (!b || !*b)
+		return ;
+	mid = findMedian(*b, chunk);
 	flag = 0;
-    while (*b && (*b)->chunk == chunk) {
-        if ((*b)->content > min) {
-            push(b, a, true, "pa");
-            if ((*a)->next && (*a)->content > (*a)->next->content) {
-                swap(a, true, "sa");
-            }
-        } else if ((*b)->content == min)
+	while (*b && (*b)->chunk == chunk)
+	{
+		if ((*b)->content > mid)
 		{
-            push(b, a, true, "rb");
-			if (*a)
-				rotate(a, true, "rra");
-			flag = 1;
-        }
-    }
-	if (flag)
-		reverse_rotate(a, true, "rra");
-    // Push the minimum element last
-    //while (*b && (*b)->content == min && (*b)->chunk == chunk) {
-    //    push(b, a, true, "pa");
-    //    rotate(a, true, "ra");
-    //}
+			push(b, a, true, "pa");
+			if ((*a)->next && (*a)->content > (*a)->next->content)
+				swap(a, true, "sa");
+		}
+		else if ((*b)->content <= mid)
+		{
+			rotate(b, true, "rb");
+			flag += 1;
+		}
+	}
+	
+	t_list	*tail;
+
+	tail = ft_lstlast(*b);
+	while (flag > 0 && tail->chunk == chunk)
+	{
+		reverse_rotate(b, true, "rra");
+		if (flag >= 2)
+		{
+			reverse_rotate(b, true, "rra");
+			flag--;
+		}
+		if ((*b)->content < (*b)->next->content && (*b)->chunk == (*b)->next->chunk)
+			swap(a, true, "sa");
+		push(b, a, true, "pa");
+		flag--;
+	}
 }
 
 
