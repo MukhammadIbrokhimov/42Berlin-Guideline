@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
+/*   By: muxammad <muxammad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 03:53:29 by muxammad          #+#    #+#             */
-/*   Updated: 2024/12/25 18:23:53 by mukibrok         ###   ########.fr       */
+/*   Updated: 2024/12/26 01:07:11 by muxammad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_list	*find_nearest_highest(t_list *stack, int chunk, int mid)
 	highest = INT_MIN;
 	while (stack && stack->chunk == chunk)
 	{
-		if (stack->content >= mid && stack->content > highest)
+		if (stack->content >= mid || stack->content > highest)
 		{
 			highest = stack->content;
 			highest_node = stack;
@@ -31,7 +31,7 @@ t_list	*find_nearest_highest(t_list *stack, int chunk, int mid)
 	{
 		while (stack && stack->chunk == chunk)
 		{
-			if (stack->content < mid && stack->content > highest)
+			if (stack->content <= mid || stack->content > highest)
 			{
 				highest = stack->content;
 				highest_node = stack;

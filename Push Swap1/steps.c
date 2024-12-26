@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   steps.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
+/*   By: muxammad <muxammad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 19:42:04 by muxammad          #+#    #+#             */
-/*   Updated: 2024/12/25 14:13:11 by mukibrok         ###   ########.fr       */
+/*   Updated: 2024/12/26 00:16:22 by muxammad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	swap(t_list **stack, bool print, char *s, int *counter)
 	*stack = tmp;
 	if (print)
 		ft_printf("%s\n", s);
-	counter++;
+	*counter += 1;
 }
 
 int	push(t_list **from, t_list **to, bool print, char *s)

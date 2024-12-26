@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sorting.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
+/*   By: muxammad <muxammad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 19:03:39 by mukibrok          #+#    #+#             */
-/*   Updated: 2024/12/25 18:43:40 by mukibrok         ###   ########.fr       */
+/*   Updated: 2024/12/26 01:27:59 by muxammad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void recursive_push(t_list **a, t_list **b, int length, int chunk, int *counter)
         return ;
     }
 	//min = Max_Min(*a, INT_MAX, 0);
-	mid = findMedian(*a, 0, 35.0);
+	mid = findMedian(*a, 0, 25.0);
 	while (*a && *a != first_greater && ft_lstsize(*a) > 3)
 	{
 		if ((*a)->content < mid)
@@ -97,28 +97,67 @@ void recursive_push(t_list **a, t_list **b, int length, int chunk, int *counter)
 
 void	push_from_b_to_a(t_list **a, t_list **b, int chunk, int *counter)
 {
-	int		chunk_len;
+	t_list	*current;
+	t_list	*chunk_end;
+	t_list	*first_smaller;
 	int		mid;
-	t_list	*tmp;
-	// t_list	*mid;
+	int		chunk_len;
+	int		flag;
 
-	(void) a;
-	(void) counter;
 	ft_printf("PUSH to A\n");
 	chunk_len = ft_chunksize(*b, chunk);
 	ft_printf("chunk len: %d\n", chunk_len);
-	if (chunk_len == 1)
+	print_list(*b);
+	if (chunk_len <= 2)
 	{
+		if ((*b)->content < (*b)->next->content && chunk_len == 2)
+			swap(b, true, "sb", counter);
+		if (chunk_len == 2)
+			push(b, a, true, "pa");
 		push(b, a, true, "pa");
 		return ;
 	}
-	while(*b && (*b)->chunk == chunk)
-		*b = (*b)->next;
-	(*b)->next = NULL;
+	current = *b;
+	while (current && current->chunk == chunk)
+	{
+		chunk_end = current;
+		current = current->next;
+	}
+	if (chunk_end)
+		chunk_end->next = NULL;
+	ft_printf("affter division\n");
 	print_list(*b);
-	mid = findMedian(*b, chunk, 70.0);
-	tmp = find_nearest_highest(*b, chunk, mid);
-	ft_printf("highest number: %d\n", tmp);
+	// Operate only within this chunk
+	mid = findMedian(*b, chunk, 85.0);
+	flag = 1;
+	while (*b && (*b)->chunk == chunk) {
+		if (*b == first_smaller)
+		{
+			*counter += push(b, a, true, "pa");
+			flag = 1;
+			if ((*a)->content > (*a)->next->content)
+				swap(a, true, "sa", counter);
+		}
+		if (flag)
+		{
+			first_smaller = find_nearest_highest(*b, chunk, mid);
+			ft_printf("first_smaller: %d\n", first_smaller->content);
+			flag = 0;
+		}
+		else
+			rotate(b, true, "rb", counter);
+	}
+
+	// Merge the remaining stack B (if any)
+	if (current)
+		*b = current;
+	else
+		*b = NULL;
+
+	print_list(*b);
+	ft_printf("stack a\n");
+	print_list(*a);
+	ft_printf("Chunk %d processed. Counter: %d\n", chunk, *counter);
 }
 
 void	print_list(t_list *stack)
