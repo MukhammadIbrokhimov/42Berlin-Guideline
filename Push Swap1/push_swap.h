@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 17:12:57 by mukibrok          #+#    #+#             */
-/*   Updated: 2024/12/25 18:24:06 by mukibrok         ###   ########.fr       */
+/*   Updated: 2024/12/26 19:43:58 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,9 @@ bool	ft_isdouble(t_list *stack);
 void	ft_free(t_list **stack);
 int		ft_chunksize(t_list *stack, int chunk);
 t_list	*find_nearest_highest(t_list *stack, int chunk, int mid);
-int 	findMedian(t_list *list, int chunk, float percentile);
-void 	rotate_b_chunk(t_list **b, int chunk, int *counter);
+int 	find_median(t_list *list, int chunk, float percentile);
+void	rotate_b_chunk(t_list **b, int chunk, int *counter);
+void	ft_free_arr(char **arr);
 //  sorting functions
 void	ft_sort(t_list **a);
 void	sort_three(t_list **stack, int *counter);

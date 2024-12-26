@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muxammad <muxammad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 18:38:02 by mukibrok          #+#    #+#             */
-/*   Updated: 2024/12/23 23:50:22 by muxammad         ###   ########.fr       */
+/*   Updated: 2024/12/26 19:42:23 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ bool	ft_iserror(char **argv)
 	return (false);
 }
 
-// if already sorted 
+// if already sorted
 bool	ft_sorted(t_list *stack)
 {
 	while (stack->next)
@@ -46,11 +46,12 @@ bool	ft_sorted(t_list *stack)
 }
 
 // checks if numbers are doubled
-bool ft_isdouble(t_list *stack)
+bool	ft_isdouble(t_list *stack)
 {
-	t_list *seen = NULL;
-	t_list *temp;
+	t_list	*seen;
+	t_list	*temp;
 
+	seen = NULL;
 	while (stack)
 	{
 		temp = seen;
@@ -79,31 +80,4 @@ void	ft_free(t_list **stack)
 		*stack = (*stack)->next;
 		free(tmp);
 	}
-}
-
-// find max or min number
-int	Max_Min(t_list *stack, int nbr, int chunk)
-{
-	int	max_min;
-
-	max_min = nbr;
-	if (max_min == INT_MAX)
-	{
-		while (stack)
-		{
-			if(stack->content < max_min && stack->chunk == chunk)
-				max_min = stack->content;
-			stack = stack->next;
-		}
-	}
-	else
-	{
-		while (stack)
-		{
-			if(stack->content > max_min && stack->chunk == chunk)
-				max_min = stack->content;
-			stack = stack->next;
-		}
-	}
-	return (max_min);
 }

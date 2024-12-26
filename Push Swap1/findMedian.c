@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   findMedian.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muxammad <muxammad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 21:23:35 by muxammad          #+#    #+#             */
-/*   Updated: 2024/12/26 01:56:54 by muxammad         ###   ########.fr       */
+/*   Updated: 2024/12/26 19:46:23 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	partition(int arr[], int left, int right, int pivot)
 	int	store_index;
 	int	i;
 
-	pivot_value= arr[pivot];
+	pivot_value = arr[pivot];
 	temp = arr[pivot];
 	arr[pivot] = arr[right];
 	arr[right] = temp;
@@ -77,7 +77,7 @@ int	quickselect(int arr[], int left, int right, int k)
 }
 
 // Find the median of elements with the same chunk
-int	findMedian(t_list *list, int chunk, float percentile)
+int	find_median(t_list *list, int chunk, float percentile)
 {
 	int	median;
 	int	n;
@@ -95,6 +95,5 @@ int	findMedian(t_list *list, int chunk, float percentile)
 	if (target_index >= n)
 		target_index = n - 1;
 	median = quickselect(arr, 0, n - 1, target_index);
-	ft_printf("findmedian: %d\n", median);
 	return (free(arr), median);
 }

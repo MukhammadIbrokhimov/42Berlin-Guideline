@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sorting.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muxammad <muxammad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 19:03:39 by mukibrok          #+#    #+#             */
-/*   Updated: 2024/12/26 01:56:59 by muxammad         ###   ########.fr       */
+/*   Updated: 2024/12/26 19:44:25 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void recursive_push(t_list **a, t_list **b, int length, int chunk, int *counter)
         return ;
     }
 	//min = Max_Min(*a, INT_MAX, 0);
-	mid = findMedian(*a, 0, 30.0);
+	mid = find_median(*a, 0, 25.0);
 	while (*a && *a != first_greater && ft_lstsize(*a) > 3)
 	{
 		if ((*a)->content < mid)
@@ -110,13 +110,15 @@ void	push_from_b_to_a(t_list **a, t_list **b, int chunk, int *counter)
 	print_list(*b);
 	if (chunk_len <= 2)
 	{
-		if ((*b)->content < (*b)->next->content && chunk_len == 2)
+		if (chunk_len == 2 && (*b)->content < (*b)->next->content)
 			swap(b, true, "sb", counter);
 		if (chunk_len == 2)
-			push(b, a, true, "pa");
-		push(b, a, true, "pa");
+			*counter += push(b, a, true, "pa");
+		*counter += push(b, a, true, "pa");
 		return ;
 	}
+	if (!*b || !b)
+		return ;
 	current = *b;
 	while (current && current->chunk == chunk)
 	{
@@ -128,13 +130,14 @@ void	push_from_b_to_a(t_list **a, t_list **b, int chunk, int *counter)
 	ft_printf("affter division\n");
 	print_list(*b);
 	// Operate only within this chunk
-	mid = findMedian(*b, chunk, 50.0);
+	mid = find_median(*b, chunk, 85.0);
 	flag = 1;
 	while (*b && (*b)->chunk == chunk) {
-		if (*b == first_smaller)
+		if (*b == first_smaller || (*b)->content > mid)
 		{
+			if (*b == first_smaller)
+				flag = 1;
 			*counter += push(b, a, true, "pa");
-			flag = 1;
 			if ((*a)->content > (*a)->next->content)
 				swap(a, true, "sa", counter);
 		}
