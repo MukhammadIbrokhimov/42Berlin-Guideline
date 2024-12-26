@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   findMedian.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
+/*   By: muxammad <muxammad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 21:23:35 by muxammad          #+#    #+#             */
-/*   Updated: 2024/12/25 17:30:03 by mukibrok         ###   ########.fr       */
+/*   Updated: 2024/12/26 01:56:54 by muxammad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,15 +95,6 @@ int	findMedian(t_list *list, int chunk, float percentile)
 	if (target_index >= n)
 		target_index = n - 1;
 	median = quickselect(arr, 0, n - 1, target_index);
-
-	// if (n % 2 == 1)
-	// 	median = quickselect(arr, 0, n - 1, n / 2);
-	// else
-	// {
-	// 	mid1 = quickselect(arr, 0, n - 1, n / 2 - 1);
-	// 	mid2 = quickselect(arr, 0, n - 1, n / 2);
-	// 	median = (mid1 + mid2) / 2;
-	// }
 	ft_printf("findmedian: %d\n", median);
 	return (free(arr), median);
 }

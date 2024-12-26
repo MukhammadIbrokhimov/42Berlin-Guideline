@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
+/*   By: muxammad <muxammad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 14:33:39 by mukibrok          #+#    #+#             */
-/*   Updated: 2024/12/21 18:54:31 by mukibrok         ###   ########.fr       */
+/*   Updated: 2024/12/26 01:59:51 by muxammad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_list	*ft_lstnew(int nbr)
 	if (!new_list)
 		return (NULL);
 	new_list->content = nbr;
+	new_list->chunk = 0;
 	new_list->next = NULL;
 	return (new_list);
 }

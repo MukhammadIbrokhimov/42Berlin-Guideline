@@ -6,7 +6,7 @@
 /*   By: muxammad <muxammad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 19:03:39 by mukibrok          #+#    #+#             */
-/*   Updated: 2024/12/26 01:27:59 by muxammad         ###   ########.fr       */
+/*   Updated: 2024/12/26 01:56:59 by muxammad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void recursive_push(t_list **a, t_list **b, int length, int chunk, int *counter)
         return ;
     }
 	//min = Max_Min(*a, INT_MAX, 0);
-	mid = findMedian(*a, 0, 25.0);
+	mid = findMedian(*a, 0, 30.0);
 	while (*a && *a != first_greater && ft_lstsize(*a) > 3)
 	{
 		if ((*a)->content < mid)
@@ -128,7 +128,7 @@ void	push_from_b_to_a(t_list **a, t_list **b, int chunk, int *counter)
 	ft_printf("affter division\n");
 	print_list(*b);
 	// Operate only within this chunk
-	mid = findMedian(*b, chunk, 85.0);
+	mid = findMedian(*b, chunk, 50.0);
 	flag = 1;
 	while (*b && (*b)->chunk == chunk) {
 		if (*b == first_smaller)
