@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 18:38:02 by mukibrok          #+#    #+#             */
-/*   Updated: 2024/12/26 19:42:23 by mukibrok         ###   ########.fr       */
+/*   Updated: 2024/12/26 20:03:23 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,17 @@ void	ft_free(t_list **stack)
 		*stack = (*stack)->next;
 		free(tmp);
 	}
+}
+
+void	ft_free_arr(char **arr)
+{
+	int	i;
+
+	i = 0;
+	while (arr[i])
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
 }

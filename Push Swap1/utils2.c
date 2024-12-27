@@ -6,11 +6,24 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 03:53:29 by muxammad          #+#    #+#             */
-/*   Updated: 2024/12/26 19:39:56 by mukibrok         ###   ########.fr       */
+/*   Updated: 2024/12/27 15:12:33 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+// hard-coded sorting, if stack len == 3
+void	sort_three(t_list **stack, int *counter)
+{
+	if (((*stack)->content > (*stack)->next->content) &&
+		((*stack)->content > (*stack)->next->next->content))
+			rotate(stack, true, "ra", counter);
+	if (((*stack)->next->content > (*stack)->next->next->content) &&
+		((*stack)->next->content > (*stack)->content))
+		reverse_rotate(stack, true, "rra", counter);
+	if((*stack)->content > (*stack)->next->content)
+		swap(stack, true, "sa", counter);
+}
 
 t_list	*find_nearest_highest(t_list *stack, int chunk, int mid)
 {
@@ -48,15 +61,17 @@ int	ft_chunksize(t_list *stack, int chunk)
 	return (i);
 }
 
-void	ft_free_arr(char **arr)
+void	print_list(t_list *stack)
 {
-	int	i;
-
-	i = 0;
-	while (arr[i])
+	if (!stack)
 	{
-		free(arr[i]);
-		i++;
+		ft_printf("Empty\n");
+		return ;
 	}
-	free(arr);
+	while (stack)
+	{
+		ft_printf("%d\n", stack->content);
+		stack = stack->next;
+	}
+	ft_printf("\n");
 }

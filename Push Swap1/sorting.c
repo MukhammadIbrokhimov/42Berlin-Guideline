@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 19:03:39 by mukibrok          #+#    #+#             */
-/*   Updated: 2024/12/26 19:44:25 by mukibrok         ###   ########.fr       */
+/*   Updated: 2024/12/27 17:13:07 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,55 +17,48 @@ void	ft_sort(t_list **stack)
 {
 	t_list	*b;
 	int	len;
-	int chunk;
-	int counter;
+	int	chunk;
+	int	counter;
 
 	b = NULL;
 	chunk = 1;
 	counter = 0;
-	ft_printf("stack a\n");
-	ft_printf("chunksize a: %d\n", ft_chunksize(*stack, 0));
-	print_list(*stack);
-	len = ft_lstsize(*stack); // completed
+	// ft_printf("stack a\n");
+	// ft_printf("chunksize a: %d\n", ft_chunksize(*stack, 0));
+	// print_list(*stack);
+	len = ft_lstsize(*stack);
 	if (len == 3)
-		sort_three(stack, &counter); // completed
+		sort_three(stack, &counter);
 	else if (len == 2 && !ft_sorted(*stack))
 		swap(stack, true, "sa", &counter);
 	else
-		recursive_push(stack, &b, len, chunk, &counter); // progress
+		recursive_push(stack, &b, len, chunk, &counter);
 	ft_printf("stack b\n");
 	print_list(b);
-	ft_printf("stack a\n");
+	// ft_printf("stack a\n");
 	print_list(*stack);
+	// print_list(b);
+	if (ft_sorted(*stack))
+		ft_printf("Sorted\n");
+	else
+		ft_printf("UnSorted\n");
 	ft_printf("counter%d\n", counter);
-}
-
-// hard-coded sorting, if stack len == 3
-void	sort_three(t_list **stack, int *counter)
-{
-	if (((*stack)->content > (*stack)->next->content) &&
-		((*stack)->content > (*stack)->next->next->content))
-			rotate(stack, true, "ra", counter);
-	if (((*stack)->next->content > (*stack)->next->next->content) &&
-		((*stack)->next->content > (*stack)->content))
-		reverse_rotate(stack, true, "rra", counter);
-	if((*stack)->content > (*stack)->next->content)
-		swap(stack, true, "sa", counter);
 }
 
 void recursive_push(t_list **a, t_list **b, int length, int chunk, int *counter)
 {
-    int	mid;
-    t_list *first_greater;
+    int	mid = 0;;
+    t_list *first_greater = NULL;
     int flag = 0;
 
     if (length <= 2) {
         if (!ft_sorted(*a)) // Sort the last two elements
             swap(a, true, "sa", counter);
         return ;
-    }
+    };
 	//min = Max_Min(*a, INT_MAX, 0);
 	mid = find_median(*a, 0, 25.0);
+	ft_printf("mid number%d\n", mid);
 	while (*a && *a != first_greater && ft_lstsize(*a) > 3)
 	{
 		if ((*a)->content < mid)
@@ -92,7 +85,7 @@ void recursive_push(t_list **a, t_list **b, int length, int chunk, int *counter)
 		sort_three(a, counter);
 	print_list(*a);
     push_from_b_to_a(a, b, chunk, counter);
-	// ft_printf("Counter: %d\n", counter);
+	ft_printf("Counter: %d\n", &counter);
 }
 
 void	push_from_b_to_a(t_list **a, t_list **b, int chunk, int *counter)
@@ -129,11 +122,10 @@ void	push_from_b_to_a(t_list **a, t_list **b, int chunk, int *counter)
 		chunk_end->next = NULL;
 	ft_printf("affter division\n");
 	print_list(*b);
-	// Operate only within this chunk
 	mid = find_median(*b, chunk, 85.0);
 	flag = 1;
 	while (*b && (*b)->chunk == chunk) {
-		if (*b == first_smaller || (*b)->content > mid)
+		if (*b == first_smaller)
 		{
 			if (*b == first_smaller)
 				flag = 1;
@@ -150,30 +142,13 @@ void	push_from_b_to_a(t_list **a, t_list **b, int chunk, int *counter)
 		else
 			rotate(b, true, "rb", counter);
 	}
-
-	// Merge the remaining stack B (if any)
 	if (current)
 		*b = current;
 	else
 		*b = NULL;
-
-	print_list(*b);
-	ft_printf("stack a\n");
-	print_list(*a);
-	ft_printf("Chunk %d processed. Counter: %d\n", chunk, *counter);
-}
-
-void	print_list(t_list *stack)
-{
-	if (!stack)
-	{
-		ft_printf("Empty\n");
-		return ;
-	}
-	while (stack)
-	{
-		ft_printf("%d->%d\n", stack->content, stack->chunk);
-		stack = stack->next;
-	}
-	ft_printf("\n");
+	// print_list(*b);
+	// ft_printf("stack a\n");
+	// // print_list(*a);
+	// ft_printf("Chunk %d processed. Counter: %d\n", chunk, *counter);
+	// shuf -i 0-1000 -n 100 | tr '\n' ' '
 }

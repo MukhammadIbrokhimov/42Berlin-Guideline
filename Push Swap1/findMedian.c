@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 21:23:35 by muxammad          #+#    #+#             */
-/*   Updated: 2024/12/26 19:46:23 by mukibrok         ###   ########.fr       */
+/*   Updated: 2024/12/26 20:01:15 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,18 @@ void	extract_chunk_elements(t_list *list, int chunk, int *arr)
 	}
 }
 
+static void	mini_swap(int *a, int *b)
+{
+	int	tmp;
+
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
+}
+
+	// temp = arr[pivot];
+	// arr[pivot] = arr[right];
+	// arr[right] = temp;
 // Partition function for Quickselect
 int	partition(int arr[], int left, int right, int pivot)
 {
@@ -35,9 +47,7 @@ int	partition(int arr[], int left, int right, int pivot)
 	int	i;
 
 	pivot_value = arr[pivot];
-	temp = arr[pivot];
-	arr[pivot] = arr[right];
-	arr[right] = temp;
+	mini_swap(&arr[pivot], &arr[right]);
 	store_index = left;
 	i = left;
 	while (i < right)
@@ -63,7 +73,7 @@ int	quickselect(int arr[], int left, int right, int k)
 	int	pivot_index;
 
 	if (left == right)
-		return arr[left];
+		return (arr[left]);
 	pivot_index = left + rand() % (right - left + 1);
 	if (pivot_index < left || pivot_index > right)
 		exit(EXIT_FAILURE);
@@ -71,9 +81,9 @@ int	quickselect(int arr[], int left, int right, int k)
 	if (k == pivot_index)
 		return (arr[k]);
 	else if (k < pivot_index)
-		return quickselect(arr, left, pivot_index - 1, k);
+		return (quickselect(arr, left, pivot_index - 1, k));
 	else
-		return quickselect(arr, pivot_index + 1, right, k);
+		return (quickselect(arr, pivot_index + 1, right, k));
 }
 
 // Find the median of elements with the same chunk

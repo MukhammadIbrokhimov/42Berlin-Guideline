@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   steps.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muxammad <muxammad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 19:42:04 by muxammad          #+#    #+#             */
-/*   Updated: 2024/12/26 00:16:22 by muxammad         ###   ########.fr       */
+/*   Updated: 2024/12/26 20:02:38 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,34 +22,10 @@ void	rotate(t_list **stack, bool print, char *s, int *counter)
 	*stack = (*stack)->next;
 	tail->next = head;
 	head->next = NULL;
-
 	if (print)
 		ft_printf("%s\n", s);
 	*counter += 1;
 }
-
-//void	chunk_rotate(t_list **stack, bool print, char *s, int chunk)
-//{
-//	t_list	*head;
-//	t_list	*tail;
-//	int		len;
-
-//	len = ft_chunksize(*stack, chunk);
-//	ft_printf("chunk rotate length :%d\n", len);
-//	head = *stack;
-//	while (*stack && (*stack)->chunk == chunk && len)
-//	{
-//		tail = *stack;
-//		*stack = (*stack)->next;
-//		len--;
-//	}
-//	*stack = (*stack)->next;
-//	tail->next = head;
-//	head->next = NULL;
-
-//	if (print)
-//		ft_printf("%s\n", s);
-//}
 
 void	reverse_rotate(t_list **stack, bool print, char *s, int *counter)
 {
@@ -64,8 +40,8 @@ void	reverse_rotate(t_list **stack, bool print, char *s, int *counter)
 	{
 		if (head->next->next == NULL)
 		{
-			 head->next = NULL;
-			 break ;
+			head->next = NULL;
+			break ;
 		}
 		head = head->next;
 	}
@@ -76,13 +52,12 @@ void	reverse_rotate(t_list **stack, bool print, char *s, int *counter)
 	*counter += 1;
 }
 
-
 void	swap(t_list **stack, bool print, char *s, int *counter)
 {
-	t_list *tmp;
+	t_list	*tmp;
 
 	if (!stack || !*stack || !(*stack)->next)
-		return;
+		return ;
 	tmp = (*stack)->next;
 	(*stack)->next = tmp->next;
 	tmp->next = *stack;
