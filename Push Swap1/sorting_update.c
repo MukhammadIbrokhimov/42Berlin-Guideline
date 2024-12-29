@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 19:03:39 by mukibrok          #+#    #+#             */
-/*   Updated: 2024/12/29 17:18:59 by mukibrok         ###   ########.fr       */
+/*   Updated: 2024/12/29 18:44:32 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void recursive_push(t_list **a, t_list **b, int length, int chunk, int *counter)
         return ;
     };
 	//min = Max_Min(*a, INT_MAX, 0);
-	mid = find_median(*a, 0, 35.0);
+	mid = find_median(*a, 0, 25.0);
 	ft_printf("mid number%d\n", mid);
 	while (*a && *a != first_greater && ft_lstsize(*a) > 3)
 	{
@@ -143,13 +143,13 @@ void	push_from_b_to_a(t_list **a, t_list **b, int chunk, int *counter)
 	}
 
 	// Find median and largest element for the current chunk
-	mid = find_median(*b, chunk, 70.0);
+	mid = find_median(*b, chunk, 75.0);
 	the_largest_among_chunk = find_nearest_highest(*b, chunk, mid);
 
 	while (chunk_len > 0) {
 		if ((*b)->content > mid || *b == the_largest_among_chunk) {
 			// Push larger elements to 'a'
-			if ((*b)->next && (*b)->content < (*b)->next->content && (*b)->next->chunk == chunk)
+			if ((*b)->next && (*b)->content < (*b)->next->content)
 				swap(b, true, "sb", counter);
 			*counter += push(b, a, true, "pa");
 			if (*a && (*a)->next && (*a)->content > (*a)->next->content)
