@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 17:22:41 by mukibrok          #+#    #+#             */
-/*   Updated: 2024/12/26 19:39:25 by mukibrok         ###   ########.fr       */
+/*   Updated: 2024/12/29 14:05:27 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	push_swap(char **argv)
 	if (ft_sorted(a) || ft_isdouble(a) || !flag)
 	{
 		ft_free(&a);
-		return (ft_printf("Error\nAlready sorted or repeated number\n", 1));
+		return (ft_printf("Error\n", 1));
 	}
 	else
 		ft_sort(&a);
@@ -37,7 +37,7 @@ int	main(int argc, char **argv)
 	char	**arr;
 
 	if (argc < 2 || argv[1][0] == '\0')
-		return (ft_printf("Error\n"), 1);
+		return (-1);
 	if (argc == 2)
 	{
 		arr = ft_split(argv[1], ' ');

@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 03:53:29 by muxammad          #+#    #+#             */
-/*   Updated: 2024/12/27 15:12:33 by mukibrok         ###   ########.fr       */
+/*   Updated: 2024/12/29 15:25:03 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ t_list	*find_nearest_highest(t_list *stack, int chunk, int mid)
 	int		highest;
 
 	highest = INT_MIN;
+	highest_node = NULL;
+	if (!stack)
+		return (highest_node);
 	while (stack && stack->chunk == chunk)
 	{
 		if (stack->content > mid && stack->content > highest)
@@ -70,8 +73,33 @@ void	print_list(t_list *stack)
 	}
 	while (stack)
 	{
-		ft_printf("%d\n", stack->content);
+		ft_printf("%d->%d->%d\n", stack->content, stack->chunk, stack->index);
 		stack = stack->next;
 	}
 	ft_printf("\n");
 }
+
+t_list	*get_next_min(t_list **stack)
+{
+	t_list	*head;
+	t_list	*min;
+	int		has_min;
+
+	min = NULL;
+	has_min = 0;
+	head = *stack;
+	if (head)
+	{
+		while (head)
+		{
+			if ((head->index == -1) && (!has_min || head->content < min->content))
+			{
+				min = head;
+				has_min = 1;
+			}
+			head = head->next;
+		}
+	}
+	return (min);
+}
+

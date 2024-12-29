@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 17:12:57 by mukibrok          #+#    #+#             */
-/*   Updated: 2024/12/26 19:43:58 by mukibrok         ###   ########.fr       */
+/*   Updated: 2024/12/29 15:24:56 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,18 @@ bool	ft_isdouble(t_list *stack);
 void	ft_free(t_list **stack);
 int		ft_chunksize(t_list *stack, int chunk);
 t_list	*find_nearest_highest(t_list *stack, int chunk, int mid);
-int 	find_median(t_list *list, int chunk, float percentile);
+t_list	*get_next_min(t_list **stack);
+int		find_median(t_list *list, int chunk, float percentile);
+int		get_max_bits(t_list **stack);
 void	rotate_b_chunk(t_list **b, int chunk, int *counter);
 void	ft_free_arr(char **arr);
+void	index_stack(t_list **stack);
 //  sorting functions
 void	ft_sort(t_list **a);
 void	sort_three(t_list **stack, int *counter);
 void	recursive_push(t_list **a, t_list **b, int length, int chunk, int *counter);
 void	push_from_b_to_a(t_list **a, t_list **b, int chunk, int *counter);
+void	radix_sort(t_list **a, t_list **b, int *counter);
 
 // move
 void	rotate(t_list **stack, bool print, char *s, int *counter);
