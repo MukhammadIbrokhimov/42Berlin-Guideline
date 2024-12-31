@@ -28,8 +28,6 @@ To compile the project, simply run:
 ```bash
 make
 ```
-# FDF Project
-
 ## Description
 This project generates an executable file called `fdf` to visualize a 3D map using graphical rendering.
 
