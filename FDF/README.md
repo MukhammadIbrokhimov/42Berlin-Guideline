@@ -1,4 +1,4 @@
-# FDF Project - 42 Network
+# FDF Project
 
 ## Description
 This project is a part of the 42 Network curriculum, where we are tasked with creating a program that renders 3D data onto a 2D plane using graphical libraries in C. The program reads a map of integers and visualizes it as a 3D isometric projection. The user can interact with the map, applying rotations, zooming in and out, and moving the view to explore the data in 3D space.
