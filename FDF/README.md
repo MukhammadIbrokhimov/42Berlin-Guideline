@@ -44,7 +44,9 @@ Once the project is compiled, you can run the program using the following comman
 
 ```bash
 ./fdf <path_to_map_file>
+
 ```
+
 # Project Structure
 
 ├── src/
@@ -53,7 +55,7 @@ Once the project is compiled, you can run the program using the following comman
 │   ├── render.c            # Functions to render the map
 │   └── utils.c             # Helper functions (e.g., error handling)
 ├── includes/
-│   └── fdf.h               # Header file containing prototypes
+│   └── fdf.h               # Header file containing function prototypes
 ├── Makefile                # Makefile for compilation
-└── README.md               # This file
+└── README.md               # Project documentation
 
