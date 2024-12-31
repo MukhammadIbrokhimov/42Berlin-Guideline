@@ -5,6 +5,22 @@ This project is a part of the 42 Network curriculum, where we are tasked with cr
 
 This project is designed to help us learn graphical programming, mathematical concepts like projections and transformations, and the use of libraries such as MiniLibX.
 
+---
+
+## Aims of the Project
+
+The primary objectives of this project are:
+
+- **Learning graphical programming**: Understanding how to manipulate graphical elements such as pixels, lines, and shapes.
+- **Handling 3D data**: Translating 3D coordinates into a 2D plane using **isometric projection**.
+- **Matrix transformations**: Understanding and applying transformations such as rotation, scaling, and translation on 3D data.
+- **Interactive controls**: Implementing user interaction for rotating, zooming, and translating the 3D view.
+- **Using MiniLibX**: Gaining experience with the **MiniLibX** graphical library (provided by the 42 network).
+- **Optimizing performance**: Managing and rendering large 3D maps efficiently.
+- **File handling**: Reading data from an input file, parsing it, and displaying it in a graphical interface.
+
+---
+
 ## Requirements
 - C programming language (compilation with `gcc`)
 - MiniLibX graphical library (provided by 42)
