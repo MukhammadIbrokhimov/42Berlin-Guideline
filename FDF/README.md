@@ -27,3 +27,21 @@ To compile the project, simply run:
 
 ```bash
 make
+```
+# FDF Project
+
+## Description
+This project generates an executable file called `fdf` to visualize a 3D map using graphical rendering.
+
+## Dependencies
+- **MiniLibX**: A graphical library used for rendering (provided by the 42 network).
+- **libft**: The 42 library containing useful functions, such as `ft_printf` and string manipulation utilities.
+
+If you do not have **MiniLibX** installed, you can follow the official 42 guidelines to set up the environment properly.
+
+## Running the Program
+Once the project is compiled, you can run the program using the following command:
+
+```bash
+./fdf <path_to_map_file>
+```
