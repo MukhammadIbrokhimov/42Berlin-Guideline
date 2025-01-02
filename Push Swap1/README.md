@@ -41,6 +41,32 @@ The algorithm has built-in handling for:
 - **Single-element and two-element lists**: These are sorted directly without recursion.
 - **Non-contiguous chunks**: The rotations are restricted to the boundaries of each chunk to ensure efficient sorting.
 
+``` mermaid
+flowchart TD
+    A[Start: Calculate Mid-Value] --> B{Mid-Value Valid?}
+    B -- Yes --> C[Push Nodes to B Based on Mid-Value]
+    B -- No --> D[Adjust Mid-Value to Next Node Above]
+    D --> C
+    C --> E{Greater Value in Stack A?}
+    E -- Yes --> F[Rotate A and Save First Greater Value]
+    E -- No --> G[Stop Rotating/ Pushing]
+    G --> H[Recursively Sort Reduced List]
+    H --> I{List Size == 2?}
+    I -- Yes --> J[Sort Directly]
+    I -- No --> H
+    J --> K[Push Back From B to A]
+    K --> L{Chunk Mid-Value Calculated?}
+    L -- Yes --> M[Push Greater Numbers from B to A]
+    M --> N[Rotate B to Isolate Chunk]
+    N --> O{No Greater Numbers Left?}
+    O -- Yes --> P[Push Mid-Value and Smaller Numbers to A]
+    O -- No --> M
+    P --> Q[Recursively Handle Remaining Chunks]
+    Q --> R[Final Check: Correct Order in A?]
+    R -- Yes --> S[Use SA to Adjust Order if Needed]
+    S --> T[End: Sorted Stack in A]
+```
+
 ## Conclusion
 
 This Quick Sort algorithm efficiently sorts a stack using a series of operations, adhering to the constraints of the Push Swap project. The recursive approach, combined with chunk-based sorting and careful tracking of values, ensures that the algorithm performs well even with large input sizes.
