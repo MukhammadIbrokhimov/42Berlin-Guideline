@@ -2,44 +2,100 @@
 
 ## Overview
 
-This Quick Sort algorithm is designed to solve the Push Swap problem, a project in the 42 curriculum. The algorithm efficiently sorts a stack of numbers using a series of operations (`sa`, `ra`, `rb`, `pa`, `pb`, etc.) while adhering to the constraints of the project. It operates recursively and leverages the concept of sorting in chunks to optimize the sorting process.
+This Quick Sort algorithm is designed to tackle the Push Swap problem, part of the 42 curriculum. The solution sorts a stack of numbers using a series of operations (`sa`, `ra`, `rb`, `pa`, `pb`, etc.) while adhering to the project's constraints. By leveraging recursive sorting and chunk-based optimization, the algorithm ensures efficient performance.
+
+---
 
 ## Algorithm Description
 
-### 1. Initial Setup: Mid-Value Calculation
+### 1. Initial Setup: Median Calculation
 
-The algorithm starts by calculating the mid-value of the current stack (`a`). If the mid-value happens to be the smallest negative number or the largest positive number in the stack, it is adjusted by selecting the next node above it (`(*a).prev`).
+The algorithm begins by calculating the median value of the current stack `a` using a custom `findMedian` function. This function determines the node closest to the median value, ensuring a more accurate splitting of the list. 
 
-### 2. Pushing to Stack B
+- **Median Node:** The `findMedian` function scans the linked list and calculates the median value of the nodes' contents. It returns the node with the value closest to this median.
 
-The algorithm proceeds by pushing nodes from stack `a` to stack `b` based on their value in relation to the mid-value:
+### 2. Chunk-Based Splitting: Pushing to Stack `b`
 
-- If the value of a node is less than the mid-value, it is pushed to `b`.
-- If the value of a node is greater than the mid-value, the stack is rotated (`ra`), and the first greater value is saved in a temporary variable (`tmp`) to keep track of where to stop. This prevents looping over the list multiple times, as there are no duplicate values in the list.
+Using the median node, the algorithm divides the stack into manageable chunks:
 
-### 3. Recursive Process for Reduced List
+- **Step 1:** Push all nodes with values less than the median to stack `b`.
+- **Chunk Tracking:** Each value pushed to `b` is associated with a chunk identifier, starting from `1`. This allows efficient tracking and recursion for subsequent processing.
 
-Once the greater number stored in `tmp` appears again, the algorithm stops rotating or pushing. At this point, the algorithm recursively sorts the list with a reduced size. This continues until only two nodes are left in the list, which are then sorted directly.
+When no further values are less than the median, the algorithm calls itself recursively, incrementing the chunk identifier (`chunk + 1`). This process continues until only three nodes remain in stack `a`.
 
-### 4. Pushing Back from Stack B to Stack A
+### 3. Sorting the Remaining Three Values
 
-Once the stack `a` is sorted, the algorithm begins pushing elements back from stack `b` to stack `a`. Rather than finding the mid-value of the entire stack, the mid-value is calculated only for the chunk that was last pushed to `b`. This chunk is handled first.
+Once the stack `a` is reduced to three nodes, a specialized `sortThree` function is called to sort them directly. This function ensures the remaining values are in ascending order.
 
-For each chunk:
-1. The mid-value is calculated within the chunk.
-2. Greater numbers are pushed from stack `b` to stack `a` while rotating `b` to only affect the current chunk.
-3. The first smaller number is saved in a temporary variable (`tmp`) to track where to stop.
-4. Once no greater numbers are left in the chunk, the mid-value is pushed first, followed by the smaller numbers.
+### 4. Chunk Restoration: Pushing Back from `b` to `a`
 
-### 5. Recursion and Final Sorting
+After sorting stack `a`, the algorithm begins restoring values from `b` back to `a`:
 
-This process continues recursively for each chunk until the entire stack is sorted in stack `a`. Throughout the sorting, the algorithm double-checks the order in `a` to ensure smooth progression. If necessary, the `sa` operation is used to swap two elements for better order.
+- **Chunk Length Handling:** The algorithm calculates the length of the current chunk in `b`. If the length is `2` or `1`, the values are pushed directly back to `a`.
+- **Splitting Large Chunks:** For chunks longer than `2`, the algorithm saves the address of the next chunk's first node to avoid data loss. 
 
-### 6. Edge Case Handling
+#### Modified Median Logic for Chunk Restoration
 
-The algorithm has built-in handling for:
-- **Single-element and two-element lists**: These are sorted directly without recursion.
-- **Non-contiguous chunks**: The rotations are restricted to the boundaries of each chunk to ensure efficient sorting.
+While processing each chunk:
+
+1. **Calculate Median:** Determine the median for the current chunk.
+2. **Push Greater Values:** Move values greater than the median back to `a`.
+3. **Track Boundaries:** Use the saved address to restrict operations to the current chunk.
+4. **Final Restoration:** Push the remaining values back to `a` in ascending order.
+
+### 5. Recursive Restoration and Final Sorting
+
+This process is repeated recursively for each chunk until stack `b` is empty and stack `a` is fully sorted. At every stage, the algorithm ensures stack `a` remains in ascending order. If necessary, the `sa` operation is used to swap two elements for proper alignment.
+
+---
+
+## Edge Case Handling
+
+The algorithm is designed to handle a variety of edge cases:
+
+- **Single-element and Two-element Lists:** These are sorted directly without invoking recursion.
+- **Non-contiguous Chunks:** Rotations are confined within the boundaries of each chunk to prevent disruption of other values.
+
+---
+
+## Advantages of the Updated Approach
+
+### 1. Accurate Median Calculation
+- The `findMedian` function ensures precise division of the stack, improving sorting efficiency.
+
+### 2. Chunk-Based Tracking
+- By associating each pushed value with a chunk identifier, the algorithm maintains clarity and organization throughout the sorting process.
+
+### 3. Robust Handling of Large Chunks
+- Saving the address of the next chunk prevents value loss and ensures seamless operations.
+
+### 4. Optimized Recursion
+- Recursive calls are restricted to manageable portions of the stack, minimizing overhead and improving performance.
+
+---
+
+## Visual Representation
+
+```plaintext
+Initial Stack (a):  [4, 2, 9, 1, 8, 6, 3]
+Median (Step 1):     4
+Push to b:           [2, 1, 3]
+Sorted a:            [4, 6, 8, 9]
+Push Back from b:    [1, 2, 3]
+Final Stack (a):     [1, 2, 3, 4, 6, 8, 9]
+```
+
+---
+
+## Usage Instructions
+
+1. Implement the `findMedian` function to calculate the median node of a linked list.
+2. Ensure proper chunk tracking by tagging each pushed value with a chunk identifier.
+3. Use the `sortThree` function to handle small lists efficiently.
+4. Test edge cases like single-node and two-node stacks for correctness.
+
+With this refined Quick Sort algorithm, the Push Swap problem becomes more manageable and systematic.
+
 
 ``` mermaid
 flowchart TD
