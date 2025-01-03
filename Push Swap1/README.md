@@ -97,30 +97,31 @@ Final Stack (a):     [1, 2, 3, 4, 6, 8, 9]
 With this refined Quick Sort algorithm, the Push Swap problem becomes more manageable and systematic.
 
 
-``` mermaid
+```mermaid
 flowchart TD
-    A[Start: Calculate Mid-Value] --> B{Mid-Value Valid?}
-    B -- Yes --> C[Push Nodes to B Based on Mid-Value]
-    B -- No --> D[Adjust Mid-Value to Next Node Above]
+    A[Start: Calculate Median Value] --> B{Median Valid?}
+    B -- Yes --> C[Push Nodes to B Based on Median Value]
+    B -- No --> D[Adjust Median to Closest Node]
     D --> C
-    C --> E{Greater Value in Stack A?}
-    E -- Yes --> F[Rotate A and Save First Greater Value]
-    E -- No --> G[Stop Rotating/ Pushing]
-    G --> H[Recursively Sort Reduced List]
-    H --> I{List Size == 2?}
-    I -- Yes --> J[Sort Directly]
-    I -- No --> H
-    J --> K[Push Back From B to A]
-    K --> L{Chunk Mid-Value Calculated?}
-    L -- Yes --> M[Push Greater Numbers from B to A]
-    M --> N[Rotate B to Isolate Chunk]
-    N --> O{No Greater Numbers Left?}
-    O -- Yes --> P[Push Mid-Value and Smaller Numbers to A]
-    O -- No --> M
-    P --> Q[Recursively Handle Remaining Chunks]
-    Q --> R[Final Check: Correct Order in A?]
-    R -- Yes --> S[Use SA to Adjust Order if Needed]
-    S --> T[End: Sorted Stack in A]
+    C --> E{More Nodes < Median in Stack A?}
+    E -- Yes --> F[Push to B and Assign Chunk]
+    E -- No --> G[Call Algorithm with Chunk + 1]
+    G --> H{Remaining Nodes in Stack A == 3?}
+    H -- Yes --> I[Sort Remaining Three Nodes]
+    H -- No --> G
+    I --> J[Push Back from B to A]
+    J --> K{Chunk Length == 1 or 2?}
+    K -- Yes --> L[Push Directly to A]
+    K -- No --> M[Split Chunk and Save Address]
+    M --> N[Calculate Chunk Median]
+    N --> O[Push Values > Median to A]
+    O --> P{No More Values > Median?}
+    P -- Yes --> Q[Push Remaining Values to A]
+    P -- No --> O
+    Q --> R[Handle Next Chunk Recursively]
+    R --> S{Stack A in Correct Order?}
+    S -- Yes --> T[Use SA if Needed]
+    T --> U[End: Sorted Stack in A]
 ```
 
 ## Conclusion
