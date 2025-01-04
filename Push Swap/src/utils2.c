@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 03:53:29 by muxammad          #+#    #+#             */
-/*   Updated: 2025/01/03 10:37:22 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/01/04 17:41:23 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,22 +34,6 @@ t_list	*get_next_min(t_list **stack)
 		}
 	}
 	return (min);
-}
-
-void	print_list(t_list *stack)
-{
-	if (!stack)
-	{
-		ft_printf("Empty\n");
-		return ;
-	}
-	while (stack)
-	{
-		ft_printf("%d->%d->%d\n",
-			stack->content, stack->chunk, stack->index);
-		stack = stack->next;
-	}
-	ft_printf("\n");
 }
 
 int	get_max_bits(t_list **stack)

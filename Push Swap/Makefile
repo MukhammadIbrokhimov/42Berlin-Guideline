@@ -1,6 +1,6 @@
 # Compiler and flags
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 # Debugger flags
 DEBUG_FLAGS = -fsanitize=address -g
@@ -13,6 +13,7 @@ CHECKER = checker
 INCLUDE_DIR = include
 SRC_DIR = src
 CHECKER_DIR = bonus
+GET_NEXTLINE_DIR = get_nextline
 LIBFT_DIR = $(INCLUDE_DIR)/libft
 FT_PRINTF_DIR = $(INCLUDE_DIR)/ft_printf
 
@@ -22,7 +23,7 @@ FT_PRINTF_LIB = $(FT_PRINTF_DIR)/libftprintf.a
 # Sources
 PUSH_SWAP_SRC = $(wildcard $(SRC_DIR)/*.c)
 CHECKER_SRC = $(wildcard $(CHECKER_DIR)/*.c)
-
+CHECKER_SRC = $(wildcard $(CHECKER_DIR)/*.c) $(wildcard $(CHECKER_DIR)/$(GET_NEXTLINE_DIR)/*.c)
 # Object files
 PUSH_SWAP_OBJ = $(PUSH_SWAP_SRC:.c=.o)
 CHECKER_OBJ = $(CHECKER_SRC:.c=.o)

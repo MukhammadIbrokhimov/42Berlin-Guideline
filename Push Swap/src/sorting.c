@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 19:03:39 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/01/03 10:30:59 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/01/04 17:44:01 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void	sort_five_or_four(t_list **a, t_list **b, int *counter)
 	while (len--)
 	{
 		*counter += push(b, a, true, "pb");
-		print_list(*b);
 	}
 }
 
