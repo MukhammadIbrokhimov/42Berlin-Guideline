@@ -76,6 +76,7 @@ Here are some common approaches to solving the **Push_swap** problem:
    - Use efficient algorithms like:
      - **Divide and Conquer:** Divide the stack into smaller parts and sort them individually.
      - **Radix Sort:** Particularly effective for large stacks.
+     # here was used Radix Sort
      - **Quick Sort-inspired approach:** Partition the stack based on pivots.
 
 ---
@@ -88,6 +89,16 @@ make
 ```
 This generates the `push_swap` executable.
 
+```bash
+make checker
+```
+This generates the `checker` executable for bonus part.
+
+```bash
+make all
+```
+This generates the `checker && push_swap` all projects at once.
+
 ### Usage
 To run the program, use:
 ```bash
@@ -97,7 +108,23 @@ Example:
 ```bash
 ./push_swap 3 2 5 1 4
 ```
+
 This outputs the sequence of operations required to sort the input stack.
+
+To run the program and checker, use:
+```bash
+ARG="list of integers"; ./push_swap $ARG | ./checker $ARG
+```
+Example:
+```bash
+ARG="34 35 554 3"; ./push_swap $ARG | ./checker $ARG
+```
+This outputs the result of operations required to sort the input stack.
+```bash
+ARG="34 35 554 3"; ./push_swap $ARG | ./checker $ARG
+OK
+KO
+```
 
 ---
 
