@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   checker.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
+/*   By: muxammad <muxammad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 10:18:19 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/01/04 18:15:56 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/01/05 09:12:49 by muxammad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER
+#ifndef CHECKER_H
 
-# define CHECKER
+# define CHECKER_H
 
 # include "push_swap.h"
 # include "../bonus/get_nextline/get_next_line.h"

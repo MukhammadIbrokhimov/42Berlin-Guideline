@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
+/*   By: muxammad <muxammad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 15:42:14 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/01/04 18:48:15 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/01/05 09:10:22 by muxammad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,4 +105,3 @@ char	*get_next_line(int fd)
 	stack = stack_update(stack);
 	return (line);
 }
-

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
+/*   By: muxammad <muxammad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 03:53:29 by muxammad          #+#    #+#             */
-/*   Updated: 2025/01/04 17:41:23 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/01/05 09:15:16 by muxammad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ t_list	*get_next_min(t_list **stack)
 	{
 		while (head)
 		{
-			if ((head->index == -1) && (!has_min || head->content < min->content))
+			if ((head->index == -1) && ((!has_min)
+				|| (head->content < min->content)))
 			{
 				min = head;
 				has_min = 1;

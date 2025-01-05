@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sorting.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
+/*   By: muxammad <muxammad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 19:03:39 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/01/04 17:44:01 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/01/05 09:13:28 by muxammad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,6 @@ void	ft_sort(t_list **stack)
 		sort_five_or_four(stack, &b, &counter);
 	else
 		radix_sort(stack, &b, &counter);
-	// if (ft_sorted(*stack))
-	// 	ft_printf("Sorted\n");
-	// else
-	// 	ft_printf("UnSorted\n");
-	// ft_printf("counter%d\n", counter);
-	// print_list(*stack);
 }
 
 void	sort_five_or_four(t_list **a, t_list **b, int *counter)

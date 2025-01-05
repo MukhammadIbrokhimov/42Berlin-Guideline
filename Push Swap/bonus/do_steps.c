@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   do_steps.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
+/*   By: muxammad <muxammad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 16:36:19 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/01/04 18:40:47 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/01/05 09:00:46 by muxammad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,27 @@
 
 int	do_steps(t_list **a, t_list **b, char *step, int *counter)
 {
-	if (ft_strcmp(step, "sa") == 0)
+	if (ft_strncmp(step, "sa", 2) == 0)
 		swap(a, false, "sa", counter);
-	else if (ft_strcmp("sb", step) == 0)
+	else if (ft_strncmp("sb", step, 2) == 0)
 		swap(b, false, "sb", counter);
-	else if (ft_strcmp("pb", step) == 0)
+	else if (ft_strncmp("pb", step, 2) == 0)
 		*counter += push(a, b, false, "pb");
-	else if (ft_strcmp("pa", step) == 0)
+	else if (ft_strncmp("pa", step, 2) == 0)
 		*counter += push(b, a, false, "pa");
-	else if (ft_strcmp("ra", step) == 0)
+	else if (ft_strncmp("ra", step, 2) == 0)
 		rotate(a, false, "ra", counter);
-	else if (ft_strcmp("rb", step) == 0)
+	else if (ft_strncmp("rb", step, 2) == 0)
 		rotate(b, false, "rb", counter);
-	else if (ft_strcmp("rra", step) == 0)
+	else if (ft_strncmp("rra", step, 2) == 0)
 		reverse_rotate(a, false, "rra", counter);
-	else if (ft_strcmp("rrb", step) == 0)
+	else if (ft_strncmp("rrb", step, 2) == 0)
 		reverse_rotate(b, false, "rrb", counter);
-	else if (ft_strcmp("rrr", step) == 0)
+	else if (ft_strncmp("rrr", step, 2) == 0)
 		rrr(a, b, counter);
-	else if (ft_strcmp("rr", step) == 0)
+	else if (ft_strncmp("rr", step, 2) == 0)
 		rr(a, b, counter);
-	else if (ft_strcmp("ss", step) == 0)
+	else if (ft_strncmp("ss", step, 2) == 0)
 		ss(a, b, counter);
 	else
 		return (ft_printf("Error\n"), 1);
