@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sorting.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muxammad <muxammad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 19:03:39 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/01/05 09:13:28 by muxammad         ###   ########.fr       */
+/*   Updated: 2025/01/05 13:46:05 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	sort_five_or_four(t_list **a, t_list **b, int *counter)
 	len = ft_lstsize(*b);
 	while (len--)
 	{
-		*counter += push(b, a, true, "pb");
+		*counter += push(b, a, true, "pa");
 	}
 }
 

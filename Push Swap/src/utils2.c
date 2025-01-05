@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muxammad <muxammad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 03:53:29 by muxammad          #+#    #+#             */
-/*   Updated: 2025/01/05 09:15:16 by muxammad         ###   ########.fr       */
+/*   Updated: 2025/01/05 13:44:40 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_list	*get_next_min(t_list **stack)
 		while (head)
 		{
 			if ((head->index == -1) && ((!has_min)
-				|| (head->content < min->content)))
+					|| (head->content < min->content)))
 			{
 				min = head;
 				has_min = 1;
@@ -103,5 +103,5 @@ void	push_minvalue(t_list **a, t_list **b, int *counter)
 			rotate(a, true, "ra", counter);
 	}
 	if (*a == min)
-		*counter += push(a, b, true, "pa");
+		*counter += push(a, b, true, "pb");
 }

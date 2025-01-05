@@ -6,11 +6,16 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 18:51:48 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/01/04 17:13:16 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/01/05 14:25:34 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+int	ft_isspace(char i)
+{
+	return (i == ' ');
+}
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
