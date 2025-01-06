@@ -6,75 +6,88 @@
 #    By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/30 21:32:40 by mukibrok          #+#    #+#              #
-#    Updated: 2024/12/30 21:37:54 by mukibrok         ###   ########.fr        #
+#    Updated: 2025/01/06 18:16:59 by mukibrok         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME        =   fdf
-LIBFT       =   libft/
-GNL         =   get_nextline/
-MLX         =   minilibx-linux/
-LIBFT_A     =   $(addprefix $(LIBFT), libft.a)
-GNL_A       =   $(addprefix $(GNL), libgnl.a)
-MLX_A       =   $(addprefix $(MLX), libmlx.a)
+# Compiler and flags
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror -I$(INCLUDE) -I$(INCLUDE)/minilibx-linux
 
-CC          =   gcc
-INCLUDE     =   includes
-CFLAGS      =   -Wall -Wextra -Werror -I$(INCLUDE) -I$(MLX)
-RM          =   rm -f
-SRCS        =   fdf.c \
+# Directories
+INCLUDE = include
+SRC_DIR = src
 
-OBJS        =   $(SRCS:%.c=%.o)
+# Libraries
+LIBFT = $(INCLUDE)/libft
+GNL = $(INCLUDE)/get_nextline
+MLX = $(INCLUDE)/minilibx-linux
+FT_PRINTF = $(INCLUDE)/ft_printf
+
+LIBFT_A = $(LIBFT)/libft.a
+FT_PRINTF_A = $(FT_PRINTF)/libftprintf.a
+GNL_SRCS = $(GNL)/get_next_line.c $(GNL)/get_next_line_utils.c
+MLX_A = $(MLX)/libmlx.a
+
+# Executable
+NAME = fdf
 
 # Graphics flags for Linux
 GRAPHICS_FLAGS = -L/usr/lib -lGL -lGLU -lX11 -lXext
 
-all:            $(NAME)
+# Sources and object files $(SRC_DIR)/other_file.c 
+SRCS = $(SRC_DIR)/fdf.c $(GNL)/get_next_line.c $(GNL)/get_next_line_utils.c
+OBJS = $(SRCS:.c=.o)
 
-$(NAME):        $(OBJS) $(LIBFT_A) $(GNL_A) $(MLX_A)
-	@$(CC) $(CFLAGS) $(OBJS) -L$(LIBFT) -lft -L$(GNL) -lgnl -L$(MLX) -lmlx $(GRAPHICS_FLAGS) -lm -o $(NAME)
-	@echo "Linked into executable \033[0;32mfdf\033[0m."
+# Color codes
+GREEN = \033[0;32m
+RED = \033[0;31m
+YELLOW = \033[0;33m
+RESET = \033[0m
 
+# Targets
+all: $(NAME)
+
+$(NAME): $(OBJS) $(LIBFT_A) $(FT_PRINTF_A) $(MLX_A)
+	@$(CC) $(CFLAGS) $(OBJS) -L$(LIBFT) -lft -L$(FT_PRINTF) -lftprintf -L$(MLX) -lmlx $(GRAPHICS_FLAGS) -lm -o $(NAME)
+	@echo "$(GREEN)Linked into executable $(NAME).$(RESET)"
+
+# Compile libft
 $(LIBFT_A):
 	@$(MAKE) -s -C $(LIBFT)
-	@echo "Compiled $(LIBFT_A)."
+	@echo "$(GREEN)Compiled $(LIBFT_A).$(RESET)"
 
-$(GNL_A):
-	@$(MAKE) -s -C $(GNL)
-	@echo "Compiled $(GNL_A)."
+# Compile ft_printf
+$(FT_PRINTF_A):
+	@$(MAKE) -s -C $(FT_PRINTF)
+	@echo "$(GREEN)Compiled $(FT_PRINTF_A).$(RESET)"
 
+# Compile mlx
 $(MLX_A):
 	@$(MAKE) -s -C $(MLX)
-	@echo "Compiled $(MLX_A)."
+	@echo "$(GREEN)Compiled $(MLX_A).$(RESET)"
 
-bonus:          all
-
+# Compile object files from source files
 .c.o:
-	@$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
-	@echo "Compiling $<."
+	@$(CC) $(CFLAGS) -c $< -o $@
+	@echo "$(YELLOW)Compiling $<...$(RESET)"
 
-localclean:
-	@$(RM) $(OBJS)
-	@echo "Removed object files."
-
-clean:          localclean
+# Clean object files
+clean:
+	@rm -f $(OBJS)
 	@$(MAKE) clean -s -C $(LIBFT)
-	@echo "Clean libft."
-	@$(MAKE) clean -s -C $(GNL)
-	@echo "Clean gnl."
+	@$(MAKE) clean -s -C $(FT_PRINTF)
 	@$(MAKE) clean -s -C $(MLX)
-	@echo "Clean mlx."
+	@echo "$(RED)Cleaned up object files and libraries.$(RESET)"
 
-fclean:         localclean
+# Full clean (removes object files and executable)
+fclean: clean
 	@$(MAKE) fclean -s -C $(LIBFT)
-	@echo "Full clean libft."
-	@$(MAKE) fclean -s -C $(GNL)
-	@echo "Full clean gnl."
+	@$(MAKE) fclean -s -C $(FT_PRINTF)
 	@$(MAKE) clean -s -C $(MLX)
-	@echo "Clean mlx."
-	@$(RM) $(NAME)
-	@echo "Removed executable."
+	@rm -f $(NAME)
+	@echo "$(RED)Full clean completed, removed $(NAME).$(RESET)"
 
-re:             fclean all
-
-.PHONY:         all clean fclean re localclean bonus
+# Rebuild everything
+re: fclean all
+	@echo "$(GREEN)Rebuild completed successfully.$(RESET)"
