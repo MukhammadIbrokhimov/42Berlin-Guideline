@@ -1,18 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muxammad <muxammad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/05 16:24:10 by mukibrok          #+#    #+#             */
-/*   Updated: 2024/12/22 18:43:08 by muxammad         ###   ########.fr       */
+/*   Created: 2025/01/04 17:10:02 by mukibrok          #+#    #+#             */
+/*   Updated: 2025/01/04 17:11:53 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isdigit(int i)
+int	ft_strcmp(char *s1, char *s2)
 {
-	return ((i >= '0' && i <= '9') || (i == '-'));
+	while (*s1 && *s2)
+	{
+		if (*s1 != *s2)
+			return (*s1 - *s2);
+		s1++;
+		s2++;
+	}
+	return (*s1 - *s2);
 }

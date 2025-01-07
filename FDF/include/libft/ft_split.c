@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 16:52:57 by mukibrok          #+#    #+#             */
-/*   Updated: 2024/11/17 14:22:25 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/01/07 19:30:40 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	not_valid(char c, char split)
 	return (c == split);
 }
 
-static size_t	count_words(char const *s, char c)
+size_t	count_words(char const *s, char c)
 {
 	size_t	words;
 
@@ -77,7 +77,7 @@ static char	*allocated(char	*s, int *i, char c)
 	return (str);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char *s, char c)
 {
 	char	**splitted;
 	int		i;
@@ -85,6 +85,8 @@ char	**ft_split(char const *s, char c)
 
 	i = 0;
 	k = 0;
+	if (!s)
+		return (NULL);
 	splitted = (char **) malloc(sizeof(char *) * (count_words(s, c) + 1));
 	if (!splitted)
 		return (NULL);
@@ -101,7 +103,7 @@ char	**ft_split(char const *s, char c)
 		}
 	}
 	splitted[k] = NULL;
-	return (splitted);
+	return (free(s), splitted);
 }
 
 // int	main(void)

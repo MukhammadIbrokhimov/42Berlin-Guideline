@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_del.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muxammad <muxammad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/05 16:24:10 by mukibrok          #+#    #+#             */
-/*   Updated: 2024/12/22 18:43:08 by muxammad         ###   ########.fr       */
+/*   Created: 2024/12/21 19:19:24 by mukibrok          #+#    #+#             */
+/*   Updated: 2025/01/02 20:34:36 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isdigit(int i)
+void	delete_content(void *content)
 {
-	return ((i >= '0' && i <= '9') || (i == '-'));
+	free(content);
 }
