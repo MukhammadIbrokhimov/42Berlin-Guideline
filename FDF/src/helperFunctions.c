@@ -6,11 +6,23 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 17:59:24 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/01/08 13:22:14 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/01/08 18:46:19 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
+
+fdf	*ft_lst(void)
+{
+	fdf	*map;
+
+	map = NULL;
+	map = (fdf *) malloc(sizeof(fdf));
+	if (!map)
+		return (NULL);
+	map->zoom = 30;
+	return (map);
+}
 
 void	free_arr(char **str)
 {

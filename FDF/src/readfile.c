@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 15:39:45 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/01/08 13:27:24 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/01/08 14:45:13 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,25 +34,8 @@ fdf	*readfile(fdf *map, char **file)
 		line = get_next_line(fd);
 	}
 	map->render_map[map->height] = NULL;
-	ft_print(map->render_map, map->height, map->width);
 	close(fd);
 	return (map);
-}
-
-int *fill_map(int *map_line, int width, char *line)
-{
-	int i;
-	char **number;
-
-	i = 0;
-	number = ft_split(line, ' ');
-	while (i < width)
-	{
-		map_line[i] = ft_atoi(number[i]);
-		i++;
-	}
-	free_arr(number);
-	return map_line;
 }
 
 int	get_size(int *height, char *file, int *width)
@@ -80,3 +63,18 @@ int	get_size(int *height, char *file, int *width)
 	return (i);
 }
 
+int *fill_map(int *map_line, int width, char *line)
+{
+	int i;
+	char **number;
+
+	i = 0;
+	number = ft_split(line, ' ');
+	while (i < width)
+	{
+		map_line[i] = ft_atoi(number[i]);
+		i++;
+	}
+	free_arr(number);
+	return map_line;
+}
