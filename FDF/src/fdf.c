@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 21:37:02 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/01/07 20:57:25 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/01/08 13:25:27 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int main(int argc, char **argv)
 	map = (fdf *) malloc(sizeof(fdf));
 	if (!map) return (-1);
 	map = readfile(map, argv);
-	//free_map(map->render_map);
+	free_map(map->render_map);
 	free(map);
 	return (0);
 }

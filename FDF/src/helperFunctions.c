@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 17:59:24 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/01/07 20:56:56 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/01/08 13:22:14 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,11 @@ void ft_print(int **map, int height, int width)
 	if (!map)
 		return;
 
-	while (i < height)
-	{
-		j = 0;
-		while (j < width)
-		{
-			ft_printf("%d ", map[i][j]);
-			j++;
+	for (int i = 0; i < height; i++) {
+		for (int j = 0; j < width; j++) {
+			printf("%3d", map[i][j]);
 		}
-		ft_printf("\n");
-		i++;
+		printf("\n");
 	}
+
 }
