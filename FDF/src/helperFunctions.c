@@ -6,11 +6,26 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 17:59:24 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/01/08 18:46:19 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/01/09 18:40:11 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
+
+void ft_close(fdf *map)
+{
+	if (map->mlx)
+	{
+		if (map->wnd)
+			mlx_destroy_window(map->mlx, map->wnd);
+		if (map->mlx)
+			mlx_destroy_display(map->mlx);
+		free(map->mlx);
+	}
+	free_map(map->render_map);
+	free(map);
+}
+
 
 fdf	*ft_lst(void)
 {
@@ -21,6 +36,8 @@ fdf	*ft_lst(void)
 	if (!map)
 		return (NULL);
 	map->zoom = 30;
+	map->mlx = NULL;
+	map->wnd = NULL;
 	return (map);
 }
 

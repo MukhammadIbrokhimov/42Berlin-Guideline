@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 18:56:23 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/01/08 18:57:05 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/01/09 19:29:38 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void draw_map(fdf *map)
 		while (x < map->width)
 		{
 			if (x < map->width - 1)
-				wu_line(x * z, y * z, (x + 1) * z, y * z, map);
+				wu_line(x, y, (x + 1), y, map);
 			if (y < map->height - 1)
-				wu_line(x * z, y * z, x * z, (y + 1) * z, map);
+				wu_line(x, y, x, (y + 1), map);
 			x++;
 		}
 		y++;
@@ -42,7 +42,13 @@ void wu_line(float x1, float y1, float x2, float y2, fdf *map)
 	float	dx;
 	float	slope;
 	float	steep;
+	int		z;
+	int		z1;
 
+	z = map->render_map[(int)y1][(int)x1];
+	z1 = map->render_map[(int)y2][(int)x2];
+	map->zoom = 20;
+	x1 *= map->zoom, y1 *= map->zoom, x2 *= map->zoom, y2 *= map->zoom;
 	dy = y2 - y1;
 	dx = x2 - x1;
 	slope = dy / dx;
@@ -65,12 +71,29 @@ void wu_line(float x1, float y1, float x2, float y2, fdf *map)
 
 	// Draw the line
 	while ((int) (x1 - x2)) {
-		// Color the pixel at (x1, y1)
-		float brightness = 1.0 - error; // The intensity, closer to 0 means less bright
+		// Example to modify color brightness based on error
+		float brightness = 1.3 - error; // Adjust brightness based on how far the pixel is from the ideal line
+		int color = (z) ? COLOR_BRICK_RED : TEXT_COLOR;
+
+		// Create a "darker" version of the color by scaling the RGB components
+		int r = (color >> 16) & 0xFF; // Extract red component
+		int g = (color >> 8) & 0xFF;  // Extract green component
+		int b = color & 0xFF;         // Extract blue component
+
+		// Adjust the brightness
+		r = (int)(r * brightness);
+		g = (int)(g * brightness);
+		b = (int)(b * brightness);
+
+		// Reassemble the color with the adjusted brightness
+		int adjusted_color = (r << 16) | (g << 8) | b;
+
+		// Then use the adjusted color to plot the pixel
 		if (steep)
-			mlx_pixel_put(map->mlx, map->wnd, y1, x1, (int)(brightness * 255) << 16);  // Set the pixel color (red scale)
+			mlx_pixel_put(map->mlx, map->wnd, y1, x1, adjusted_color);
 		else
-			mlx_pixel_put(map->mlx, map->wnd, x1, y1, (int)(brightness * 255) << 16);  // Set the pixel color (red scale)
+			mlx_pixel_put(map->mlx, map->wnd, x1, y1, adjusted_color);
+
 		error += dy / dx;
 		if (error >= 1) {
 			y1++;
