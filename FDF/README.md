@@ -37,6 +37,15 @@ The primary objectives of this project are:
 - **Dynamic Map Rendering**: The program supports dynamic adjustment of the map's perspective, allowing for a more interactive experience.
 - **Error Handling**: The program handles edge cases such as invalid input files, incorrect formatting, and other potential issues.
 
+## Algorithms for Drawing Lines
+In FdF, you’ll need algorithms to draw the lines between the points (from the 3D data). 
+- **Three common algorithms to do**: this are:
+- Wu’s Algorithm: Best for drawing smooth lines (anti-aliasing), but it's slower and more complex. If you want high-quality visuals, this is a good choice. [doc here]​
+- Bresenham’s Algorithm: This is faster and uses integer math, making it more efficient. It's great for performance.  [doc here]​
+- DDA (Digital Differential Analyzer): A simpler method, but not as fast as Bresenham and not as smooth as Wu’s.  [doc here]​
+Advice: If you want a good balance of quality and speed, go for Bresenham’s Algorithm or Wu's Algorthm. It’s the most commonly used for projects like FdF. Here was used Wu's Algrothm
+
+
 ## Compilation & Installation
 
 To compile the project, simply run:
