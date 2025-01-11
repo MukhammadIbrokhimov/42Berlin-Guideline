@@ -245,3 +245,5 @@ wall "	#Architecture: $arc
 3. Now you submit the signature.txt file with the output number in it.
 
 ### 🥳 CONGRATULATIONS! YOU HAVE NOW FINISHED!
+
+prepare yourself, for evaluation questions.
