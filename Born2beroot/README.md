@@ -108,7 +108,7 @@ The Born2BeRoot project is a practical exercise in virtual machine setup and Lin
 5. Then head back to your Virtual Machine
 6. Type `sudo systemctl restart ssh` to restart your SSH Server
 7. Type `sudo service sshd status` to check your SSH Status
-8. Open an iTerm and type the following `ssh your_username@127.0.0.1 -p 4242`
+8. Open an iTerm and type the following `ssh your_username@127.0.0.1 -p 4243`
 9. In case an error occurs, then type `rm ~/.ssh/known_hosts` in your iTerm and then retype `ssh your_username@127.0.0.1 -p 4242`
 10. Lastly type `exit` to quit your SSH iTerm Connection 
 
