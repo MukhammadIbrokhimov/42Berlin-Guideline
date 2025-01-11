@@ -132,7 +132,7 @@ The Born2BeRoot project is a practical exercise in virtual machine setup and Lin
 6. Next type in your Virtual Machine `sudo vim /etc/login.defs`
 7. Find this part `PASS_MAX_DAYS 9999` `PASS_MIN_DAYS 0` `PASS_WARN_AGE 7`
 8. Change that part to `PASS_MAX_DAYS 30` and `PASS_MIN_DAYS 2` keep `PASS_WARN_AGE 7` as the same
-9. Lastly type `sudo reboot` to reboot the change affects
+9. Lastly type `sudo reboot` to reboot the change affects, before rebooting ensure that your memory is not connected, otherwise everything you have to start from beginning
 
 ### Part 6.2 - Creating a Group
 
