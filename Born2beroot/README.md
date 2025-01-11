@@ -109,7 +109,7 @@ The Born2BeRoot project is a practical exercise in virtual machine setup and Lin
 6. Type `sudo systemctl restart ssh` to restart your SSH Server
 7. Type `sudo service sshd status` to check your SSH Status
 8. Open an iTerm and type the following `ssh your_username@127.0.0.1 -p 4243`
-9. In case an error occurs, then type `rm ~/.ssh/known_hosts` in your iTerm and then retype `ssh your_username@127.0.0.1 -p 4242`
+9. In case an error occurs, then type `rm ~/.ssh/known_hosts` in your iTerm and then retype `ssh your_username@127.0.0.1 -p 4243` (if your host port is not 4243, please type your host port instead)
 10. In case of it asks to create new fingerprint, answer yes.
 11. Lastly type `exit` to quit your SSH iTerm Connection 
 
