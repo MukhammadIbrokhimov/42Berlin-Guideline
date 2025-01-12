@@ -1,4 +1,15 @@
-# FDF Project
+<h1 align="center">
+	FDF
+</h1>
+
+<p align="center">
+	<b><i>A simplified 3D graphic representation of a relief landscape.</i></b><br>
+</p>
+
+Need install on Linux ↙️
+```Linux
+sudo apt-get install gcc make xorg libxext-dev libbsd-dev
+```
 
 ## Description
 This project is a part of the 42 Network curriculum, where we are tasked with creating a program that renders 3D data onto a 2D plane using graphical libraries in C. The program reads a map of integers and visualizes it as a 3D isometric projection. The user can interact with the map, applying rotations, zooming in and out, and moving the view to explore the data in 3D space.
