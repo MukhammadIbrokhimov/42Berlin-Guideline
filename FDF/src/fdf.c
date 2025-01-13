@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 21:37:02 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/01/09 18:42:49 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/01/13 17:16:30 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int main(int argc, char **argv)
 	map->mlx = mlx_init();
 	if (!map->mlx)
 		return (free_map(map->render_map), free(map), 1);
-	map->wnd = mlx_new_window(map->mlx, 800, 600, "FDF");
+	map->wnd = mlx_new_window(map->mlx, WIN_WIDTH, WIN_HEIGHT, "FDF");
 	if (!map->wnd)
 		return (ft_close(map), 1);
 	draw_map(map);

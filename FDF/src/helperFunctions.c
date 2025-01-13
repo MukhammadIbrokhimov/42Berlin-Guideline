@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 17:59:24 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/01/09 18:40:11 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/01/10 15:58:06 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ fdf	*ft_lst(void)
 	map = (fdf *) malloc(sizeof(fdf));
 	if (!map)
 		return (NULL);
-	map->zoom = 30;
+	map->zoom = 20;
 	map->mlx = NULL;
 	map->wnd = NULL;
 	return (map);
