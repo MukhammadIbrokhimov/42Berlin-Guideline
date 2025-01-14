@@ -8,7 +8,6 @@
 
 Need install on Linux ↙️
 ```Linux
-sudo apt-get install gcc make xorg libxext-dev libbsd-dev
 ```
 
 ## Description
