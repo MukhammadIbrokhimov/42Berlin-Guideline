@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 21:37:02 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/01/13 17:16:30 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/01/14 17:09:21 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,10 @@ int	do_commands(int	command, fdf *map)
 		ft_close(map);
 		exit(0);
 	}
+	else if (command == 65362 || command == 65364)
+		up_or_down(map, command);
+	else if (command == 65361 || command == 65363)
+		left_or_right(map, command);
 	else
 		ft_printf("Pressed: %d\n width: %d\n", command, map->width);
 }

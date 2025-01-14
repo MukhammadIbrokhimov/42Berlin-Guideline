@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 17:59:24 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/01/10 15:58:06 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/01/14 17:07:43 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,10 @@ fdf	*ft_lst(void)
 	if (!map)
 		return (NULL);
 	map->zoom = 20;
+	map->shift_down = 150;
+	map->shift_up = 150;
+	map->shift_left = 150;
+	map->shift_right = 150;
 	map->mlx = NULL;
 	map->wnd = NULL;
 	return (map);
