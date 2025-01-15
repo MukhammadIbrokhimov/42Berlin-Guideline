@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 21:37:02 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/01/14 17:09:21 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/01/15 17:15:34 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,10 @@ int main(int argc, char **argv)
 	map->wnd = mlx_new_window(map->mlx, WIN_WIDTH, WIN_HEIGHT, "FDF");
 	if (!map->wnd)
 		return (ft_close(map), 1);
-	draw_map(map);
+	map->img = mlx_new_image(map->mlx, WIN_WIDTH, WIN_HEIGHT);
+	map->address_data = mlx_get_data_addr(map->img, &map->b_per_pixel, &map->size_line, &map->endian);
+	mlx_put_image_to_window(map->mlx, map->wnd, map->img, 0, 0);
+	set_pixels(map);
 	mlx_key_hook(map->wnd, do_commands, map);
 	//mlx_mouse_hook(map->wnd, do_commands, map);
 	mlx_loop(map->mlx);
