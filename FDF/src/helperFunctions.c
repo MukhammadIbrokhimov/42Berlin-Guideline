@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 17:59:24 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/01/14 17:07:43 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/01/16 15:46:22 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ fdf	*ft_lst(void)
 	map = (fdf *) malloc(sizeof(fdf));
 	if (!map)
 		return (NULL);
-	map->zoom = 20;
-	map->shift_down = 150;
-	map->shift_up = 150;
-	map->shift_left = 150;
-	map->shift_right = 150;
+	map->window.zoom = 20;
+	map->window.shift_down = 150;
+	map->window.shift_up = 150;
+	map->window.shift_left = 150;
+	map->window.shift_right = 150;
 	map->mlx = NULL;
 	map->wnd = NULL;
 	return (map);
@@ -91,3 +91,11 @@ void ft_print(int **map, int height, int width)
 	}
 
 }
+
+void ft_swap(float *a, float *b)
+{
+	float temp = *a;
+	*a = *b;
+	*b = temp;
+}
+

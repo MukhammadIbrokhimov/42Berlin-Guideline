@@ -6,52 +6,35 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 21:37:02 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/01/15 17:15:34 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/01/16 15:47:34 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-int	do_commands(int	command, fdf *map)
-{
-	ft_printf("Pressed: %d\n width: %d\n", command, map->width);
-	if (command == 65307)
-	{
-		ft_printf("Escape key was pressed\n");
-		ft_close(map);
-		exit(0);
-	}
-	else if (command == 65362 || command == 65364)
-		up_or_down(map, command);
-	else if (command == 65361 || command == 65363)
-		left_or_right(map, command);
-	else
-		ft_printf("Pressed: %d\n width: %d\n", command, map->width);
-}
-
 int main(int argc, char **argv)
 {
-	fdf	*map;
+	fdf	*data;
 
-	map = NULL;
+	data = NULL;
 	if (argc != 2)
 		return (ft_printf("./fdf [map]\n"), 1);
-	map = ft_lst();
-	if (!map)
+	data = ft_lst();
+	if (!data)
 		return (-1);
-	map = readfile(map, argv);
-	map->mlx = mlx_init();
-	if (!map->mlx)
-		return (free_map(map->render_map), free(map), 1);
-	map->wnd = mlx_new_window(map->mlx, WIN_WIDTH, WIN_HEIGHT, "FDF");
-	if (!map->wnd)
-		return (ft_close(map), 1);
-	map->img = mlx_new_image(map->mlx, WIN_WIDTH, WIN_HEIGHT);
-	map->address_data = mlx_get_data_addr(map->img, &map->b_per_pixel, &map->size_line, &map->endian);
-	mlx_put_image_to_window(map->mlx, map->wnd, map->img, 0, 0);
-	set_pixels(map);
-	mlx_key_hook(map->wnd, do_commands, map);
+	data = readfile(data, argv);
+	data->mlx = mlx_init();
+	if (!data->mlx)
+		return (free_map(data->render_map), free(data), 1);
+	data->wnd = mlx_new_window(data->mlx, WIN_WIDTH, WIN_HEIGHT, "FDF");
+	if (!data->wnd)
+		return (ft_close(data), 1);
+	data->img = mlx_new_image(data->mlx, WIN_WIDTH, WIN_HEIGHT);
+	data->address_data = mlx_get_data_addr(data->img, &data->b_per_pixel, &data->size_line, &data->endian);
+	mlx_put_image_to_window(data->mlx, data->wnd, data->img, 0, 0);
+	set_pixels(data);
+	mlx_key_hook(data->wnd, do_commands, data);
 	//mlx_mouse_hook(map->wnd, do_commands, map);
-	mlx_loop(map->mlx);
+	mlx_loop(data->mlx);
 	return (0);
 }
