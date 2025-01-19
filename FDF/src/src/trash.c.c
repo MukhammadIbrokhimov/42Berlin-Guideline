@@ -39,7 +39,7 @@
 //void to_isometric(int *x, int *y, int z)
 //{
 //    int old_x = *x;
-//    int old_y = *y;
+//    int old_y = *y; delete
 
 //	float anr= M_PI / 6;
 //    *x = (old_x - old_y) * cos(anr);  // Tilt left/right
