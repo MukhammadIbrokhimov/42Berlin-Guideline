@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 15:39:45 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/01/28 11:08:37 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/01/28 19:38:28 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,9 @@ fdf	*readfile(fdf *data, char **file)
 	i = 0;
 	fd = open(file[1], O_RDONLY);
 	if (fd == -1)
-		return (NULL);
-	get_size(&data->map.height, file[1], &data->map.width);
+		return (free(data), NULL);
+	if (get_size(&data->map.height, file[1], &data->map.width) == 1)
+		return (free(data), NULL);
 	data->map.render_map = (int **) malloc(sizeof(int *) * (data->map.height + 1));
 	while (i < data->map.height)
 		data->map.render_map[i++] = (int *) malloc(sizeof(int) * data->map.width);

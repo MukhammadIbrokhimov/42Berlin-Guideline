@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 17:59:24 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/01/28 13:39:19 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/01/28 19:41:24 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ fdf	*ft_lst(void)
 		return (NULL);
 	data->color = 0xffff;
 	data->window.depth = 2;
-	data->window.offset_x = data->map.width / 2;
-	data->window.offset_y = data->map.height / 2;
-	data->window.zoom = 20;
-	data->window.shift_down = 150;
-	data->window.shift_up = 150;
-	data->window.shift_left = 150;
-	data->window.shift_right = 150;
+	data->window.offset_x = (WIN_WIDTH / 3) + (WIN_WIDTH / 10);
+	data->window.offset_y = (WIN_HEIGHT / 10);
+	data->window.zoom = 0;
+	data->window.shift_down = 0;
+	data->window.shift_up = 0;
+	data->window.shift_left = -80;
+	data->window.shift_right = -80;
 	data->mlx = NULL;
 	data->wnd = NULL;
 	return (data);
@@ -102,4 +102,3 @@ void ft_swap(float *a, float *b)
 	*a = *b;
 	*b = temp;
 }
-
