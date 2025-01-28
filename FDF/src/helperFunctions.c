@@ -6,43 +6,47 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 17:59:24 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/01/16 15:46:22 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/01/28 13:39:19 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-void ft_close(fdf *map)
+void ft_close(fdf *data)
 {
-	if (map->mlx)
+	if (data->mlx)
 	{
-		if (map->wnd)
-			mlx_destroy_window(map->mlx, map->wnd);
-		if (map->mlx)
-			mlx_destroy_display(map->mlx);
-		free(map->mlx);
+		if (data->wnd)
+			mlx_destroy_window(data->mlx, data->wnd);
+		if (data->mlx)
+			mlx_destroy_display(data->mlx);
+		free(data->mlx);
 	}
-	free_map(map->render_map);
-	free(map);
+	free_map(data->map.render_map);
+	free(data);
 }
 
 
 fdf	*ft_lst(void)
 {
-	fdf	*map;
+	fdf	*data;
 
-	map = NULL;
-	map = (fdf *) malloc(sizeof(fdf));
-	if (!map)
+	data = NULL;
+	data = (fdf *) malloc(sizeof(fdf));
+	if (!data)
 		return (NULL);
-	map->window.zoom = 20;
-	map->window.shift_down = 150;
-	map->window.shift_up = 150;
-	map->window.shift_left = 150;
-	map->window.shift_right = 150;
-	map->mlx = NULL;
-	map->wnd = NULL;
-	return (map);
+	data->color = 0xffff;
+	data->window.depth = 2;
+	data->window.offset_x = data->map.width / 2;
+	data->window.offset_y = data->map.height / 2;
+	data->window.zoom = 20;
+	data->window.shift_down = 150;
+	data->window.shift_up = 150;
+	data->window.shift_left = 150;
+	data->window.shift_right = 150;
+	data->mlx = NULL;
+	data->wnd = NULL;
+	return (data);
 }
 
 void	free_arr(char **str)

@@ -6,13 +6,13 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 15:39:45 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/01/08 14:45:13 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/01/28 11:08:37 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-fdf	*readfile(fdf *map, char **file)
+fdf	*readfile(fdf *data, char **file)
 {
 	int		fd;
 	int		i;
@@ -22,20 +22,20 @@ fdf	*readfile(fdf *map, char **file)
 	fd = open(file[1], O_RDONLY);
 	if (fd == -1)
 		return (NULL);
-	get_size(&map->height, file[1], &map->width);
-	map->render_map = (int **) malloc(sizeof(int *) * (map->height + 1));
-	while (i < map->height)
-		map->render_map[i++] = (int *) malloc(sizeof(int) * map->width);
+	get_size(&data->map.height, file[1], &data->map.width);
+	data->map.render_map = (int **) malloc(sizeof(int *) * (data->map.height + 1));
+	while (i < data->map.height)
+		data->map.render_map[i++] = (int *) malloc(sizeof(int) * data->map.width);
 	i = 0;
 	line = get_next_line(fd);
-	while (i < map->height && line)
+	while (i < data->map.height && line)
 	{
-		fill_map(map->render_map[i++], map->width, line);
+		fill_map(data->map.render_map[i++], data->map.width, line);
 		line = get_next_line(fd);
 	}
-	map->render_map[map->height] = NULL;
+	data->map.render_map[data->map.height] = NULL;
 	close(fd);
-	return (map);
+	return (data);
 }
 
 int	get_size(int *height, char *file, int *width)
