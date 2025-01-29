@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 13:00:25 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/01/28 19:45:00 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/01/29 11:37:42 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,19 +30,19 @@ void draw_map(fdf *data)
 	if (!data || !data->map.render_map)
 		return;
 
-	y = 0;
-	while (y < data->map.height)
+	x = 0;
+	while (x < data->map.width)
 	{
-		x = 0;
-		while (x < data->map.width)
+		y = 0;
+		while (y < data->map.height)
 		{
 			if (x < data->map.width - 1)
 				line(x, y, x + 1, y, data);
 			if (y < data->map.height - 1)
 				line(x, y, x, y + 1, data);
-			x++;
+			y++;
 		}
-		y++;
+		x++;
 	}
 }
 
@@ -91,8 +91,8 @@ void	reproduce_pixels(int *x1, int *x2, int *y1, int *y2, fdf *data)
 	*y1 *= auto_scale + data->window.zoom;
 	*x2 *= auto_scale + data->window.zoom;
 	*y2 *= auto_scale + data->window.zoom;
-	data->side.z1 *= auto_scale + data->window.zoom;
-	data->side.z2 *= auto_scale + data->window.zoom;
+	data->side.z1 *= auto_scale + data->window.zoom + data->side.iso;
+	data->side.z2 *= auto_scale + data->window.zoom + data->side.iso;
 }
 
 
