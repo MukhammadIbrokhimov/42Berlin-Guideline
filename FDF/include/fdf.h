@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 19:57:46 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/01/28 13:26:05 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/01/29 12:39:00 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include "./get_nextline/get_next_line.h"
 # include "./minilibx-linux/mlx.h"
 # include "./minilibx-linux/mlx_int.h"
+# include "key.h"
 
 // Color Definitions with Real Names
 # define TEXT_COLOR			0xEAEAEA  // Light Gray
@@ -36,11 +37,10 @@
 # define COLOR_JAFFA			0xEF8633  // Jaffa Orange
 # define COLOR_SAFFRON			0xF3AF3D  // Saffron Yellow
 # define COLOR_white			0xFFFFFF  // Saffron Yellow
-# define WIN_WIDTH 800
-# define WIN_HEIGHT 600
+# define WIN_WIDTH 1800
+# define WIN_HEIGHT 900
 # define M_PI 3.14159265358979323846
-# define MAX(a, b) ((a > b) ? a : b)
-# define MOD(a) ((a < 0) ? -a : a)
+# define MAX_KEYS 65536
 
 typedef		struct
 {
@@ -52,18 +52,16 @@ typedef		struct
 	int		shift_down;
 	int		shift_right;
 	int		shift_left;
+	int		key_states[MAX_KEYS];
 } control;
 
 typedef		struct
 {
 	int		z1;
 	int		z2;
-	int		x1;
-	int		x2;
-	int		y1;
-	int		y2;
 	int		dx;
 	int		dy;
+	int		iso;
 } pixels;
 
 typedef		struct
@@ -99,25 +97,36 @@ int		get_size(int *height, char *file, int *width);
 int		**allocate(int height, int width, char **file);
 int		*fill_map(int *map_line, int width, char *line);
 // helper functions
+unsigned int	get_color(int z1, int z2);
 int		color(float *brightness, int y1, int x1);
-int		do_commands(int	command, fdf *map);
+int		handle_keyboard(int command, fdf *data);
+int		handle_mouse(int button, int x, int y, fdf *data);
 void	free_arr(char **str);
 void	free_map(int **arr);
 void	ft_print(int **map, int height, int width);
 void	ft_close(fdf *map);
 fdf		*ft_lst(void);
 void	ft_swap(float *a, float *b);
+void	draw_usage(fdf *data);
+// movement control
+int		handle_keypress(int key, fdf *data);
+int		handle_keyrelease(int key, fdf *data);
+void	update_keys(fdf *data);
+void	zoom_in_out(fdf *data);
+void	add_isometric(fdf *data, int command);
 // draw
-unsigned int get_color(int z1, int z2);
 void	draw_map(fdf *map);
 void	set_pixels(fdf	*data);
-void	put_pixel(fdf *data, int x, int y);
+void	put_pixel(fdf *data, int x, int y, int color);
 void	line(int x1, int y1, int x2, int y2, fdf *data);
 void	positive_slope(int x1, int y1, fdf *data);
 void	negative_slope(int x1, int y1, fdf *data);
 void	put_pixel_less(fdf *data, int x, int y);
 void	put_pixel_big(fdf *data, int x, int y);
-
+void	reproduce_pixels(int *x1, int *x2, int *y1, int *y2, fdf *data);
+void	locate(int *x1, int *x2, int *y1, int *y2, fdf *data);
+void	set_background(fdf *data, int color);
+void	isometric(int *x, int *y, int z);
 // tester
 //void	draw_map(fdf *map);
 //void	project_isometric(float *x, float *y, int *z, fdf *map);
