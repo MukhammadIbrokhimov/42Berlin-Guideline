@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 17:59:24 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/01/29 13:52:35 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/01/29 17:13:47 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,18 @@
 //	free(data);
 //}
 
-void ft_close(fdf *data)
+void	ft_close(fdf *data)
 {
 	if (data)
 	{
 		if (data->mlx)
 		{
 			if (data->wnd)
-			{
 				mlx_destroy_window(data->mlx, data->wnd);
-				data->wnd = NULL;
-			}
+			if (data->img)
+				mlx_destroy_image(data->mlx, data->img);
 			if (data->mlx)
-			{
 				mlx_destroy_display(data->mlx);
-				data->mlx = NULL;
-			}
 			free(data->mlx);
 			data->mlx = NULL;
 		}
@@ -65,9 +61,9 @@ fdf	*ft_lst(void)
 	data = (fdf *) malloc(sizeof(fdf));
 	if (!data)
 		return (NULL);
+	data->window.angle = 0.534343;
 	data->side.iso = 0;
 	data->color = 0xffff;
-	data->window.depth = 2;
 	data->window.offset_x = (WIN_WIDTH / 3) + (WIN_WIDTH / 10);
 	data->window.offset_y = (WIN_HEIGHT / 10);
 	data->window.zoom = 0;
@@ -78,6 +74,7 @@ fdf	*ft_lst(void)
 	data->mlx = NULL;
 	data->wnd = NULL;
 	data->img = NULL;
+	data->address_data = NULL;
 	return (data);
 }
 
