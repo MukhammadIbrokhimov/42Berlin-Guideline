@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 15:57:48 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/01/29 12:42:24 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/01/29 13:50:35 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,15 @@ int handle_keypress(int key, fdf *data)
 		ft_close(data);
 		exit(0);
 	}
+	return (0);
+}
+
+int	handle_close(int keycode, fdf *data)
+{
+	(void)keycode;
+	ft_printf("Window close event triggered\n");
+	ft_close(data);
+	exit(0);
 	return (0);
 }
 

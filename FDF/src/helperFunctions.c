@@ -6,26 +6,56 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 17:59:24 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/01/29 11:38:30 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/01/29 13:52:35 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
+//void ft_close(fdf *data)
+//{
+//	if (data->mlx)
+//	{
+//		if (data->img)
+//			mlx_destroy_image(data->mlx, data->img);
+//		if (data->wnd)
+//			mlx_destroy_window(data->mlx, data->wnd);
+//		if (data->mlx)
+//			mlx_destroy_display(data->mlx);
+//		free(data->mlx);
+//	}
+//	free_map(data->map.render_map);
+//	free(data);
+//}
+
 void ft_close(fdf *data)
 {
-	if (data->mlx)
+	if (data)
 	{
-		if (data->wnd)
-			mlx_destroy_window(data->mlx, data->wnd);
 		if (data->mlx)
-			mlx_destroy_display(data->mlx);
-		free(data->mlx);
+		{
+			if (data->wnd)
+			{
+				mlx_destroy_window(data->mlx, data->wnd);
+				data->wnd = NULL;
+			}
+			if (data->mlx)
+			{
+				mlx_destroy_display(data->mlx);
+				data->mlx = NULL;
+			}
+			free(data->mlx);
+			data->mlx = NULL;
+		}
+		if (data->map.render_map)
+		{
+			free_map(data->map.render_map);
+			data->map.render_map = NULL;
+		}
+		free(data);
+		data = NULL;
 	}
-	free_map(data->map.render_map);
-	free(data);
 }
-
 
 fdf	*ft_lst(void)
 {
@@ -47,6 +77,7 @@ fdf	*ft_lst(void)
 	data->window.shift_right = -80;
 	data->mlx = NULL;
 	data->wnd = NULL;
+	data->img = NULL;
 	return (data);
 }
 
@@ -80,26 +111,19 @@ void	free_map(int **arr)
 	free(arr);
 }
 
-void ft_print(int **map, int height, int width)
-{
-	int i, j;
+//void ft_print(int **map, int height, int width)
+//{
+//	int i, j;
 
-	i = 0;
-	if (!map)
-		return;
+//	i = 0;
+//	if (!map)
+//		return;
 
-	for (int i = 0; i < height; i++) {
-		for (int j = 0; j < width; j++) {
-			printf("%3d", map[i][j]);
-		}
-		printf("\n");
-	}
+//	for (int i = 0; i < height; i++) {
+//		for (int j = 0; j < width; j++) {
+//			printf("%3d", map[i][j]);
+//		}
+//		printf("\n");
+//	}
 
-}
-
-void ft_swap(float *a, float *b)
-{
-	float temp = *a;
-	*a = *b;
-	*b = temp;
-}
+//}
