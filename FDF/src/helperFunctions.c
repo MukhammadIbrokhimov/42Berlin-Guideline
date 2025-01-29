@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 17:59:24 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/01/29 17:13:47 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/01/29 17:29:19 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ fdf	*ft_lst(void)
 	data = (fdf *) malloc(sizeof(fdf));
 	if (!data)
 		return (NULL);
-	data->window.angle = 0.534343;
 	data->side.iso = 0;
 	data->color = 0xffff;
 	data->window.offset_x = (WIN_WIDTH / 3) + (WIN_WIDTH / 10);

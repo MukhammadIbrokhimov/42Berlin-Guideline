@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 15:57:48 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/01/29 16:51:00 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/01/29 17:35:07 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,4 @@ void	update_keys(fdf *data)
 		|| (data->window.key_states[KEY_MINUS]
 			|| data->window.key_states[NUMPAD_MINUS]))
 		zoom_in_out(data);
-	set_pixels(data);
 }
