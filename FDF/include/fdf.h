@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 19:57:46 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/01/29 12:39:00 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/01/29 13:49:48 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,13 @@ typedef		struct
 
 typedef		struct
 {
+	int		mouse_x;
+	int		mouse_y;
+	int		mouse_pressed;
+}		mouse;
+
+typedef		struct
+{
 	int		z1;
 	int		z2;
 	int		dx;
@@ -76,6 +83,7 @@ typedef		struct
 	control	window;
 	pixels	side;
 	map		map;
+	mouse	mouse;
 	int		b_per_pixel;
 	int		color;
 	int		size_line;
@@ -86,11 +94,6 @@ typedef		struct
 	void	*img;
 }			fdf;
 
-
-
-// control functions
-void	up_or_down(fdf *map, int command);
-void	left_or_right(fdf *map, int command);
 // file rendering functions
 fdf		*readfile(fdf	*map, char **file);
 int		get_size(int *height, char *file, int *width);
@@ -98,26 +101,30 @@ int		**allocate(int height, int width, char **file);
 int		*fill_map(int *map_line, int width, char *line);
 // helper functions
 unsigned int	get_color(int z1, int z2);
-int		color(float *brightness, int y1, int x1);
-int		handle_keyboard(int command, fdf *data);
-int		handle_mouse(int button, int x, int y, fdf *data);
 void	free_arr(char **str);
 void	free_map(int **arr);
 void	ft_print(int **map, int height, int width);
 void	ft_close(fdf *map);
 fdf		*ft_lst(void);
-void	ft_swap(float *a, float *b);
 void	draw_usage(fdf *data);
-// movement control
+// movement control keybord
+int		handle_keyboard(int command, fdf *data);
 int		handle_keypress(int key, fdf *data);
 int		handle_keyrelease(int key, fdf *data);
+int		handle_close(int keycode, fdf *data);
 void	update_keys(fdf *data);
 void	zoom_in_out(fdf *data);
 void	add_isometric(fdf *data, int command);
+void	up_or_down(fdf *map, int command);
+void	left_or_right(fdf *map, int command);
+// movement control mouse
+int		handle_mouse_move(int x, int y, fdf *data);
+int		handle_mouse_release(int button, int x, int y, fdf *data);
+int		handle_mouse_press(int button, int x, int y, fdf *data);
+int		handle_mouse(int button, int x, int y, fdf *data);
 // draw
 void	draw_map(fdf *map);
 void	set_pixels(fdf	*data);
-void	put_pixel(fdf *data, int x, int y, int color);
 void	line(int x1, int y1, int x2, int y2, fdf *data);
 void	positive_slope(int x1, int y1, fdf *data);
 void	negative_slope(int x1, int y1, fdf *data);
@@ -125,20 +132,9 @@ void	put_pixel_less(fdf *data, int x, int y);
 void	put_pixel_big(fdf *data, int x, int y);
 void	reproduce_pixels(int *x1, int *x2, int *y1, int *y2, fdf *data);
 void	locate(int *x1, int *x2, int *y1, int *y2, fdf *data);
-void	set_background(fdf *data, int color);
 void	isometric(int *x, int *y, int z);
-// tester
-//void	draw_map(fdf *map);
-//void	project_isometric(float *x, float *y, int *z, fdf *map);
-//void	draw_map(fdf *map);
-//void	wu_line(fdf *map, float x1, float y1, float x2, float y2);
-//void	wu_line(float x1, float y1, float x2, float y2, fdf *map);
-//void	plot_pixel(fdf *data, int x, int y, float intensity);
-//float	reverse_fractional_part(float x);
-//float	fractional_part(float x);
-//void	DDA(int x1, int y1, int x2, int y2, fdf *map);
-//void	draw_3d_map(int x1, int y1, int x2, int y2, fdf *map);
-//void to_isometric(float *x, float *y, int z);
-//void	draw_line(fdf *map, int x1, int y1, int x2, int y2, int color);
+// caller functions
+int		my_mlx(fdf *data);
+void	my_hook(fdf *data);
 
 #endif
