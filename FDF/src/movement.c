@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 16:39:11 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/01/29 17:35:13 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/01/30 16:27:01 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,24 @@ void	zoom_in_out(fdf *data)
 	if (data->window.key_states[KEY_PLUS]
 		|| data->window.key_states[NUMPAD_PLUS])
 	{
-		data->window.zoom += 1;
-		set_pixels(data);
+		if (data->window.zoom <= 50)
+		{
+			data->window.zoom += 1;
+			set_pixels(data);
+		}
+		else
+			ft_printf("Out of bound\n");
 	}
 	else if (data->window.key_states[KEY_MINUS]
 		|| data->window.key_states[NUMPAD_MINUS])
 	{
-		data->window.zoom -= 1;
-		set_pixels(data);
+		if (data->window.zoom >= -25)
+		{
+			data->window.zoom -= 1;
+			set_pixels(data);
+		}
+		else
+			ft_printf("Out of bound\n");
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 17:21:43 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/01/29 17:04:22 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/01/30 16:28:57 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,23 @@ int	handle_mouse_release(int button, int x, int y, fdf *data)
 		data->mouse.mouse_pressed = 0;
 	if (button == 4)
 	{
-		data->window.zoom -= 1;
-		set_pixels(data);
+		if (data->window.zoom >= -20)
+		{
+			data->window.zoom -= 1;
+			set_pixels(data);
+		}
+		else
+			ft_printf("Out of bound\n");
 	}
 	if (button == 5)
 	{
-		data->window.zoom += 1;
-		set_pixels(data);
+		if (data->window.zoom <= 50)
+		{
+			data->window.zoom += 1;
+			set_pixels(data);
+		}
+		else
+			ft_printf("Out of bound\n");
 	}
 	return (0);
 }

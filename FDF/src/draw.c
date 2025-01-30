@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 13:00:25 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/01/29 17:29:40 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/01/30 17:37:49 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,14 @@ void line(int x1, int y1, int x2, int y2, fdf *data)
 	locate(&x1, &x2, &y1, &y2, data);
 	isometric(&x1, &y1, data->side.z1);
 	isometric(&x2, &y2, data->side.z2);
+	if ((x1 < 0 && x2 < 0) || (x1 > WIN_WIDTH && x2 > WIN_WIDTH) ||
+	(y1 < 0 && y2 < 0) || (y1 > WIN_HEIGHT && y2 > WIN_HEIGHT))
+		return;
 	data->side.dx = x2 - x1;
 	data->side.dy = y2 - y1;
 	if (abs(data->side.dx) > abs(data->side.dy))
 		negative_slope(x1, y1, data);
-	else
+	else 
 		positive_slope(x1, y1, data);
 }
 
@@ -84,6 +87,8 @@ void	reproduce_pixels(int *x1, int *x2, int *y1, int *y2, fdf *data)
 	float scale_factor_x = (WIN_WIDTH * 0.4) / max_dimension;
 	float scale_factor_y = (WIN_HEIGHT * 0.4) / max_dimension;
 	auto_scale = (scale_factor_x < scale_factor_y) ? scale_factor_x : scale_factor_y;
+	if (auto_scale > 10)
+		auto_scale = 10;
 	*x1 *= auto_scale + data->window.zoom;
 	*y1 *= auto_scale + data->window.zoom;
 	*x2 *= auto_scale + data->window.zoom;

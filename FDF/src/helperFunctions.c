@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 17:59:24 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/01/29 17:29:19 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/01/30 17:52:33 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,26 @@ void	ft_close(fdf *data)
 		free(data);
 		data = NULL;
 	}
+}
+
+int close_window(fdf *data)
+{
+	if (data->img)
+		mlx_destroy_image(data->mlx, data->img);
+	if (data->wnd)
+		mlx_destroy_window(data->mlx, data->wnd);
+	if (data->mlx)
+	{
+		mlx_loop_end(data->mlx);
+		mlx_destroy_display(data->mlx);
+		free(data->mlx);
+	}
+	if (data->map.render_map)
+		free_map(data->map.render_map);
+	ft_printf("Project exited");
+	if (data)
+		free(data);
+	exit(0);
 }
 
 fdf	*ft_lst(void)
