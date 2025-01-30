@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 13:00:25 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/01/30 17:37:49 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/01/30 18:09:38 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void draw_map(fdf *data)
 		}
 		x++;
 	}
+	draw_usage(data);
 }
 
 void line(int x1, int y1, int x2, int y2, fdf *data)

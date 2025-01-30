@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 21:37:02 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/01/30 17:48:24 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/01/30 18:45:37 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	my_mlx(fdf *data)
 // keyboard and mouse handler
 void	my_hook(fdf *data)
 {
+	mlx_key_hook(data->wnd, change_color, data);
 	mlx_hook(data->wnd, 17, 0, close_window, data);
 	mlx_hook(data->wnd, 2, 1L << 0, handle_keypress, data);
 	mlx_hook(data->wnd, 3, 1L << 1, handle_keyrelease, data);

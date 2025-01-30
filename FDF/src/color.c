@@ -6,11 +6,34 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 13:31:02 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/01/29 16:35:22 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/01/30 18:47:52 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
+
+void	change_color(int command, fdf *data)
+{
+	static int	changer;
+	int		color[6]= {
+		BACKGROUND, COLOR_DISCO, COLOR_BRICK_RED, COLOR_FLAMINGO,
+		COLOR_JAFFA, COLOR_SAFFRON, 
+	};
+	changer = 0;
+	if ((command == KEY_6)
+		|| (command == NUMPAD_6))
+	{
+		data->color = color[changer];
+		changer++;
+	}
+	else if ((command == KEY_4)
+		|| (command == NUMPAD_4))
+	{
+		data->color = color[changer];
+		changer--;
+		ft_printf("change color\n");
+	}
+}
 
 unsigned int	get_color(int z1, int z2)
 {
