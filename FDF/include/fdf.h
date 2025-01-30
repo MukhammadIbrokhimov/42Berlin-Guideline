@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 19:57:46 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/01/30 17:48:01 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/01/30 21:18:22 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,11 @@
 # define COLOR_JAFFA			0xEF8633  // Jaffa Orange
 # define COLOR_SAFFRON			0xF3AF3D  // Saffron Yellow
 # define COLOR_white			0xFFFFFF  // Saffron Yellow
-# define WIN_WIDTH 1800
-# define WIN_HEIGHT 900
-# define M_PI 3.14159265358979323846
-# define MAX_KEYS 65536
+# define WIN_WIDTH				1800
+# define WIN_HEIGHT				900
+# define USAGE_WIDTH			400
+# define M_PI					3.14159265358979323846
+# define MAX_KEYS				65536
 
 typedef		struct
 {
@@ -86,6 +87,7 @@ typedef		struct
 	mouse	mouse;
 	int		b_per_pixel;
 	int		color;
+	int		bvg_color;
 	int		size_line;
 	int		endian;
 	char	*address_data;
@@ -108,6 +110,10 @@ void	ft_close(fdf *map);
 int		close_window(fdf *data);
 fdf		*ft_lst(void);
 void	draw_usage(fdf *data);
+void	change_color(int command, fdf *data);
+void	render_frame(fdf *data);
+void	display_usage_text(fdf *data);
+void	put_pixel_to_img(fdf *data, int x, int y, int color);
 // movement control keybord
 int		handle_keyboard(int command, fdf *data);
 int		handle_keypress(int key, fdf *data);
