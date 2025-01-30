@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 19:57:46 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/01/29 13:49:48 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/01/30 17:48:01 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 
 typedef		struct
 {
-	int		depth;
+	int		angle;
 	int		offset_x;
 	int		offset_y;
 	int		zoom;
@@ -105,6 +105,7 @@ void	free_arr(char **str);
 void	free_map(int **arr);
 void	ft_print(int **map, int height, int width);
 void	ft_close(fdf *map);
+int		close_window(fdf *data);
 fdf		*ft_lst(void);
 void	draw_usage(fdf *data);
 // movement control keybord
@@ -117,6 +118,7 @@ void	zoom_in_out(fdf *data);
 void	add_isometric(fdf *data, int command);
 void	up_or_down(fdf *map, int command);
 void	left_or_right(fdf *map, int command);
+void	change_angle(fdf *data);
 // movement control mouse
 int		handle_mouse_move(int x, int y, fdf *data);
 int		handle_mouse_release(int button, int x, int y, fdf *data);
