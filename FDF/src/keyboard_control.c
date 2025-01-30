@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 15:57:48 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/01/30 18:47:34 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/01/30 20:16:47 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@ int	handle_keypress(int key, fdf *data)
 		ft_close(data);
 		exit(0);
 	}
+	if ((key == KEY_6 || key == NUMPAD_6)
+		|| (key == KEY_4 || key == NUMPAD_4))
+		change_color(key, data);
 	return (0);
 }
 

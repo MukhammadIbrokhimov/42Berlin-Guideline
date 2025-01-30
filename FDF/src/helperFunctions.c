@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 17:59:24 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/01/30 18:26:56 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/01/30 21:25:19 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ fdf	*ft_lst(void)
 		return (NULL);
 	data->side.iso = 0;
 	data->color = 0xffff;
+	data->bvg_color = BACKGROUND;
 	data->window.offset_x = (WIN_WIDTH / 3) + (WIN_WIDTH / 10);
 	data->window.offset_y = (WIN_HEIGHT / 10);
 	data->window.zoom = 0;

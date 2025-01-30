@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 13:31:02 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/01/30 18:47:52 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/01/30 21:21:05 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,25 @@
 
 void	change_color(int command, fdf *data)
 {
-	static int	changer;
-	int		color[6]= {
-		BACKGROUND, COLOR_DISCO, COLOR_BRICK_RED, COLOR_FLAMINGO,
-		COLOR_JAFFA, COLOR_SAFFRON, 
+	static int changer = 0;
+
+	int color[6] = {
+		BACKGROUND, COLOR_DISCO, COLOR_BRICK_RED, 
+		COLOR_FLAMINGO, COLOR_JAFFA, COLOR_SAFFRON
 	};
-	changer = 0;
-	if ((command == KEY_6)
-		|| (command == NUMPAD_6))
+	if (command == KEY_6 || command == NUMPAD_6)
 	{
-		data->color = color[changer];
-		changer++;
+		changer = (changer + 1) % 6;
+		data->bvg_color = color[changer];
+		ft_printf("Color changed to: %d\n", data->color);
 	}
-	else if ((command == KEY_4)
-		|| (command == NUMPAD_4))
+	else if (command == KEY_4 || command == NUMPAD_4)
 	{
-		data->color = color[changer];
-		changer--;
-		ft_printf("change color\n");
+		changer = (changer - 1 + 6) % 6;
+		data->bvg_color = color[changer];
+		ft_printf("Color changed to: %d\n", data->color);
 	}
+	render_frame(data);
 }
 
 unsigned int	get_color(int z1, int z2)

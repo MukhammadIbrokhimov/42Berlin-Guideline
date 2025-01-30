@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 13:00:25 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/01/30 18:09:38 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/01/30 21:23:01 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ void set_pixels(fdf *data)
 {
 	ft_bzero(data->address_data, WIN_WIDTH * WIN_HEIGHT * 4);
 	mlx_clear_window(data->mlx, data->wnd);
-	//draw_usage(data);
 	draw_map(data);
-	mlx_put_image_to_window(data->mlx, data->wnd, data->img, 0, 0);
+	render_frame(data);
+	//mlx_put_image_to_window(data->mlx, data->wnd, data->img, 0, 0);
 }
 
 

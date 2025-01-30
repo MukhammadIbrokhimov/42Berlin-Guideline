@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 19:24:43 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/01/30 18:26:13 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/01/30 21:26:00 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,22 @@ void draw_usage(fdf *data)
 	for (y = 0; y < WIN_HEIGHT; y++)
 	{
 		for (x = WIN_WIDTH - USAGE_WIDTH; x < WIN_WIDTH; x++)
-			put_pixel_to_img(data, x, y, data->color);
+			put_pixel_to_img(data, x, y, data->bvg_color);
 	}
+}
 
-	// Display usage instructions using mlx_string_put()
-	mlx_string_put(data->mlx, data->wnd, WIN_WIDTH - 180, 50, 0x000000, "Usage:");
-	mlx_string_put(data->mlx, data->wnd, WIN_WIDTH - 180, 80, 0x000000, "WASD - Move");
-	mlx_string_put(data->mlx, data->wnd, WIN_WIDTH - 180, 110, 0x000000, "Arrow Keys - Rotate");
-	mlx_string_put(data->mlx, data->wnd, WIN_WIDTH - 180, 140, 0x000000, "+ / - - Zoom");
-	mlx_string_put(data->mlx, data->wnd, WIN_WIDTH - 180, 170, 0x000000, "ESC - Exit");
+void display_usage_text(fdf *data)
+{
+	mlx_string_put(data->mlx, data->wnd, WIN_WIDTH - 180, 50, TEXT_COLOR, "Usage:");
+	mlx_string_put(data->mlx, data->wnd, WIN_WIDTH - 180, 80, TEXT_COLOR, "WASD - Move");
+	mlx_string_put(data->mlx, data->wnd, WIN_WIDTH - 180, 110, TEXT_COLOR, "Arrow Keys - Rotate");
+	mlx_string_put(data->mlx, data->wnd, WIN_WIDTH - 180, 140, TEXT_COLOR, "+ / - - Zoom");
+	mlx_string_put(data->mlx, data->wnd, WIN_WIDTH - 180, 170, TEXT_COLOR, "ESC - Exit");
+}
+
+void render_frame(fdf *data)
+{
+	draw_usage(data);
+	mlx_put_image_to_window(data->mlx, data->wnd, data->img, 0, 0);
+	display_usage_text(data);
 }
