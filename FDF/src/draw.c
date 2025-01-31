@@ -6,30 +6,27 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 13:00:25 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/01/30 21:23:01 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/01/31 18:03:16 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-void set_pixels(fdf *data)
+void	set_pixels(fdf *data)
 {
 	ft_bzero(data->address_data, WIN_WIDTH * WIN_HEIGHT * 4);
 	mlx_clear_window(data->mlx, data->wnd);
 	draw_map(data);
 	render_frame(data);
-	//mlx_put_image_to_window(data->mlx, data->wnd, data->img, 0, 0);
 }
 
-
-void draw_map(fdf *data)
+void	draw_map(fdf *data)
 {
 	int	y;
 	int	x;
 
 	if (!data || !data->map.render_map)
-		return;
-
+		return ;
 	x = 0;
 	while (x < data->map.width)
 	{
@@ -44,10 +41,9 @@ void draw_map(fdf *data)
 		}
 		x++;
 	}
-	draw_usage(data);
 }
 
-void line(int x1, int y1, int x2, int y2, fdf *data)
+void	line(int x1, int y1, int x2, int y2, fdf *data)
 {
 	data->side.z1 = data->map.render_map[y1][x1];
 	data->side.z2 = data->map.render_map[y2][x2];
@@ -55,9 +51,9 @@ void line(int x1, int y1, int x2, int y2, fdf *data)
 	locate(&x1, &x2, &y1, &y2, data);
 	isometric(&x1, &y1, data->side.z1);
 	isometric(&x2, &y2, data->side.z2);
-	if ((x1 < 0 && x2 < 0) || (x1 > WIN_WIDTH && x2 > WIN_WIDTH) ||
-	(y1 < 0 && y2 < 0) || (y1 > WIN_HEIGHT && y2 > WIN_HEIGHT))
-		return;
+	if ((x1 < 0 && x2 < 0) || (x1 > WIN_WIDTH && x2 > WIN_WIDTH)
+		|| (y1 < 0 && y2 < 0) || (y1 > WIN_HEIGHT && y2 > WIN_HEIGHT))
+		return ;
 	data->side.dx = x2 - x1;
 	data->side.dy = y2 - y1;
 	if (abs(data->side.dx) > abs(data->side.dy))
@@ -66,27 +62,14 @@ void line(int x1, int y1, int x2, int y2, fdf *data)
 		positive_slope(x1, y1, data);
 }
 
-void	isometric(int *x, int *y, int z)
-{
-	int		tmp_x;
-	int		tmp_y;
-	float	angle;
-
-	tmp_x = *x;
-	tmp_y = *y;
-	angle = 0.523599;
-	*x = (tmp_x - tmp_y) * cos(angle);
-	*y = (tmp_x + tmp_y) * sin(angle) - z;
-}
-
 void	reproduce_pixels(int *x1, int *x2, int *y1, int *y2, fdf *data)
 {
+	int	auto_scale;
 	int	max_x = data->map.width;
 	int	max_y = data->map.height;
-	int	auto_scale;
 	int max_dimension = (max_x > max_y) ? max_x : max_y;
-	float scale_factor_x = (WIN_WIDTH * 0.4) / max_dimension;
-	float scale_factor_y = (WIN_HEIGHT * 0.4) / max_dimension;
+	float scale_factor_x = (WIN_WIDTH * 0.8) / max_dimension;
+	float scale_factor_y = (WIN_HEIGHT * 0.8) / max_dimension;
 	auto_scale = (scale_factor_x < scale_factor_y) ? scale_factor_x : scale_factor_y;
 	if (auto_scale > 10)
 		auto_scale = 10;

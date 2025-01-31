@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 17:04:48 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/01/29 17:05:37 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/01/31 17:13:35 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	negative_slope(int x1, int y1, fdf *data)
 				y1++;
 			else
 				y1--;
-			p = p + (2 * abs(data->side.dy)) - (2 *abs(data->side.dx));
+			p = p + (2 * abs(data->side.dy)) - (2 * abs(data->side.dx));
 		}
 		put_pixel_less(data, x1, y1);
 	}
@@ -60,8 +60,21 @@ void	positive_slope(int x1, int y1, fdf *data)
 				x1++;
 			else
 				x1--;
-			p = p + (2 * abs(data->side.dx)) - (2 *abs(data->side.dy));
+			p = p + (2 * abs(data->side.dx)) - (2 * abs(data->side.dy));
 		}
 		put_pixel_big(data, x1, y1);
 	}
+}
+
+void	isometric(int *x, int *y, int z)
+{
+	int		tmp_x;
+	int		tmp_y;
+	float	angle;
+
+	tmp_x = *x;
+	tmp_y = *y;
+	angle = 0.523599;
+	*x = (tmp_x - tmp_y) * cos(angle);
+	*y = (tmp_x + tmp_y) * sin(angle) - z;
 }

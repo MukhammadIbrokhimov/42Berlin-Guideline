@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 16:39:11 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/01/30 18:14:45 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/01/31 17:36:27 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	zoom_in_out(fdf *data)
 	else if (data->window.key_states[KEY_MINUS]
 		|| data->window.key_states[NUMPAD_MINUS])
 	{
-		if (data->window.zoom >= -25)
+		if (data->window.zoom >= -5)
 		{
 			data->window.zoom -= 1;
 			set_pixels(data);
