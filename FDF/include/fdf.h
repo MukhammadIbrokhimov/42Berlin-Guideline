@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 19:57:46 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/01/30 21:18:22 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/01/31 19:28:40 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,14 @@
 # define USAGE_WIDTH			400
 # define M_PI					3.14159265358979323846
 # define MAX_KEYS				65536
+
+typedef		struct
+{
+	int		x1;
+	int		x2;
+	int		y1;
+	int		y2;
+}	t_point;
 
 typedef		struct
 {
@@ -133,13 +141,13 @@ int		handle_mouse(int button, int x, int y, fdf *data);
 // draw
 void	draw_map(fdf *map);
 void	set_pixels(fdf	*data);
-void	line(int x1, int y1, int x2, int y2, fdf *data);
+void	line(int x2, int y2, fdf *data, t_point p);
 void	positive_slope(int x1, int y1, fdf *data);
 void	negative_slope(int x1, int y1, fdf *data);
 void	put_pixel_less(fdf *data, int x, int y);
 void	put_pixel_big(fdf *data, int x, int y);
-void	reproduce_pixels(int *x1, int *x2, int *y1, int *y2, fdf *data);
-void	locate(int *x1, int *x2, int *y1, int *y2, fdf *data);
+void	reproduce_pixels(t_point *p, fdf *data);
+void	locate(t_point *p, fdf *data);
 void	isometric(int *x, int *y, int z);
 // caller functions
 int		my_mlx(fdf *data);
