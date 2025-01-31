@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 13:00:25 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/01/31 18:03:16 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/01/31 19:29:02 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,47 +22,48 @@ void	set_pixels(fdf *data)
 
 void	draw_map(fdf *data)
 {
-	int	y;
-	int	x;
+	t_point	p;
 
 	if (!data || !data->map.render_map)
 		return ;
-	x = 0;
-	while (x < data->map.width)
+	p.x1 = 0;
+	while (p.x1 < data->map.width)
 	{
-		y = 0;
-		while (y < data->map.height)
+		p.y1 = 0;
+		while (p.y1 < data->map.height)
 		{
-			if (x < data->map.width - 1)
-				line(x, y, x + 1, y, data);
-			if (y < data->map.height - 1)
-				line(x, y, x, y + 1, data);
-			y++;
+			if (p.x1 < data->map.width - 1)
+				line(p.x1 + 1, p.y1, data, p);
+			if (p.y1 < data->map.height - 1)
+				line(p.x1, p.y1 + 1, data, p);
+			p.y1 += 1;
 		}
-		x++;
+		p.x1 += 1;
 	}
 }
 
-void	line(int x1, int y1, int x2, int y2, fdf *data)
+void	line(int x2, int y2, fdf *data, t_point p)
 {
-	data->side.z1 = data->map.render_map[y1][x1];
-	data->side.z2 = data->map.render_map[y2][x2];
-	reproduce_pixels(&x1, &x2, &y1, &y2, data);
-	locate(&x1, &x2, &y1, &y2, data);
-	isometric(&x1, &y1, data->side.z1);
-	isometric(&x2, &y2, data->side.z2);
-	if ((x1 < 0 && x2 < 0) || (x1 > WIN_WIDTH && x2 > WIN_WIDTH)
-		|| (y1 < 0 && y2 < 0) || (y1 > WIN_HEIGHT && y2 > WIN_HEIGHT))
+	p.x2 = x2;
+	p.y2 = y2;
+	data->side.z1 = data->map.render_map[p.y1][p.x1];
+	data->side.z2 = data->map.render_map[p.y2][p.x2];
+	reproduce_pixels(&p, data);
+	locate(&p, data);
+	isometric(&p.x1, &p.y1, data->side.z1);
+	isometric(&p.x2, &p.y2, data->side.z2);
+	if ((p.x1 < 0 && p.x2 < 0) || (p.x1 > WIN_WIDTH && p.x2 > WIN_WIDTH)
+		|| (p.y1 < 0 && p.y2 < 0) || (p.y1 > WIN_HEIGHT && p.y2 > WIN_HEIGHT))
 		return ;
-	data->side.dx = x2 - x1;
-	data->side.dy = y2 - y1;
+	data->side.dx = p.x2 - p.x1;
+	data->side.dy = p.y2 - p.y1;
 	if (abs(data->side.dx) > abs(data->side.dy))
-		negative_slope(x1, y1, data);
+		negative_slope(p.x1, p.y1, data);
 	else 
-		positive_slope(x1, y1, data);
+		positive_slope(p.x1, p.y1, data);
 }
 
-void	reproduce_pixels(int *x1, int *x2, int *y1, int *y2, fdf *data)
+void	reproduce_pixels(t_point *p, fdf *data)
 {
 	int	auto_scale;
 	int	max_x = data->map.width;
@@ -70,22 +71,22 @@ void	reproduce_pixels(int *x1, int *x2, int *y1, int *y2, fdf *data)
 	int max_dimension = (max_x > max_y) ? max_x : max_y;
 	float scale_factor_x = (WIN_WIDTH * 0.8) / max_dimension;
 	float scale_factor_y = (WIN_HEIGHT * 0.8) / max_dimension;
+
 	auto_scale = (scale_factor_x < scale_factor_y) ? scale_factor_x : scale_factor_y;
 	if (auto_scale > 10)
 		auto_scale = 10;
-	*x1 *= auto_scale + data->window.zoom;
-	*y1 *= auto_scale + data->window.zoom;
-	*x2 *= auto_scale + data->window.zoom;
-	*y2 *= auto_scale + data->window.zoom;
+	p->x1 *= auto_scale + data->window.zoom;
+	p->y1 *= auto_scale + data->window.zoom;
+	p->x2 *= auto_scale + data->window.zoom;
+	p->y2 *= auto_scale + data->window.zoom;
 	data->side.z1 *= auto_scale + data->window.zoom + data->side.iso;
 	data->side.z2 *= auto_scale + data->window.zoom + data->side.iso;
 }
 
-
-void	locate(int *x1, int *x2, int *y1, int *y2, fdf *data)
+void	locate(t_point *p, fdf *data)
 {
-	*x1 += (WIN_WIDTH / 2) - (data->map.width * data->window.zoom / 2) + data->window.shift_left;
-	*y1 += (WIN_HEIGHT / 8) - (data->map.height * data->window.zoom / 2) + data->window.shift_up;
-	*x2 += (WIN_WIDTH / 2) - (data->map.width * data->window.zoom / 2) + data->window.shift_right;
-	*y2 += (WIN_HEIGHT / 8) - (data->map.height * data->window.zoom / 2) + data->window.shift_down;
+	p->x1 += (WIN_WIDTH / 2) - (data->map.width * data->window.zoom / 2) + data->window.shift_left;
+	p->y1 += (WIN_HEIGHT / 8) - (data->map.height * data->window.zoom / 2) + data->window.shift_up;
+	p->x2 += (WIN_WIDTH / 2) - (data->map.width * data->window.zoom / 2) + data->window.shift_right;
+	p->y2 += (WIN_HEIGHT / 8) - (data->map.height * data->window.zoom / 2) + data->window.shift_down;
 }
