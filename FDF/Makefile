@@ -6,13 +6,13 @@
 #    By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/30 21:32:40 by mukibrok          #+#    #+#              #
-#    Updated: 2025/01/06 18:16:59 by mukibrok         ###   ########.fr        #
+#    Updated: 2025/01/29 17:31:00 by mukibrok         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Compiler and flags
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -I$(INCLUDE) -I$(INCLUDE)/minilibx-linux
+CFLAGS = -g -s -I $(INCLUDE) -I$(INCLUDE)/minilibx-linux
 
 # Directories
 INCLUDE = include
@@ -36,7 +36,7 @@ NAME = fdf
 GRAPHICS_FLAGS = -L/usr/lib -lGL -lGLU -lX11 -lXext
 
 # Sources and object files $(SRC_DIR)/other_file.c 
-SRCS = $(SRC_DIR)/fdf.c $(GNL)/get_next_line.c $(GNL)/get_next_line_utils.c
+SRCS = $(wildcard $(SRC_DIR)/*.c) $(GNL)/get_next_line.c $(GNL)/get_next_line_utils.c
 OBJS = $(SRCS:.c=.o)
 
 # Color codes
