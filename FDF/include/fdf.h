@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 19:57:46 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/01/31 19:28:40 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/01/31 19:36:24 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,15 @@
 # define USAGE_WIDTH			400
 # define M_PI					3.14159265358979323846
 # define MAX_KEYS				65536
+
+typedef		struct
+{
+	int		scale;
+	int		max_d;
+	int		x_scale;
+	int		y_scale;
+}			custom;
+
 
 typedef		struct
 {
