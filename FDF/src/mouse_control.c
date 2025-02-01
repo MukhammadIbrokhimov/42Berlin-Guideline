@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 17:21:43 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/01/30 16:28:57 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/02/01 13:47:24 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,10 @@ int	handle_mouse_move(int x, int y, fdf *data)
 		data->mouse.mouse_x = x;
 		data->mouse.mouse_y = y;
 		if (dx || dy)
+		{
 			set_pixels(data);
+			render_frame(data);
+		}
 	}
 	return (0);
 }

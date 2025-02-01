@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 15:39:45 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/01/28 19:38:28 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/01/31 20:10:39 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ fdf	*readfile(fdf *data, char **file)
 		return (free(data), NULL);
 	if (get_size(&data->map.height, file[1], &data->map.width) == 1)
 		return (free(data), NULL);
-	data->map.render_map = (int **) malloc(sizeof(int *) * (data->map.height + 1));
+	data->map.render_map = malloc(sizeof(int *) * (data->map.height + 1));
 	while (i < data->map.height)
-		data->map.render_map[i++] = (int *) malloc(sizeof(int) * data->map.width);
+		data->map.render_map[i++] = malloc(sizeof(int) * data->map.width);
 	i = 0;
 	line = get_next_line(fd);
 	while (i < data->map.height && line)
@@ -64,10 +64,10 @@ int	get_size(int *height, char *file, int *width)
 	return (i);
 }
 
-int *fill_map(int *map_line, int width, char *line)
+int	*fill_map(int *map_line, int width, char *line)
 {
-	int i;
-	char **number;
+	int		i;
+	char	**number;
 
 	i = 0;
 	number = ft_split(line, ' ');
@@ -77,5 +77,5 @@ int *fill_map(int *map_line, int width, char *line)
 		i++;
 	}
 	free_arr(number);
-	return map_line;
+	return (map_line);
 }

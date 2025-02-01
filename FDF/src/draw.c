@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 13:00:25 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/01/31 19:29:02 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/01/31 19:51:15 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,28 +65,39 @@ void	line(int x2, int y2, fdf *data, t_point p)
 
 void	reproduce_pixels(t_point *p, fdf *data)
 {
-	int	auto_scale;
-	int	max_x = data->map.width;
-	int	max_y = data->map.height;
-	int max_dimension = (max_x > max_y) ? max_x : max_y;
-	float scale_factor_x = (WIN_WIDTH * 0.8) / max_dimension;
-	float scale_factor_y = (WIN_HEIGHT * 0.8) / max_dimension;
+	custom		math;
 
-	auto_scale = (scale_factor_x < scale_factor_y) ? scale_factor_x : scale_factor_y;
-	if (auto_scale > 10)
-		auto_scale = 10;
-	p->x1 *= auto_scale + data->window.zoom;
-	p->y1 *= auto_scale + data->window.zoom;
-	p->x2 *= auto_scale + data->window.zoom;
-	p->y2 *= auto_scale + data->window.zoom;
-	data->side.z1 *= auto_scale + data->window.zoom + data->side.iso;
-	data->side.z2 *= auto_scale + data->window.zoom + data->side.iso;
+	if (data->map.width > data->map.height)
+		math.max_d = data->map.width;
+	else
+		math.max_d = data->map.height;
+	math.x_scale = (WIN_WIDTH * 0.8) / math.max_d;
+	math.y_scale = (WIN_HEIGHT * 0.8) / math.max_d;
+	if (math.x_scale < math.y_scale)
+		math.scale = math.x_scale;
+	else
+		math.scale = math.y_scale;
+	if (math.scale > 10)
+		math.scale = 10;
+	p->x1 *= math.scale + data->window.zoom;
+	p->y1 *= math.scale + data->window.zoom;
+	p->x2 *= math.scale + data->window.zoom;
+	p->y2 *= math.scale + data->window.zoom;
+	data->side.z1 *= math.scale + data->window.zoom + data->side.iso;
+	data->side.z2 *= math.scale + data->window.zoom + data->side.iso;
 }
 
 void	locate(t_point *p, fdf *data)
 {
-	p->x1 += (WIN_WIDTH / 2) - (data->map.width * data->window.zoom / 2) + data->window.shift_left;
-	p->y1 += (WIN_HEIGHT / 8) - (data->map.height * data->window.zoom / 2) + data->window.shift_up;
-	p->x2 += (WIN_WIDTH / 2) - (data->map.width * data->window.zoom / 2) + data->window.shift_right;
-	p->y2 += (WIN_HEIGHT / 8) - (data->map.height * data->window.zoom / 2) + data->window.shift_down;
+	control	_;
+
+	_.shift_down = data->window.shift_down;
+	_.shift_up = data->window.shift_up;
+	_.shift_left = data->window.shift_left;
+	_.shift_right = data->window.shift_right;
+	_.zoom = data->window.zoom;
+	p->x1 += (WIN_WIDTH / 2) - (data->map.width * _.zoom / 2) + _.shift_left;
+	p->y1 += (WIN_HEIGHT / 8) - (data->map.height * _.zoom / 2) + _.shift_up;
+	p->x2 += (WIN_WIDTH / 2) - (data->map.width * _.zoom / 2) + _.shift_right;
+	p->y2 += (WIN_HEIGHT / 8) - (data->map.height * _.zoom / 2) + _.shift_down;
 }

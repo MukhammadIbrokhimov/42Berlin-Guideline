@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 17:59:24 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/01/31 15:18:11 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/01/31 19:53:07 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	ft_close(fdf *data)
 	}
 }
 
-int close_window(fdf *data)
+int	close_window(fdf *data)
 {
 	if (data->img)
 		mlx_destroy_image(data->mlx, data->img);
