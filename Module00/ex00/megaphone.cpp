@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 19:49:08 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/02/03 20:06:10 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/02/03 20:27:30 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int	main(int argc, char **argv){
 			for (int j = 0; argv[i][j]; j++){
 			cout << static_cast<char> (toupper(argv[i][j]));
 			}
+			if (argv[i] != NULL)
+				cout << ' ';
 		}
 		cout << endl;
 	}
