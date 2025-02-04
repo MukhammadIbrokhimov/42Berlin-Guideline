@@ -1,33 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   megaphone.cpp                                      :+:      :+:    :+:   */
+/*   Contact.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/03 19:49:08 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/02/04 14:39:51 by mukibrok         ###   ########.fr       */
+/*   Created: 2025/02/04 14:44:20 by mukibrok          #+#    #+#             */
+/*   Updated: 2025/02/04 14:55:40 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <cctype>
+#ifndef CONTACT_FT
 
-int	main(int argc, char **argv){
-	using namespace std;
-	if (argc != 1){
-		for (int i = 1; argv[i]; i++){
-			for (int j = 0; argv[i][j]; j++){
-			cout << static_cast<char> (toupper(argv[i][j]));
-			}
-			if (argv[i] != NULL)
-				cout << ' ';
-		}
-		cout << endl;
-	}
-	else{
-		string	text = "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
-		cout << text << endl;
-	}
-}
+# define CONTACT_FT
 
+
+
+
+#endif
