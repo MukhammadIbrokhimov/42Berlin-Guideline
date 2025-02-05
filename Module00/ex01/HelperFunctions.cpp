@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:16:25 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/02/05 12:42:42 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/02/05 13:58:09 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	printMenu() {
 // string checker for phone number
 bool	ftis_digit(std::string number)
 {
-	int i = 0;
+	long unsigned int i = 0;
 	if (number[i] == '+')
 		i++;
 	for (; i < number.length(); i++){
@@ -38,7 +38,7 @@ bool	ftis_digit(std::string number)
 }
 
 void	ft_upper(std::string &command){
-	for (int i = 0; i < command.length(); i++){
+	for (long unsigned int i = 0; i < command.length(); i++){
 		command[i] = toupper(command[i]);
 	}
 }
@@ -86,6 +86,28 @@ bool	addContact(PhoneBook &book) {
 	return (true);
 }
 
+int ft_atoi(const std::string& str) {
+	int result = 0;
+	bool negative = false;
+	size_t i = 0;
+
+	// Handle leading minus sign for negative numbers
+	if (str[0] == '-') {
+		negative = true;
+		i++;
+	}
+
+	for (; i < str.length(); i++) {
+		if (str[i] < '0' || str[i] > '9') {
+			// Handle invalid characters
+			throw std::invalid_argument("Invalid character in string");
+		}
+		result = result * 10 + (str[i] - '0');
+	}
+
+	return negative ? -result : result;
+}
+
 void	SearchContact(PhoneBook &book){
 	std::cout << CYAN << BOLD;
 	std::cout << "===================================" << std::endl;
@@ -96,6 +118,6 @@ void	SearchContact(PhoneBook &book){
 	std::getline(std::cin, index_str);
 	// Convert the index to an integer
 	int index = 0;
-	index = std::stoi(index_str); // Convert string to integer
+	index = ft_atoi(index_str); // Convert string to integer
 	book.DisplayValue(index);
 }

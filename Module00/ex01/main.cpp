@@ -6,13 +6,15 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:11:59 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/02/05 12:33:43 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/02/05 13:59:43 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
 int	main(int argc, char **argv){
+	(void) argv;
+	(void) argc;
 	PhoneBook	book;
 
 	while (true){
@@ -29,7 +31,7 @@ int	main(int argc, char **argv){
 			SearchContact(book);
 		}
 		if (command.compare("EXIT") == 0 || command.compare("3") == 0){
-			exit(0);
+			return(0);
 		}
 	}
 	return (0);

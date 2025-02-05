@@ -6,11 +6,13 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 11:56:40 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/02/05 12:27:39 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/02/05 13:47:41 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
+
+int PhoneBook::quantity = 0;
 
 void PhoneBook::AddBook(const Contact &person){
 	if (quantity < 8){
