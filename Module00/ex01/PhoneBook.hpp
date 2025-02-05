@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 14:44:20 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/02/05 12:24:44 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/02/05 12:32:36 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ class PhoneBook{
 
 void	printMenu();
 void	SearchContact(PhoneBook &book);
+void	ft_upper(std::string &command);
 bool	ftis_digit(std::string number);
 bool	addContact(PhoneBook &book);
 

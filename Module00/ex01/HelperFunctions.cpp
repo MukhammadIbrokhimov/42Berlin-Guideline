@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:16:25 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/02/05 12:24:29 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/02/05 12:42:42 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,12 @@ bool	ftis_digit(std::string number)
 		if (!isdigit(number[i])) return false;
 	}
 	return (true);
+}
+
+void	ft_upper(std::string &command){
+	for (int i = 0; i < command.length(); i++){
+		command[i] = toupper(command[i]);
+	}
 }
 
 // Dashboard for Adding contacts and its functionality

@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:11:59 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/02/05 12:28:59 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/02/05 12:33:43 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	main(int argc, char **argv){
 		printMenu();
 		std::string	command;
 		std::getline(std::cin, command);
+		ft_upper(command);
 		if (command.compare("ADD") == 0 || command.compare("1") == 0){
 			if (!addContact(book)){
 				std::cout << RED << BOLD << "⚠️  Unsuccessfull !" << RESET << std::endl;
