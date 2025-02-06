@@ -12,6 +12,13 @@
 #ifndef __ACCOUNT_H__
 #define __ACCOUNT_H__
 
+# include <iostream>
+# include <vector>
+# include <algorithm>
+# include <functional>
+# include <ctime>
+# include <iomanip>
+
 // ************************************************************************** //
 //                               Account Class                                //
 // ************************************************************************** //
