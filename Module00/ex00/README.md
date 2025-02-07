@@ -64,3 +64,12 @@ Save the code in a file named `megaphone.cpp`. Then, compile it using the follow
 
 ```bash
 c++ -Wall -Wextra -Werror -std=c++98 megaphone.cpp -o megaphone
+```
+## Step 2: Run the Program
+
+Run the program with or without arguments to see the output:
+
+### With Arguments:
+```bash
+./megaphone "Hello World"
+```
