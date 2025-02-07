@@ -37,3 +37,30 @@ int main(int argc, char **argv) {
         cout << text << endl;
     }
 }
+```
+## Key Points in the Code
+
+### Command-Line Arguments:
+- `argc` (argument count) represents the number of arguments passed to the program.
+- `argv` (argument vector) is an array of C-style strings containing the arguments.
+
+### Uppercase Conversion:
+- The `toupper()` function from `<cctype>` is used to convert each character to uppercase.
+- `static_cast<char>` ensures the result of `toupper()` is treated as a `char`.
+
+### Output Handling:
+- If arguments are provided, the program loops through each argument and character, converting them to uppercase and printing them.
+- If no arguments are provided, the program outputs a predefined loud noise message.
+
+### Spacing Between Arguments:
+- A space is printed between arguments to ensure proper formatting.
+
+---
+
+## How to Run the Program
+
+### Step 1: Compile the Code
+Save the code in a file named `megaphone.cpp`. Then, compile it using the following command:
+
+```bash
+c++ -Wall -Wextra -Werror -std=c++98 megaphone.cpp -o megaphone
