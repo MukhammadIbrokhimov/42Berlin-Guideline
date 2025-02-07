@@ -1,10 +1,11 @@
-
-Copy
 # C++ Module 00 - Readme
 
 ## Description
 
 This repository contains the exercises for **C++ Module 00**, which introduces fundamental concepts of C++ programming. The module focuses on **namespaces**, **classes**, **member functions**, **stdio streams**, **initialization lists**, **static**, **const**, and other basic C++ features. The goal is to help you transition from C to C++ and get familiar with **Object-Oriented Programming (OOP)** principles.
+
+For more in-depth information about these topics, you can refer to the following link:  
+[**42 Guide - All About C++: Namespaces**](https://42-guide.gitbook.io/42-guide/all-about-c++/namespaces)
 
 The exercises are designed to progressively increase in complexity, starting with simple tasks and moving towards more advanced concepts. You will implement classes, manage memory, and work with C++ standard libraries while adhering to the **C++98 standard**.
 
