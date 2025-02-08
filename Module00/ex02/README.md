@@ -72,3 +72,19 @@ or
 ```bash
 make
 ```
+
+Step 2: Run the Program
+Run the program to see the output:
+
+```bash
+./account
+```
+Step 3: Compare with the Log File
+Compare the output of your program with the provided log file. Ensure that the order of events and the format of the log messages match.
+
+Submission
+Files to Submit: Makefile, Account.cpp, Account.hpp, tests.cpp
+
+Forbidden Functions: None
+
+
