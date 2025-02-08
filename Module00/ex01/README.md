@@ -84,3 +84,50 @@ Save your files and compile the program using the following command:
 
 ```bash
 c++ -Wall -Wextra -Werror -std=c++98 main.cpp PhoneBook.cpp Contact.cpp -o phonebook
+```
+
+Step 2: Run the Program
+Run the program to start the phonebook application:
+
+``` bash
+./phonebook
+```
+Step 3: Use the PhoneBook
+Use the ADD command to add contacts.
+
+Use the SEARCH command to view and search for contacts.
+
+Use the EXIT command to quit the program.
+
+Example Usage
+Adding a Contact
+``` bash
+Enter a command (ADD, SEARCH, EXIT): ADD
+Enter first name: John
+Enter last name: Doe
+Enter nickname: Johnny
+Enter phone number: 1234567890
+Enter darkest secret: Loves pizza
+Contact added!
+```
+Searching for a Contact
+``` bash
+Enter a command (ADD, SEARCH, EXIT): SEARCH
+|     Index| First Name|  Last Name|  Nickname|
+|         0|       John|        Doe|    Johnny|
+Enter the index of the contact to display: 0
+First Name: John
+Last Name: Doe
+Nickname: Johnny
+Phone Number: 1234567890
+Darkest Secret: Loves pizza
+```
+Exiting the Program
+```
+Enter a command (ADD, SEARCH, EXIT): EXIT
+Goodbye!
+```
+Submission
+Files to Submit: Makefile, PhoneBook.cpp, PhoneBook.hpp, Contact.cpp, Contact.hpp, main.cpp
+
+Forbidden Functions: None
