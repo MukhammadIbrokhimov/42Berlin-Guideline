@@ -66,3 +66,9 @@ Save your `Account.cpp` implementation and compile the program using the followi
 
 ```bash
 c++ -Wall -Wextra -Werror -std=c++98 Account.cpp tests.cpp -o account
+```
+or
+
+```bash
+make
+```
