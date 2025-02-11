@@ -243,6 +243,7 @@ wall "	#Architecture: $arc
 2. Type `shasum VirtualBox.vdi` or whatever your Virtual Machine is called (This can take from a few seconds to 5 mins).
 3. Copy the output number and create a signature.txt file and paste that number in the file. 
 3. Now you submit the signature.txt file with the output number in it.
+4. After creating signature, do not turn on your VM, as it will change your signature.
 
 ### 🥳 CONGRATULATIONS! YOU HAVE NOW FINISHED!
 
