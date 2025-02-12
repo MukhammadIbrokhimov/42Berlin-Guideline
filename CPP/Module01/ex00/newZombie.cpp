@@ -1,19 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   newZombie.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/11 14:44:29 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/02/12 13:16:08 by mukibrok         ###   ########.fr       */
+/*   Created: 2025/02/12 13:14:40 by mukibrok          #+#    #+#             */
+/*   Updated: 2025/02/12 13:17:37 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ZombieClass.hpp"
 
-int main(void){
-	Zombie z1("Walker");
-	z1.announce();
-	randomChump("Harry");
+Zombie*	newZombie(std::string name){
+	return new Zombie(name);
 }

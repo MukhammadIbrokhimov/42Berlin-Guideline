@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 14:45:17 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/02/12 12:37:26 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/02/12 13:18:32 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,8 @@ class	Zombie{
 
 		void	announce(void);
 };
+
+Zombie*	newZombie(std::string name);
+void	randomChump(std::string name);
 
 #endif

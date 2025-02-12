@@ -14,7 +14,7 @@ CFLAGS  = -Wall -Wextra -Werror -std=c++98
 SRC     = $(wildcard *.cpp)
 OBJ_DIR = obj
 OBJ     = $(patsubst %.cpp,$(OBJ_DIR)/%.o,$(SRC))
-EXEC    = account
+EXEC    = TookOnly2MinutesToComplete
 
 # Default rule
 all: $(EXEC)

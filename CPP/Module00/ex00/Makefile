@@ -1,51 +1,54 @@
-# Makefile for megaphone (ex00)
+# Color definitions
+RESET   = \033[0m       # Reset color
+RED     = \033[31m      # Red text
+GREEN   = \033[32m      # Green text
+YELLOW  = \033[33m      # Yellow text
+BLUE    = \033[34m      # Blue text
+CYAN    = \033[36m      # Cyan text
+BOLD    = \033[1m       # Bold text
+UNDERLINE = \033[4m     # Underlined text
 
-# Compiler and flags
-CXX         = c++
-CXXFLAGS    = -Wall -Wextra -Werror -std=c++98
+# Variables
+CC      = c++
+CFLAGS  = -Wall -Wextra -Werror -std=c++98
+SRC     = $(wildcard *.cpp)
+OBJ_DIR = obj
+OBJ     = $(patsubst %.cpp,$(OBJ_DIR)/%.o,$(SRC))
+EXEC    = megaphone
 
-# Colors
-GREEN       = \033[1;32m
-RED         = \033[1;31m
-RESET       = \033[0m
+# Default rule
+all: $(EXEC)
 
-# Program name
-NAME        = megaphone
+# Compile the program
+$(EXEC): $(OBJ)
+	@echo "$(CYAN)🔨  Compiling...$(RESET)"
+	@$(CC) $(CFLAGS) -o $(EXEC) $(OBJ)
+	@echo "$(GREEN)✅  Compilation successful!$(RESET)"
 
-# Source files
-SRC         = megaphone.cpp
+# Ensure obj directory exists before creating object files
+$(OBJ_DIR)/%.o: %.cpp | $(OBJ_DIR)
+	@echo "$(YELLOW)📂  Creating object file: $@$(RESET)"
+	@$(CC) $(CFLAGS) -c $< -o $@
 
-# Object files directory
-OBJ_DIR     = obj
-
-# Object files
-OBJ         = $(SRC:%.cpp=$(OBJ_DIR)/%.o)
-
-# Default target (build executable)
-all: $(NAME)
-
-# Link object files to create executable
-$(NAME): $(OBJ)
-	@$(CXX) $(CXXFLAGS) $^ -o $@
-
-# Compile source files to object files
-$(OBJ_DIR)/%.o: %.cpp
+# Create obj directory if it doesn't exist
+$(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
-	@echo "$(GREEN)Creating object: $<$(RESET)"
-	@$(CXX) $(CXXFLAGS) -c $< -o $@
 
-# Remove object files and directory
+# Clean up object files
 clean:
+	@echo "$(RED)🧹  Deleting object files...$(RESET)"
 	@rm -rf $(OBJ_DIR)
-	@echo "$(RED)Cleaned object files$(RESET)"
+	@echo "$(GREEN)✅  Cleaned up object files!$(RESET)"
 
-# Remove executable and object files
+# Clean up all generated files
 fclean: clean
-	@rm -f $(NAME)
-	@echo "$(RED)Removed executable$(RESET)"
+	@echo "$(RED)🗑️  Deleting executable...$(RESET)"
+	@rm -f $(EXEC)
+	@echo "$(GREEN)✅  Executable deleted!$(RESET)"
 
 # Rebuild everything
 re: fclean all
+	@echo "$(CYAN)🔄  Rebuilding everything...$(RESET)"
 
-# Phony targets (not actual files)
+# Phony targets
 .PHONY: all clean fclean re
