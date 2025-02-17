@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muxammad <muxammad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 17:04:56 by muxammad          #+#    #+#             */
-/*   Updated: 2025/02/16 18:35:47 by muxammad         ###   ########.fr       */
+/*   Updated: 2025/02/17 15:14:50 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,10 @@ public:
 	Fixed&	operator=( Fixed const &other );
 	int	getRawBits( void ) const;
 	void setRawBits( int const raw);
+	float toFloat( void ) const;
+	int toInt( void ) const;
+
+	friend std::ostream& operator<<(std::ostream &os, const Fixed &other);
 };
 
 #endif

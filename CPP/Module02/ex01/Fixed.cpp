@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muxammad <muxammad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 17:05:00 by muxammad          #+#    #+#             */
-/*   Updated: 2025/02/16 18:37:24 by muxammad         ###   ########.fr       */
+/*   Updated: 2025/02/17 15:32:01 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ Fixed::Fixed( void ): _value(0) {
 	std::cout << "Default constructor called" << std::endl;
 };
 
-Fixed::Fixed( const int value ): _value(value){
+Fixed::Fixed( const int value ): _value(value << _fractBits){
 	std::cout << "int constructor called" << std::endl;
 }
 
-Fixed::Fixed( const float value ): _value(value){
+Fixed::Fixed( const float value ): _value(roundf(value * (1 << _fractBits))){
 	std::cout << "float constructor called" << std::endl;
 }
 
@@ -43,6 +43,11 @@ Fixed&	Fixed::operator=( Fixed const &other ){
 	return *this;
 }
 
+std::ostream& operator<<(std::ostream &os, const Fixed &other){
+	os << other.toFloat();
+	return os;
+}
+
 int Fixed::getRawBits( void ) const{
 	std::cout << "getRawBits member function called" << std::endl;
 	return _value;
@@ -51,4 +56,12 @@ int Fixed::getRawBits( void ) const{
 void Fixed::setRawBits( int const raw ){
 	std::cout << "setRawBits member function called" << std::endl;
 	this->_value = raw;
+}
+
+float	Fixed::toFloat( void ) const {
+	return static_cast <float>(_value) / (1 << _fractBits);
+}
+
+int		Fixed::toInt( void ) const{
+	return _value >> _fractBits;
 }
