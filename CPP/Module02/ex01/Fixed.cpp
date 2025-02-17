@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 17:05:00 by muxammad          #+#    #+#             */
-/*   Updated: 2025/02/17 15:32:01 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/02/17 15:34:50 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ Fixed::Fixed( const Fixed& other ){
 }
 
 Fixed::~Fixed(){
-	std::cout << "Default deconstructor called" << std::endl;
+	std::cout << "destructor called" << std::endl;
 }
 
 Fixed&	Fixed::operator=( Fixed const &other ){
