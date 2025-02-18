@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 15:39:35 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/02/17 19:02:52 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/02/18 11:49:55 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,17 @@ class Fixed{
 		Fixed	operator*(const Fixed &other) const;
 		Fixed	operator/(const Fixed &other) const;
 
-		
+		Fixed&	operator++(void);
+		Fixed	operator++(int);
+		Fixed&	operator--(void);
+		Fixed	operator--(int);
 
-		friend std::ostream& operator<<( std::ostream &os, Fixed &other );
+		static Fixed&	min(Fixed& fValue, Fixed& sValue);
+		static const Fixed&	min(const Fixed& fValue, const Fixed& sValue);
+		static Fixed&	max(Fixed& fValue, Fixed& sValue);
+		static const Fixed&	max(const Fixed& fValue, const Fixed& sValue);
+
+		friend std::ostream& operator<<( std::ostream &os, const Fixed &other );
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 15:39:37 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/02/17 18:54:50 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/02/18 11:49:56 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,4 +96,44 @@ Fixed	Fixed::operator*(const Fixed &other) const{
 
 Fixed	Fixed::operator/(const Fixed &other) const{
 	return Fixed(this->toFloat() / other.toFloat());
+}
+
+// prefix and postfix incrementing
+Fixed&	Fixed::operator++(void){
+	this->_value += 1;
+	return *this;
+}
+
+Fixed	Fixed::operator++(int){
+	Fixed	tmp(*this);
+	this->_value += 1;
+	return tmp;
+}
+
+Fixed&	Fixed::operator--(void){
+	this->_value -= 1;
+	return *this;
+}
+
+Fixed	Fixed::operator--(int){
+	Fixed	tmp(*this);
+	this->_value -= 1;
+	return tmp;
+}
+
+// Min and Max overloaded functions
+Fixed&	Fixed::min(Fixed& fValue, Fixed& sValue){
+	return(fValue.toFloat() < sValue.toFloat()) ? fValue : sValue;
+}
+
+const Fixed&	Fixed::min(const Fixed& fValue, const Fixed& sValue){
+	return(fValue.toFloat() < sValue.toFloat()) ? fValue : sValue;
+}
+
+Fixed&	Fixed::max(Fixed& fValue, Fixed& sValue){
+	return(fValue.toFloat() > sValue.toFloat()) ? fValue : sValue;
+}
+
+const Fixed&	Fixed::max(const Fixed& fValue, const Fixed& sValue){
+	return (fValue.toFloat() > sValue.toFloat()) ? fValue : sValue;
 }
