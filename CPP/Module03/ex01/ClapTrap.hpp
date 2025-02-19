@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:04:56 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/02/18 15:02:29 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/02/19 18:49:26 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <string.h>
 
 class ClapTrap{
-	private:
+	protected:
 		std::string			_name;
 		static unsigned int	_hitPoints;
 		static unsigned int	_energyPoints;
