@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
+/*   By: muxammad <muxammad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 18:47:25 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/02/19 18:51:04 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/02/20 19:03:14 by muxammad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 
 # include "ClapTrap.hpp"
 
-class FragTrap: ClapTrap{
+class FragTrap: public ClapTrap{
 public:
-	FragTrap(/* args */);
+	FragTrap();
 	~FragTrap();
 
 	void	highFiveGuys(void);

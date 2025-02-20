@@ -3,10 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   FragTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
+/*   By: muxammad <muxammad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 18:47:37 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/02/19 18:47:37 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/02/20 19:00:37 by muxammad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "FragTrap.hpp"
+
+unsigned int	FragTrap:ClapTrap::_hitPoints = 100;
