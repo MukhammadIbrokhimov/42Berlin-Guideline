@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:04:56 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/02/19 18:49:26 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/02/21 19:35:42 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,24 +21,37 @@
 # include <string.h>
 
 class ClapTrap{
-	protected:
+	private:
 		std::string			_name;
-		static unsigned int	_hitPoints;
-		static unsigned int	_energyPoints;
-		static unsigned int	_AttackDamage;
+		unsigned int	_hitPoints;
+		unsigned int	_energyPoints;
+		unsigned int	_AttackDamage;
 	
 	public:
+		ClapTrap();
 		ClapTrap(std::string name);
 		~ClapTrap();
+
+		ClapTrap(const ClapTrap &other);
+		ClapTrap& operator=(const ClapTrap &other);
 
 		void	attack(const std::string &target);
 		void	takeDamage(unsigned int amount);
 		void	beRepaired(unsigned int amount);
-		void	aboutClapTrap(void){
-			std::cout << "Hitpoints: " << _hitPoints << std::endl;
-			std::cout << "_energyPoints: " << _energyPoints << std::endl;
-			std::cout << "AttackDamage: " << _AttackDamage << std::endl;
-		}
+		void	aboutClapTrap(void);
+
+		// setter
+		void	setHitPoints(unsigned int value);
+		void	setEnergyPoints(unsigned int value);
+		void	setAttackDamage(unsigned int value);
+		void	setName(std::string name);
+
+		// getter
+
+		unsigned int	getHitPoints(void) const;
+		unsigned int	getEnergyPoints(void) const;
+		unsigned int	getAttackDamage(void) const;
+		std::string	getName(void) const;
 
 };
 
