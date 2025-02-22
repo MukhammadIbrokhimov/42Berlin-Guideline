@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 18:42:39 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/02/22 21:19:24 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/02/22 22:48:11 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 # include "ClapTrap.hpp"
 
-class FragTrap: public ClapTrap{
+class FragTrap: virtual public ClapTrap{
 	public:
 		FragTrap(std::string name);
 		~FragTrap();
