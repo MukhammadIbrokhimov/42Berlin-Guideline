@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 21:54:19 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/02/22 22:50:58 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/02/22 23:00:30 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ class DiamondTrap: public FragTrap, public ScavTrap{
 		DiamondTrap(const DiamondTrap &other);
 		DiamondTrap& operator=(const DiamondTrap &other);
 
-		ScavTrap::attack;
+		using ScavTrap::attack;
 		void	whoAmi();
 };
 
