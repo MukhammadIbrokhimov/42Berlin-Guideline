@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 15:29:34 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/02/23 17:42:26 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/02/23 17:44:35 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 # include <iostream>
 # include <string.h>
+# include "brain.hpp"
 
 class Animal{
 	protected:
@@ -31,6 +32,8 @@ class Animal{
 		std::string getType(void);
 };
 class Dog: public Animal{
+	private:
+		Brain	*brain;
 	public:
 	
 		Dog();
@@ -42,6 +45,8 @@ class Dog: public Animal{
 };
 
 class Cat: public Animal{
+	private:
+		Brain	*brain;
 	public:
 		Cat();
 		~Cat();
