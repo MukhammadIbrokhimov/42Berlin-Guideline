@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 15:29:02 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/02/23 17:19:00 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/02/23 17:22:51 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,14 @@ int main(void){
 	WrongAnimal1->makeSound();
 	delete WrongAnimal;
 	delete WrongAnimal1;
+	std::cout << "==============================================================\n";
+	std::cout << "checking with subject main functions\n";
+	Animal	*meta = new Animal();
+	Animal	*j = new Dog();
+	Animal	*i = new Cat();
+	std::cout << j->getType() << " " << std::endl;
+	std::cout << i->getType() << " " << std::endl;
+	i->makeSound(); //will output the cat sound!
+	j->makeSound();
+	meta->makeSound();
 }
