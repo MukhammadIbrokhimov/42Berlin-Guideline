@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 21:54:16 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/02/22 23:03:13 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/02/23 14:49:37 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,25 @@ DiamondTrap::DiamondTrap(std::string name)
 
 void	DiamondTrap::whoAmi(void){
 	std::cout << "I am DiamondTrap" << _name << std::endl;
+}
+
+DiamondTrap::DiamondTrap(const DiamondTrap &other):ClapTrap(other), FragTrap(other), ScavTrap(other)  {
+	this->_name = other._name;
+	this->_AttackDamage = other._AttackDamage;
+	this->_energyPoints = other._energyPoints;
+	this->_hitPoints = other._hitPoints;
+	std::cout << "DiamondTrap copy constructor called\n";
+}
+
+DiamondTrap& DiamondTrap::operator=(const DiamondTrap &other){
+	if (this != &other){
+		this->_name = other._name;
+		this->_AttackDamage = other._AttackDamage;
+		this->_energyPoints = other._energyPoints;
+		this->_hitPoints = other._hitPoints;
+	}
+	std::cout << "DiamondTrap copy operator constructor called\n";
+	return *this;
 }
 
 DiamondTrap::~DiamondTrap() {}

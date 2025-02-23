@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 22:58:57 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/02/22 23:02:42 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/02/23 14:52:40 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,10 @@ int main() {
     diamond.whoAmi();
 
     std::cout << "\nDestroying DiamondTrap...\n";
+
+	std::cout << "testing copy operator\n";
+	DiamondTrap copied(diamond);
+	DiamondTrap tempoo = copied;
+
     return 0;
 }
