@@ -1,0 +1,33 @@
+Assignment
+
+Write a program that will take one and only one argument s. 
+Your program will then read from stdin and write all the content 
+read in stdout except that every occurance of s must be replaced 
+by a "*" (as many as the length of s).
+
+For example:
+equivalent to filter.sh
+./filter bonjour
+Will behave in the same way as:
+sed 's/bonjour/******/g'
+
+./filter abc
+will behave in the same way as:
+sed 's/abc/***/g'
+
+Allowed functions: read, write, strlen, memmem, memmove, malloc, calloc,
+realloc, free, perror, fprintf, stderr 
+
+
+It must be the equivalent of the shell script filfer.sh
+(Under is a copy of the file "filter.sh" that you get with the assignment. 
+You're told that your program should work the same)
+
+In case of error during a read or malloc, you must write "Error: " followed by the error message in stderr and return 1.
+
+e.g. this should work:
+echo 'abcdefaaaabcdeabcabcdabc' | ./filter  abc | cat -e
+***defaaa***de******d***
+
+echo 'ababcabababc' | ./filter ababc | cat -e
+*****ab*****$
