@@ -1,50 +1,47 @@
-Philosopher Project - 42 School
+# Philosopher Project - 42 School
 
-Introduction
+## Introduction
 
-The Philosopher project is a classic concurrency problem based on the "Dining Philosophers Problem," which was originally formulated by Edsger Dijkstra. The problem explores resource sharing and synchronization in multi-threaded programs, where philosophers (threads) must eat without causing deadlocks or resource starvation.
+The **Philosopher project** is a classic concurrency problem based on the *Dining Philosophers Problem*, originally formulated by **Edsger Dijkstra**. This problem explores **resource sharing** and **synchronization** in multi-threaded programs, where philosophers (threads) must eat without causing **deadlocks** or **resource starvation**.
 
-Objectives
+---
 
-Implement a simulation of the dining philosophers using multithreading.
+## Objectives
 
-Handle concurrent access to shared resources (forks) while preventing race conditions.
+- Implement a simulation of the dining philosophers using **multithreading**.
+- Handle **concurrent access** to shared resources (forks) while preventing **race conditions**.
+- Avoid **deadlocks**, **starvation**, and **data corruption**.
+- Gain experience with **mutexes**, **semaphores**, and **thread synchronization**.
 
-Avoid deadlocks, starvation, and data corruption.
+---
 
-Gain experience with mutexes, semaphores, and thread synchronization.
+## Project Requirements
 
-Project Requirements
+- Each philosopher follows an infinite cycle of **thinking, eating, and sleeping**.
+- Philosophers must **pick up and put down forks** (shared resources) correctly.
+- The simulation should **stop** if:
+  - A philosopher **dies** (does not eat within a given time limit).
+  - The number of **meals per philosopher** (if specified) is reached.
+- Use only **pthreads** and synchronization mechanisms like `pthread_mutex_t` or `sem_t`.
+- No **data races** or **undefined behavior** should occur.
 
-Each philosopher follows an infinite cycle of thinking, eating, and sleeping.
+---
 
-Philosophers must pick up and put down forks (shared resources) correctly.
+## Implementation Details
 
-The simulation should stop if:
+- **Threads**: Each philosopher is represented by a thread.
+- **Mutexes**: Used to control access to shared resources (forks).
+- **Timing**: Accurate time tracking ensures philosophers eat before starvation.
+- **Synchronization**: Prevent deadlocks and ensure fairness in fork usage.
 
-A philosopher dies (does not eat in a given time limit).
+---
 
-The number of meals per philosopher (if specified) is reached.
+## Compilation and Execution
 
-Use only pthreads and synchronization mechanisms like pthread_mutex_t or sem_t.
-
-No data races or undefined behavior should occur.
-
-Implementation Details
-
-Threads: Each philosopher is represented by a thread.
-
-Mutexes: Used to control access to shared resources (forks).
-
-Timing: Accurate time tracking ensures philosophers eat before starvation.
-
-Synchronization: Prevent deadlocks and ensure fairness in fork usage.
-
-Compilation and Execution
-
-Compile the project using:
-
+### Compile the project:
+```sh
 make
+```
 
 Run the program with:
 
