@@ -10,7 +10,7 @@ UNDERLINE = \033[4m     # Underlined text
 
 # Variables
 CC      = cc
-CFLAGS  = -Wall -Wextra -Werror -lpthread
+CFLAGS  = -Wall -Wextra -Werror #-lpthread
 SRC     = $(wildcard *.c)
 OBJ_DIR = obj
 OBJ     = $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRC))
@@ -26,7 +26,7 @@ $(EXEC): $(OBJ)
 	@echo "$(GREEN)✅  Compilation successful!$(RESET)"
 
 # Ensure obj directory exists before creating object files
-$(OBJ_DIR)/%.o: %.cpp | $(OBJ_DIR)
+$(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
 	@echo "$(YELLOW)📂  Creating object file: $@$(RESET)"
 	@$(CC) $(CFLAGS) -c $< -o $@
 
