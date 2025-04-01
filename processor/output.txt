@@ -1,0 +1,7 @@
+stdout has been changed to file descriptor
+PING google.com (142.250.185.174) 56(84) bytes of data.
+64 bytes from fra16s51-in-f14.1e100.net (142.250.185.174): icmp_seq=1 ttl=117 time=13.8 ms
+
+--- google.com ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 13.762/13.762/13.762/0.000 ms
