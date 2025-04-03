@@ -1,0 +1,18 @@
+powerset
+
+allowed functions: atoi, printf, malloc, calloc, realloc, free
+
+args:	n[s]
+	[s] - set of numbers
+	[n] - integer value
+
+task: 
+display subsets of [s] whose sum is equal to n. No duplicates
+
+malloc error - exit with code 1
+if there is no set satisfying the task print new line
+empty set is also sub-set!
+set like in python
+positive 1 negative (??)
+
+We will not test with invalid set
