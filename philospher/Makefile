@@ -1,20 +1,21 @@
 # Color definitions
-RESET   = \033[0m       # Reset color
-RED     = \033[31m      # Red text
-GREEN   = \033[32m      # Green text
-YELLOW  = \033[33m      # Yellow text
-BLUE    = \033[34m      # Blue text
-CYAN    = \033[36m      # Cyan text
-BOLD    = \033[1m       # Bold text
-UNDERLINE = \033[4m     # Underlined text
+RESET      = \033[0m
+RED        = \033[31m
+GREEN      = \033[32m
+YELLOW     = \033[33m
+BLUE       = \033[34m
+CYAN       = \033[36m
+BOLD       = \033[1m
+UNDERLINE  = \033[4m
 
 # Variables
-CC      = cc
-CFLAGS  = -Wall -Wextra -Werror #-lpthread
-SRC     = $(wildcard *.c)
-OBJ_DIR = obj
-OBJ     = $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRC))
-EXEC    = philo
+CC        = cc
+CFLAGS = -Wall -Wextra -Werror -Iincludes
+SRC_DIR   = src
+OBJ_DIR   = obj
+SRC       = $(shell find $(SRC_DIR) -name '*.c')
+OBJ       = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC))
+EXEC      = philo
 
 # Default rule
 all: $(EXEC)
@@ -22,17 +23,14 @@ all: $(EXEC)
 # Compile the program
 $(EXEC): $(OBJ)
 	@echo "$(CYAN)🔨  Compiling...$(RESET)"
-	@$(CC) $(CFLAGS) -o $(EXEC) $(OBJ)
+	@$(CC) $(CFLAGS) -o $@ $^
 	@echo "$(GREEN)✅  Compilation successful!$(RESET)"
 
-# Ensure obj directory exists before creating object files
-$(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
+# Rule to build object files
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@echo "$(YELLOW)📂  Creating object file: $@$(RESET)"
+	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -c $< -o $@
-
-# Create obj directory if it doesn't exist
-$(OBJ_DIR):
-	@mkdir -p $(OBJ_DIR)
 
 # Clean up object files
 clean:
@@ -40,15 +38,14 @@ clean:
 	@rm -rf $(OBJ_DIR)
 	@echo "$(GREEN)✅  Cleaned up object files!$(RESET)"
 
-# Clean up all generated files
+# Clean up everything
 fclean: clean
 	@echo "$(RED)🗑️   Deleting executable...$(RESET)"
 	@rm -f $(EXEC)
 	@echo "$(GREEN)✅  Executable deleted!$(RESET)"
 
-# Rebuild everything
+# Rebuild
 re: fclean all
 	@echo "$(CYAN)🔄  Rebuilding everything...$(RESET)"
 
-# Phony targets
 .PHONY: all clean fclean re

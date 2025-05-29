@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosopher.h"
+#include "../includes/philosopher.h"
 
 bool	init_data(int argc, char **argv, t_data *philo)
 {
