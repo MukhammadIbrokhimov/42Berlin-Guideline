@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosopher.h"
+#include "../includes/philosopher.h"
+
 #include <limits.h>
 
 static int	ft_isspace(int c)

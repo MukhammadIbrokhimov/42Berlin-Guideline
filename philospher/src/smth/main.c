@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosopher.h"
+#include "../includes/philosopher.h"
 
 void *set_activities(void *av)
 {
