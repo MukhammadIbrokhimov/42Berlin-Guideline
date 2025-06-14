@@ -16,8 +16,8 @@ void	*philosopher_routine(void *arg)
 {
 	t_philosopher *philo = (t_philosopher *)arg;
 
-	if (philo->id % 2 == 0)
-		precise_sleep(philo->data->time_to_eat / 2);
+	// if (philo->id % 2 == 0)
+	// 	precise_sleep(philo->data->time_to_eat / 2);
 	while (!simulation_ended(philo->data))
 	{
 		eat(philo);
@@ -51,11 +51,13 @@ void	eat(t_philosopher *philo)
 
 void	sleeep(t_philosopher *philo)
 {
+	usleep(500); // Ensure a slight delay before sleeping
 	print_status(philo, "is sleeping");
 	precise_sleep(philo->data->time_to_sleep);
 }
 
 void	think(t_philosopher *philo)
 {
+	usleep(500); // Ensure a slight delay before thinking
 	print_status(philo, "is thinking");
 }

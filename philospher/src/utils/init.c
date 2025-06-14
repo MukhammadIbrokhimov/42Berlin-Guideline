@@ -50,6 +50,7 @@ void assign_forks(t_philosopher *philo, t_data *data)
 	// Critical: Assign forks in different order for odd/even philosophers
 	if (philo->id % 2 == 1)
 	{  // Odd philosophers: left first
+		usleep(500);
 		philo->left_fork = &data->forks[left_idx];
 		philo->right_fork = &data->forks[right_idx];
 	}
@@ -70,10 +71,10 @@ int	init_philo(t_data *data)
 		data->philosophers[i].id = i + 1;
 		data->philosophers[i].meals_eaten = 0;
 		data->philosophers[i].last_meal_time = 0;
-		data->philosophers[i].left_fork = &data->forks[i];
-		data->philosophers[i].right_fork = &data->forks[(i + 1) % data->num_philosophers];
+		// data->philosophers[i].left_fork = &data->forks[i];
+		// data->philosophers[i].right_fork = &data->forks[(i + 1) % data->num_philosophers];
 		data->philosophers[i].data = data;
-		//assign_forks(&data->philosophers[i], data);
+		assign_forks(&data->philosophers[i], data);
 	}
 	return (0);
 }
