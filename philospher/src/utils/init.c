@@ -50,7 +50,7 @@ void assign_forks(t_philosopher *philo, t_data *data)
 	// Critical: Assign forks in different order for odd/even philosophers
 	if (philo->id % 2 == 1)
 	{  // Odd philosophers: left first
-		usleep(500);
+		usleep(1000);
 		philo->left_fork = &data->forks[left_idx];
 		philo->right_fork = &data->forks[right_idx];
 	}
