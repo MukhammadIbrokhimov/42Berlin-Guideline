@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 14:16:13 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/06/12 16:36:45 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/06/17 19:41:11 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	cleanup(t_data *data)
 		{
 			pthread_mutex_destroy(data->philosophers[i].left_fork);
 			pthread_mutex_destroy(data->philosophers[i].right_fork);
+			pthread_mutex_destroy(&data->philosophers[i].meals_eaten_);
+			pthread_mutex_destroy(&data->philosophers[i].last_meal_t);
 		}
 		free(data->philosophers);
 	}

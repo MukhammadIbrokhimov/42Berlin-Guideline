@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 20:46:29 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/06/12 17:51:01 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/06/17 19:39:26 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ typedef struct s_philosopher {
 	pthread_t thread;          // Philosopher's thread
 	pthread_mutex_t *left_fork;    // Left fork mutex
 	pthread_mutex_t *right_fork;   // Right fork mutex
+	pthread_mutex_t meals_eaten_;   // Right fork mutex
+	pthread_mutex_t last_meal_t;   // Right fork mutex
 	struct s_data *data;       // Pointer to shared data
 } t_philosopher;
 
@@ -73,9 +75,9 @@ void	precise_sleep(long milliseconds);
 
 //philosopher actions
 void	*philosopher_routine(void *arg);
-void	eat(t_philosopher *philo);
-void	sleeep(t_philosopher *philo);
-void	think(t_philosopher *philo);
+int		eat(t_philosopher *philo);
+int		sleeep(t_philosopher *philo);
+int		think(t_philosopher *philo);
 
 // check conditions
 int		check_meals_eaten(t_philosopher *philo);
@@ -92,6 +94,7 @@ int		simulation_ended(t_data *data);
 void	print_status(t_philosopher *philo, const char *status);
 void	print_usage_instructions();
 void	print_philo_data(t_philosopher *philo);
+void	print_data(t_data *data);
 unsigned long	ft_atol(const char *s, int *error);
 
 #endif
