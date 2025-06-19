@@ -85,11 +85,17 @@ int		check_meal_completion(t_philosopher *philo);
 
 // simulation control
 void	*death_monitor(void *arg);
+void print_death_message(t_philosopher *philo);
+void *death_monitor_improved(void *arg);
+void debug_philosopher_state(t_philosopher *philo);
+void debug_simulation_state(t_data *data);
 int		is_philosopher_dead(t_philosopher *philo);
 int		all_philosophers_satisfied(t_data *data);
 
 // usage
 void	cleanup(t_data *data);
+void 	cleanup_forks(t_data *data, int count);
+void	cleanup_partial_philosophers(t_data *data, int count);
 int		simulation_ended(t_data *data);
 void	print_status(t_philosopher *philo, const char *status);
 void	print_usage_instructions();

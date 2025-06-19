@@ -26,9 +26,8 @@ void	precise_sleep(long milliseconds) {
 	long start_time = get_current_time();
 	long target_time = start_time + milliseconds;
 	
-	while (get_current_time() < target_time) {
+	while (get_current_time() < target_time)
 		usleep(500);
-	}
 }
 
 void	print_status(t_philosopher *philo, const char *status)
@@ -40,13 +39,6 @@ void	print_status(t_philosopher *philo, const char *status)
 		printf("%s%ld ms %sPhilosopher %d %s%s\n", CYAN, timestamp, BOLD, philo->id, status, RESET);
 	}
 	pthread_mutex_unlock(&philo->data->print_mutex);
-}
-
-void print_usage_instructions()
-{
-	printf("%s%sUsage:\n-> %s", BOLD, RED, RESET);
-	printf("%sphilospher %sgit:(%smain%s) %s✗ %s./philo 5 800 200 200 [7]%s\n",
-		CYAN, BLUE, RED, BLUE, BROWN, BLUE, RESET);
 }
 
 int	simulation_ended(t_data *data)
@@ -91,4 +83,11 @@ void	print_data(t_data *data)
 	printf("Time to Sleep: %ld ms\n", data->time_to_sleep);
 	printf("Must Eat Count: %d\n", data->must_eat_count);
 	printf("Simulation Ended: %d\n", data->simulation_ended);
+}
+
+void print_usage_instructions()
+{
+	printf("%s%sUsage:\n-> %s", BOLD, RED, RESET);
+	printf("%sphilospher %sgit:(%smain%s) %s✗ %s./philo 5 800 200 200 [7]%s\n",
+		CYAN, BLUE, RED, BLUE, BROWN, BLUE, RESET);
 }
