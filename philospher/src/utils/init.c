@@ -6,7 +6,7 @@
 /*   By: mukhammad-ibrokhimov <mukhammad-ibrokhi    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 14:17:31 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/06/23 16:20:29 by mukhammad-i      ###   ########.fr       */
+/*   Updated: 2025/06/23 16:25:21 by mukhammad-i      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int init_data(t_data *data)
         if (pthread_mutex_init(&data->forks[i], NULL) != 0)
         {
             printf("%sFork mutex initialization failed for fork %d!\n", RED, i);
-            return (cleaup(data), 1);
+            return (cleanup(data), 1);
         }
     }
     if (pthread_mutex_init(&data->print_mutex, NULL) != 0)
