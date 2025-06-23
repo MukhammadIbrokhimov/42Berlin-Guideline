@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mukhammad-ibrokhimov <mukhammad-ibrokhi    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 15:00:16 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/06/17 19:41:54 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/06/23 14:44:31 by mukhammad-i      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,39 +51,27 @@ int	simulation_ended(t_data *data)
 	return (ended);
 }
 
-int check_meal_completion(t_philosopher *philo)
-{
-	pthread_mutex_lock(&philo->meals_eaten_);
-	if (philo->meals_eaten >= philo->data->must_eat_count)
-	{
-		pthread_mutex_unlock(&philo->meals_eaten_);
-		return (1);
-	}
-	pthread_mutex_unlock(&philo->meals_eaten_);
-	return (0);
-}
+// void	print_philo_data(t_philosopher *philo)
+// {
+// 	printf("Philosopher Data:\n");
+// 	printf("ID: %d\n", philo->id);
+// 	printf("Meals Eaten: %d\n", philo->meals_eaten);
+// 	printf("Last Meal Time: %ld ms\n", philo->last_meal_time);
+// 	printf("Left Fork: %p\n", (void *)philo->left_fork);
+// 	printf("Right Fork: %p\n", (void *)philo->right_fork);
+// 	printf("Data Pointer: %p\n", (void *)philo->data);
+// }
 
-void	print_philo_data(t_philosopher *philo)
-{
-	printf("Philosopher Data:\n");
-	printf("ID: %d\n", philo->id);
-	printf("Meals Eaten: %d\n", philo->meals_eaten);
-	printf("Last Meal Time: %ld ms\n", philo->last_meal_time);
-	printf("Left Fork: %p\n", (void *)philo->left_fork);
-	printf("Right Fork: %p\n", (void *)philo->right_fork);
-	printf("Data Pointer: %p\n", (void *)philo->data);
-}
-
-void	print_data(t_data *data)
-{
-	printf("Data:\n");
-	printf("Number of Philosophers: %d\n", data->num_philosophers);
-	printf("Time to Die: %ld ms\n", data->time_to_die);
-	printf("Time to Eat: %ld ms\n", data->time_to_eat);
-	printf("Time to Sleep: %ld ms\n", data->time_to_sleep);
-	printf("Must Eat Count: %d\n", data->must_eat_count);
-	printf("Simulation Ended: %d\n", data->simulation_ended);
-}
+// void	print_data(t_data *data)
+// {
+// 	printf("Data:\n");
+// 	printf("Number of Philosophers: %d\n", data->num_philosophers);
+// 	printf("Time to Die: %ld ms\n", data->time_to_die);
+// 	printf("Time to Eat: %ld ms\n", data->time_to_eat);
+// 	printf("Time to Sleep: %ld ms\n", data->time_to_sleep);
+// 	printf("Must Eat Count: %d\n", data->must_eat_count);
+// 	printf("Simulation Ended: %d\n", data->simulation_ended);
+// }
 
 void print_usage_instructions()
 {
