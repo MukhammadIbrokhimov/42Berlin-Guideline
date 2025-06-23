@@ -41,23 +41,43 @@ int	eat(t_philosopher *philo)
 {
 	//printf("DEBUG: Philosopher %d trying to get left fork %p\n", philo->id, philo->left_fork);
 	if (philo->id % 2 == 0)
-	 	precise_sleep(philo->data->time_to_eat / 2); // Ensure even philosophers wait a bit before starting
-	pthread_mutex_lock(philo->left_fork);
-	if (simulation_ended(philo->data))
 	{
-		pthread_mutex_unlock(philo->left_fork);
-		return 1;
+	 	precise_sleep(philo->data->time_to_eat / 2); // Ensure even philosophers wait a bit before starting
+		pthread_mutex_lock(philo->left_fork);
+		if (simulation_ended(philo->data))
+		{
+			pthread_mutex_unlock(philo->left_fork);
+			return 1;
+		}
+		print_status(philo, "has taken a fork");
+		//printf("DEBUG: Philosopher %d trying to get right fork %p\n", philo->id, philo->right_fork);
+		pthread_mutex_lock(philo->right_fork);
+		if (simulation_ended(philo->data))
+		{
+			pthread_mutex_unlock(philo->left_fork);
+			pthread_mutex_unlock(philo->right_fork);
+			return 1;
+		}
+		print_status(philo, "has taken a fork");
 	}
-	print_status(philo, "has taken a fork");
-	//printf("DEBUG: Philosopher %d trying to get right fork %p\n", philo->id, philo->right_fork);
-	pthread_mutex_lock(philo->right_fork);
-	if (simulation_ended(philo->data))
-    {
-        pthread_mutex_unlock(philo->left_fork);
-        pthread_mutex_unlock(philo->right_fork);
-        return 1;
-    }
-	print_status(philo, "has taken a fork");
+	else{
+		pthread_mutex_lock(philo->right_fork);
+		if (simulation_ended(philo->data))
+		{
+			pthread_mutex_unlock(philo->right_fork);
+			return 1;
+		}
+		print_status(philo, "has taken a fork");
+		//printf("DEBUG: Philosopher %d trying to get right fork %p\n", philo->id, philo->right_fork);
+		pthread_mutex_lock(philo->left_fork);
+		if (simulation_ended(philo->data))
+		{
+			pthread_mutex_unlock(philo->left_fork);
+			pthread_mutex_unlock(philo->right_fork);
+			return 1;
+		}
+		print_status(philo, "has taken a fork");
+	}
 	pthread_mutex_lock(&philo->last_meal_t);
 	philo->last_meal_time = get_current_time();
 	pthread_mutex_unlock(&philo->last_meal_t);

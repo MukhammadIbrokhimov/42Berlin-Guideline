@@ -25,6 +25,10 @@ SRC      += $(SRC_DIR)/philo/philosopher.c \
 OBJ       = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC))
 EXEC      = philo
 
+# Valgrind configuration
+VALGRIND_FLAGS = --tool=helgrind --log-file=helgrind.log --verbose
+# Default test arguments for philosophers (adjust as needed)
+TEST_ARGS = 5 800 200 200 3
 
 # Default rule
 all: $(EXEC)
@@ -47,22 +51,37 @@ $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)/philo
 	@mkdir -p $(OBJ_DIR)/utils
 
+# Run valgrind helgrind
+valgrind: $(EXEC)
+	@echo "$(BLUE)🔍  Running Valgrind Helgrind...$(RESET)"
+	@echo "$(YELLOW)📋  Test arguments: $(TEST_ARGS)$(RESET)"
+	@valgrind $(VALGRIND_FLAGS) ./$(EXEC) $(TEST_ARGS)
+	@echo "$(GREEN)✅  Valgrind analysis complete! Check helgrind.log for details.$(RESET)"
+	@echo "$(CYAN)💡  To view the log: cat helgrind.log$(RESET)"
+
+# Run valgrind with custom arguments
+valgrind-custom: $(EXEC)
+	@echo "$(BLUE)🔍  Running Valgrind Helgrind with custom arguments...$(RESET)"
+	@echo "$(YELLOW)Usage: make valgrind-custom ARGS=\"your arguments here\"$(RESET)"
+	@valgrind $(VALGRIND_FLAGS) ./$(EXEC) $(ARGS)
+	@echo "$(GREEN)✅  Valgrind analysis complete! Check helgrind.log for details.$(RESET)"
+
 # Clean up object files
 clean:
 	@echo "$(RED)🧹  Deleting object files...$(RESET)"
 	@rm -rf $(OBJ_DIR)
 	@echo "$(GREEN)✅  Cleaned up object files!$(RESET)"
 
-
-
 # Clean up all generated files
 fclean: clean
 	@echo "$(RED)🗑️   Deleting executable...$(RESET)"
 	@rm -f $(EXEC)
-	@echo "$(GREEN)✅  Executable deleted!$(RESET)"
+	@echo "$(RED)🗑️   Deleting valgrind logs...$(RESET)"
+	@rm -f helgrind.log
+	@echo "$(GREEN)✅  All files cleaned!$(RESET)"
 
 # Rebuild
 re: fclean all
 	@echo "$(CYAN)🔄  Rebuilding everything...$(RESET)"
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re valgrind valgrind-custom
