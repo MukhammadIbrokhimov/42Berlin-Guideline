@@ -21,6 +21,7 @@ SRC      += $(SRC_DIR)/philo/philosopher.c \
 			$(SRC_DIR)/utils/monitor.c \
 			$(SRC_DIR)/utils/ft_atol.c \
 			$(SRC_DIR)/utils/cleanup.c \
+			$(SRC_DIR)/utils/parse.c \
 
 OBJ       = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC))
 EXEC      = philo

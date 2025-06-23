@@ -16,30 +16,20 @@ void	*philosopher_routine(void *arg)
 {
 	t_philosopher *philo = (t_philosopher *)arg;
 
-	//printf("DEBUG: Philosopher %d starting routine\n", philo->id);
 	while (simulation_ended(philo->data) != 1)
 	{
-		//printf("DEBUG: Philosopher %d is starting to eat\n", philo->id);
 		if (eat(philo))
 			break ;
-		//printf("DEBUG: Philosopher %d finished eating\n", philo->id);
-		// if (check_meal_completion(philo))
-		// 	break ;
-		//printf("DEBUG: Philosopher %d is going to sleep\n", philo->id);
 		if (sleeep(philo))
 			break ;
-		//printf("DEBUG: Philosopher %d finished sleeping\n", philo->id);
-		//printf("DEBUG: Philosopher %d is thinking\n", philo->id);
 		if (think(philo))
 			break ;
-		//printf("DEBUG: Philosopher %d finished thinking\n", philo->id);
 	}
-	return NULL;
+	return (NULL);
 }
 
 int	eat(t_philosopher *philo)
 {
-	//printf("DEBUG: Philosopher %d trying to get left fork %p\n", philo->id, philo->left_fork);
 	if (philo->id % 2 == 0)
 	{
 	 	precise_sleep(philo->data->time_to_eat / 2); // Ensure even philosophers wait a bit before starting
@@ -91,14 +81,13 @@ int	eat(t_philosopher *philo)
 	if (philo->data->must_eat_count > 0 && 
         philo->meals_eaten >= philo->data->must_eat_count)
     {
-        return 1; // This philosopher is done eating
+        return 1;
     }
 	return (0);
 }
 
 int	sleeep(t_philosopher *philo)
 {
-	//usleep(500); // Ensure a slight delay before sleeping
 	if (simulation_ended(philo->data))
 		return (1);
 	print_status(philo, "is sleeping");
@@ -110,7 +99,6 @@ int	think(t_philosopher *philo)
 {
 	if (simulation_ended(philo->data))
 		return (1);
-	//usleep(500); // Ensure a slight delay before thinking
 	print_status(philo, "is thinking");
 	return (0);
 }

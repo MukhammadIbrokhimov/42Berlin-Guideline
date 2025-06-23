@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosopher.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mukhammad-ibrokhimov <mukhammad-ibrokhi    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 20:46:29 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/06/17 19:39:26 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/06/23 14:34:56 by mukhammad-i      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,22 +85,24 @@ int		check_meal_completion(t_philosopher *philo);
 
 // simulation control
 void	*death_monitor(void *arg);
-void print_death_message(t_philosopher *philo);
-void *death_monitor_improved(void *arg);
-void debug_philosopher_state(t_philosopher *philo);
-void debug_simulation_state(t_data *data);
+void	print_death_message(t_philosopher *philo);
+void	 debug_philosopher_state(t_philosopher *philo);
+void 	debug_simulation_state(t_data *data);
 int		is_philosopher_dead(t_philosopher *philo);
 int		all_philosophers_satisfied(t_data *data);
 
-// usage
+// cleanup
 void	cleanup(t_data *data);
 void 	cleanup_forks(t_data *data, int count);
 void	cleanup_partial_philosophers(t_data *data, int count);
+
+// usage
 int		simulation_ended(t_data *data);
 void	print_status(t_philosopher *philo, const char *status);
 void	print_usage_instructions();
 void	print_philo_data(t_philosopher *philo);
 void	print_data(t_data *data);
+void	print_death_message(t_philosopher *philo);
 unsigned long	ft_atol(const char *s, int *error);
 
 #endif
