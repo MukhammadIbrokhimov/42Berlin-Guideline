@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mukhammad-ibrokhimov <mukhammad-ibrokhi    +#+  +:+       +#+        */
+/*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 15:00:16 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/06/23 14:44:31 by mukhammad-i      ###   ########.fr       */
+/*   Updated: 2025/06/24 13:14:46 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosopher.h"
 
-long get_current_time(void)
+long	get_current_time(void)
 {
 	struct timeval	tv;
 	long			current_time;
@@ -22,21 +22,27 @@ long get_current_time(void)
 	return (current_time);
 }
 
-void	precise_sleep(long milliseconds) {
-	long start_time = get_current_time();
-	long target_time = start_time + milliseconds;
-	
+void	precise_sleep(long milliseconds)
+{
+	long	start_time;
+	long	target_time;
+
+	start_time = get_current_time();
+	target_time = start_time + milliseconds;
 	while (get_current_time() < target_time)
 		usleep(500);
 }
 
 void	print_status(t_philosopher *philo, const char *status)
 {
+	long	timestamp;
+
 	pthread_mutex_lock(&philo->data->print_mutex);
 	if (!simulation_ended(philo->data))
 	{
-		long timestamp = get_current_time() - philo->data->start_time;
-		printf("%s%ld ms %sPhilosopher %d %s%s\n", CYAN, timestamp, BOLD, philo->id, status, RESET);
+		timestamp = get_current_time() - philo->data->start_time;
+		printf("%s%ld ms %sPhilosopher %d %s%s\n",
+			CYAN, timestamp, BOLD, philo->id, status, RESET);
 	}
 	pthread_mutex_unlock(&philo->data->print_mutex);
 }
@@ -51,29 +57,7 @@ int	simulation_ended(t_data *data)
 	return (ended);
 }
 
-// void	print_philo_data(t_philosopher *philo)
-// {
-// 	printf("Philosopher Data:\n");
-// 	printf("ID: %d\n", philo->id);
-// 	printf("Meals Eaten: %d\n", philo->meals_eaten);
-// 	printf("Last Meal Time: %ld ms\n", philo->last_meal_time);
-// 	printf("Left Fork: %p\n", (void *)philo->left_fork);
-// 	printf("Right Fork: %p\n", (void *)philo->right_fork);
-// 	printf("Data Pointer: %p\n", (void *)philo->data);
-// }
-
-// void	print_data(t_data *data)
-// {
-// 	printf("Data:\n");
-// 	printf("Number of Philosophers: %d\n", data->num_philosophers);
-// 	printf("Time to Die: %ld ms\n", data->time_to_die);
-// 	printf("Time to Eat: %ld ms\n", data->time_to_eat);
-// 	printf("Time to Sleep: %ld ms\n", data->time_to_sleep);
-// 	printf("Must Eat Count: %d\n", data->must_eat_count);
-// 	printf("Simulation Ended: %d\n", data->simulation_ended);
-// }
-
-void print_usage_instructions()
+void	print_usage_instructions(void)
 {
 	printf("%s%sUsage:\n-> %s", BOLD, RED, RESET);
 	printf("%sphilospher %sgit:(%smain%s) %s✗ %s./philo 5 800 200 200 [7]%s\n",

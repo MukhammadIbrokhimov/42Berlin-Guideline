@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosopher.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mukhammad-ibrokhimov <mukhammad-ibrokhi    +#+  +:+       +#+        */
+/*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 20:46:29 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/06/23 14:34:56 by mukhammad-i      ###   ########.fr       */
+/*   Updated: 2025/06/24 12:13:54 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,15 @@
 # include <sys/time.h>
 # include <stdbool.h>
 
-#define RESET   "\033[0m"      // Reset color
-#define RED     "\033[31m"     // Red text
-#define GREEN   "\033[32m"     // Green text
-#define YELLOW  "\033[33m"     // Yellow text
-#define BLUE    "\033[34m"     // Blue text
-#define CYAN    "\033[36m"     // Cyan text
-#define BOLD    "\033[1m"      // Bold text
-#define BROWN   "\033[33m"  // Brown (approximated as dark yellow)
-#define UNDERLINE "\033[4m"    // Underlined text
+# define RESET   "\033[0m"      // Reset color
+# define RED     "\033[31m"     // Red text
+# define GREEN   "\033[32m"     // Green text
+# define YELLOW  "\033[33m"     // Yellow text
+# define BLUE    "\033[34m"     // Blue text
+# define CYAN    "\033[36m"     // Cyan text
+# define BOLD    "\033[1m"      // Bold text
+# define BROWN   "\033[33m"     // Brown (approximated as dark yellow)
+# define UNDERLINE "\033[4m"    // Underlined text
 
 typedef unsigned int uint;
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   monitor.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mukhammad-ibrokhimov <mukhammad-ibrokhi    +#+  +:+       +#+        */
+/*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 14:14:49 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/06/23 14:44:41 by mukhammad-i      ###   ########.fr       */
+/*   Updated: 2025/06/24 13:17:32 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,18 @@ void *death_monitor(void *arg)
         {
             if (is_philosopher_dead(&data->philosophers[i]))
             {
-                pthread_mutex_lock(&data->death_mutex);
-                if (data->simulation_ended == 0)
-                {
-                    data->simulation_ended = 1;
-                    print_death_message(&data->philosophers[i]);
-                }
-                return (pthread_mutex_unlock(&data->death_mutex), NULL);
+				pthread_mutex_lock(&data->print_mutex);
+				pthread_mutex_lock(&data->death_mutex);
+				if (data->simulation_ended == 0)
+				{
+					data->simulation_ended = 1;
+					printf("%s%ld ms %sPhilosopher %d %shas died%s\n",
+						CYAN, get_current_time() - data->start_time, BOLD,
+						data->philosophers->id, RED, RESET);
+				}
+				pthread_mutex_unlock(&data->death_mutex);
+				pthread_mutex_unlock(&data->print_mutex);
+
             }
         }
         if (all_philosophers_satisfied(data) == 1)
@@ -79,8 +84,10 @@ int is_philosopher_dead(t_philosopher *philo)
 void print_death_message(t_philosopher *philo)
 {
     long timestamp = get_current_time() - philo->data->start_time;
+	pthread_mutex_lock(&philo->data->print_mutex);
     printf("%s%ld ms %sPhilosopher %d %shas died%s\n",
         CYAN, timestamp, BOLD, philo->id, RED, RESET);
+	pthread_mutex_unlock(&philo->data->print_mutex);
 }
 
 int check_meal_completion(t_philosopher *philo)
