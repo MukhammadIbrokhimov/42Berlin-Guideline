@@ -27,7 +27,7 @@ OBJ       = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC))
 EXEC      = philo
 
 # Valgrind configuration
-VALGRIND_FLAGS = --tool=helgrind --log-file=helgrind.log --verbose
+VALGRIND_FLAGS = --tool=helgrind --log-file=helgrind.log
 # Default test arguments for philosophers (adjust as needed)
 TEST_ARGS = 5 800 200 200 3
 

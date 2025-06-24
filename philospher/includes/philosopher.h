@@ -5,13 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/06 20:46:29 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/06/24 12:13:54 by mukibrok         ###   ########.fr       */
+/*   Created: 2025/06/24 15:55:39 by mukibrok          #+#    #+#             */
+/*   Updated: 2025/06/24 16:01:51 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef _PHILOSOPHER_H_
-# define _PHILOSOPHER_H_
+#ifndef PHILOSOPHER_H
+
+# define PHILOSOPHER_H
 
 # include <stdio.h>
 # include <string.h>
@@ -33,33 +34,34 @@
 # define BROWN   "\033[33m"     // Brown (approximated as dark yellow)
 # define UNDERLINE "\033[4m"    // Underlined text
 
-typedef unsigned int uint;
-
+typedef pthread_mutex_t	t_mutex;
+typedef unsigned long	t_ulong;
 typedef struct s_philosopher {
-	int id;                    // Philosopher number (1 to n)
-	int meals_eaten;           // Count of meals eaten
-	long last_meal_time;       // Timestamp of last meal
-	pthread_t thread;          // Philosopher's thread
-	pthread_mutex_t *left_fork;    // Left fork mutex
-	pthread_mutex_t *right_fork;   // Right fork mutex
-	pthread_mutex_t meals_eaten_;   // Right fork mutex
-	pthread_mutex_t last_meal_t;   // Right fork mutex
-	struct s_data *data;       // Pointer to shared data
-} t_philosopher;
+	int				id;
+	int				meals_eaten;
+	long			last_meal_time;
+	pthread_t		thread;
+	pthread_mutex_t	*left_fork;
+	pthread_mutex_t	*right_fork;
+	pthread_mutex_t	meals_eaten_;
+	pthread_mutex_t	last_meal_t;
+	struct s_data	*data;
+}	t_philosopher;
 
-typedef struct s_data {
-	int num_philosophers;      // Number of philosophers
-	long time_to_die;         // Time before starvation (ms)
-	long time_to_eat;         // Time to eat (ms)
-	long time_to_sleep;       // Time to sleep (ms)
-	int must_eat_count;       // Optional: meals required
-	long start_time;          // Simulation start time
-	int simulation_ended;     // Flag to stop simulation
-	pthread_mutex_t *forks;   // Array of fork mutexes
-	pthread_mutex_t print_mutex;  // Mutex for printing
-	pthread_mutex_t death_mutex;  // Mutex for death checking
-	t_philosopher *philosophers;  // Array of philosophers
-} t_data;
+typedef struct s_data
+{
+	int				num_philosophers;
+	long			time_to_die;
+	long			time_to_eat;
+	long			time_to_sleep;
+	int				must_eat_count;
+	long			start_time;
+	int				simulation_ended;
+	pthread_mutex_t	*forks;
+	pthread_mutex_t	print_mutex;
+	pthread_mutex_t	death_mutex;
+	t_philosopher	*philosophers;
+}	t_data;
 
 // parse and validate
 int		parse_data(int argc, char **argv, t_data *data);
@@ -68,6 +70,7 @@ int		validate_data(t_data *data);
 // init
 int		init_philo(t_data *data);
 int		init_data(t_data *data);
+void	init_forks(t_philosopher *philo, t_data *data);
 
 // precise timing
 long	get_current_time(void);
@@ -85,24 +88,24 @@ int		check_meal_completion(t_philosopher *philo);
 
 // simulation control
 void	*death_monitor(void *arg);
-void	print_death_message(t_philosopher *philo);
-void	 debug_philosopher_state(t_philosopher *philo);
-void 	debug_simulation_state(t_data *data);
+void	handle_death(t_data *data, int i);
+void	debug_philosopher_state(t_philosopher *philo);
+void	debug_simulation_state(t_data *data);
 int		is_philosopher_dead(t_philosopher *philo);
 int		all_philosophers_satisfied(t_data *data);
 
 // cleanup
 void	cleanup(t_data *data);
-void 	cleanup_forks(t_data *data, int count);
+void	cleanup_forks(t_data *data, int count);
 void	cleanup_partial_philosophers(t_data *data, int count);
 
 // usage
 int		simulation_ended(t_data *data);
 void	print_status(t_philosopher *philo, const char *status);
-void	print_usage_instructions();
+void	print_usage_instructions(void);
 void	print_philo_data(t_philosopher *philo);
 void	print_data(t_data *data);
 void	print_death_message(t_philosopher *philo);
-unsigned long	ft_atol(const char *s, int *error);
+t_ulong	ft_atol(const char *s, int *error);
 
 #endif

@@ -6,13 +6,13 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 14:17:31 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/06/24 13:38:54 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/06/24 15:48:01 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/philosopher.h"
 
-void	assign_forks(t_philosopher *philo, t_data *data)
+void	init_forks(t_philosopher *philo, t_data *data)
 {
 	int	left_idx;
 	int	right_idx;
@@ -31,6 +31,10 @@ void	assign_forks(t_philosopher *philo, t_data *data)
 	}
 }
 
+//data->philosophers[i].left_fork = &data->forks[i];
+//data->philosophers[i].right_fork = 
+//&data->forks[(i + 1) % data->num_philosophers];
+
 int	init_philo(t_data *data)
 {
 	int	i;
@@ -41,8 +45,7 @@ int	init_philo(t_data *data)
 		data->philosophers[i].id = i + 1;
 		data->philosophers[i].meals_eaten = 0;
 		data->philosophers[i].last_meal_time = 0;
-		data->philosophers[i].left_fork = &data->forks[i];
-		data->philosophers[i].right_fork = &data->forks[(i + 1) % data->num_philosophers];
+		init_forks(&data->philosophers[i], data);
 		data->philosophers[i].data = data;
 		if (pthread_mutex_init(&data->philosophers[i].meals_eaten_, NULL) != 0)
 		{
