@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 14:14:49 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/06/24 13:25:32 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/06/24 15:52:10 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,7 @@ void	*death_monitor(void *arg)
 		while (++i < data->num_philosophers)
 		{
 			if (is_philosopher_dead(&data->philosophers[i]))
-			{
-				pthread_mutex_lock(&data->print_mutex);
-				pthread_mutex_lock(&data->death_mutex);
-				if (data->simulation_ended == 0)
-				{
-					data->simulation_ended = 1;
-					printf("%s%ld ms %sPhilosopher %d %shas died%s\n",
-						CYAN, get_current_time() - data->start_time, BOLD,
-						data->philosophers->id, RED, RESET);
-				}
-				pthread_mutex_unlock(&data->death_mutex);
-				pthread_mutex_unlock(&data->print_mutex);
-			}
+				handle_death(data, i);
 		}
 		if (all_philosophers_satisfied(data) == 1)
 		{
@@ -83,15 +71,19 @@ int	is_philosopher_dead(t_philosopher *philo)
 	return (time_since_meal > philo->data->time_to_die);
 }
 
-void	print_death_message(t_philosopher *philo)
+void	handle_death(t_data *data, int i)
 {
-	long	timestamp;
-
-	timestamp = get_current_time() - philo->data->start_time;
-	pthread_mutex_lock(&philo->data->print_mutex);
-	printf("%s%ld ms %sPhilosopher %d %shas died%s\n",
-		CYAN, timestamp, BOLD, philo->id, RED, RESET);
-	pthread_mutex_unlock(&philo->data->print_mutex);
+	pthread_mutex_lock(&data->print_mutex);
+	pthread_mutex_lock(&data->death_mutex);
+	if (!data->simulation_ended)
+	{
+		data->simulation_ended = 1;
+		printf("%s%ld ms %sPhilosopher %d %shas died%s\n",
+			CYAN, get_current_time() - data->start_time, BOLD,
+			data->philosophers[i].id, RED, RESET);
+	}
+	pthread_mutex_unlock(&data->death_mutex);
+	pthread_mutex_unlock(&data->print_mutex);
 }
 
 int	check_meal_completion(t_philosopher *philo)
