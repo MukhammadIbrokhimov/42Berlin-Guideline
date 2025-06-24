@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mukhammad-ibrokhimov <mukhammad-ibrokhi    +#+  +:+       +#+        */
+/*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 12:45:26 by mukhammad-i       #+#    #+#             */
-/*   Updated: 2025/06/23 14:44:01 by mukhammad-i      ###   ########.fr       */
+/*   Updated: 2025/06/24 13:17:28 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 int	validate_data(t_data *data)
 {
 	if (data->num_philosophers < 2 || data->num_philosophers > 200)
-		return (printf("%sNumber of philosophers must be greater than 1!\n", RED), 1);
-	if (data->time_to_die <= 0 || data->time_to_eat <= 0 || data->time_to_sleep <= 0)
+		return (printf("%sNumber of philosophers must be greater than 1!\n",
+				RED), 1);
+	if (data->time_to_die <= 0 || data->time_to_eat <= 0
+		|| data->time_to_sleep <= 0)
 		return (printf("%sTime values must be positive!\n", RED), 1);
 	if (data->must_eat_count < 0 && data->must_eat_count != -13)
 		return (printf("%sMust eat count cannot be negative!\n", RED), 1);
