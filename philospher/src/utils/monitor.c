@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 14:14:49 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/06/24 15:52:10 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/06/26 15:10:12 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	*death_monitor(void *arg)
 				data->simulation_ended = 1;
 			return (pthread_mutex_unlock(&data->death_mutex), NULL);
 		}
-		usleep(500);
+		usleep(1000);
 	}
 	return (NULL);
 }
