@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 14:17:05 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/06/24 15:35:40 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/06/26 13:56:55 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ int	take_forks(t_philosopher *philo, t_mutex *first, t_mutex *second)
 	if (simulation_ended(philo->data))
 		return (pthread_mutex_unlock(first), 1);
 	print_status(philo, "has taken a fork");
+	if (first == second)
+	{
+		pthread_mutex_unlock(first);
+		return (1);
+	}
 	pthread_mutex_lock(second);
 	if (simulation_ended(philo->data))
 	{
