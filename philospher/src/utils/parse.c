@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 12:45:26 by mukhammad-i       #+#    #+#             */
-/*   Updated: 2025/06/24 13:17:28 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/06/26 13:54:58 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	validate_data(t_data *data)
 {
-	if (data->num_philosophers < 2 || data->num_philosophers > 200)
+	if (data->num_philosophers < 1 || data->num_philosophers > 200)
 		return (printf("%sNumber of philosophers must be greater than 1!\n",
 				RED), 1);
 	if (data->time_to_die <= 0 || data->time_to_eat <= 0
