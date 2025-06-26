@@ -6,7 +6,7 @@
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 14:17:05 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/06/26 13:56:55 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/06/26 15:22:43 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	eat(t_philosopher *philo)
 	pthread_mutex_t	*second_fork;
 
 	if (philo->id % 2 == 0)
-		precise_sleep(philo->data->time_to_eat / 2);
+		usleep(500);
 	set_fork_order(philo, &first_fork, &second_fork);
 	if (take_forks(philo, first_fork, second_fork))
 		return (1);
