@@ -44,19 +44,4 @@
 
 </td>
 
-<table>
-<tr>
-<th align="left"> &nbsp; Common Core Exams</th>
-</tr>
-<tr>
-
-<td>
-
-| [Common Core Exams Overview](https://github.com/mukhammadsiddiq/42Berlin-Guideline/tree/main/42-Exams) | [Exam Rank 02](https://github.com/mukhammadsiddiq/42Berlin-Guideline/tree/main/Exam-Rank-02)  | [Exam Rank 03](https://github.com/mukhammadsiddiq/42Berlin-Guideline/tree/main/Exam-Rank-03)  | [Exam Rank 04](https://github.com/mukhammadsiddiq/42Berlin-Guideline/tree/main/Exam-Rank-04) | [Exam Rank 05](https://github.com/mukhammadsiddiq/42Berlin-Guideline/tree/main/Exam-Rank-05)  | [Exam Rank 06](https://github.com/mukhammadsiddiq/42Berlin-Guideline/tree/main/Exam-Rank-06)  |
-|--|--|--|--|--|--|
-
-</td>
-
-</tr> </table>
-
 <br>
