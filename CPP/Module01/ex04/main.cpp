@@ -5,61 +5,81 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/14 14:32:39 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/02/14 18:46:58 by mukibrok         ###   ########.fr       */
+/*   Created: 2025/07/07 17:37:39 by muxammad          #+#    #+#             */
+/*   Updated: 2025/07/08 15:43:31 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <fstream>
-#include <string>
 
-bool	performText(std::ifstream &fileName, char **argv){
-	int				flag = 1;
-	size_t			pos;
-	std::string		line;
-	std::string		name = argv[1];
-	std::string		findText = argv[2];
-	std::string		replaceText = argv[3];
-	name.insert(4, ".replace");
-	std::ofstream	outputFile(name.c_str());
-	if (!outputFile.is_open()){
-		return (perror("\033[31mNot possible to create a file!\n\033[31m 😭"), false);
+std::string manualReplace(const std::string& original,
+						const std::string& search,
+						const std::string& replace) {
+	if (search.empty() || replace.empty()) {
+		std::cerr << "\033[31mDid you really think I could replace NOTHING with SOMETHING?!\033[0m 🤯💥\n";
+		return "";
 	}
-	while (getline(fileName, line)){
-		pos	= line.find(findText);
-		if (pos != std::string::npos){
-			line.erase(pos, replaceText.length());
-			line.insert(pos, replaceText);
-			flag = 0;
-		}
-		outputFile << line << "\n";
+
+	std::string result = original;
+	size_t pos = 0;
+	while ((pos = result.find(search, pos)) != std::string::npos) {
+		result.erase(pos, search.length());
+		result.insert(pos, replace);
+		pos += replace.length();
 	}
-	if (!flag){
-		std::cout << "\033[36m"
-				<< findText <<" \033[32mwas replaced with\033[32m " 
-				<< "\033[36m" << replaceText << " 😎 🕺" << std::endl;
-	}
-	else{
-		std::cout << "\033[36m" << findText <<" \033[31mnot found 🤷‍♂️" << std::endl;
-	}
-	return ((flag) ? false : true);
+
+	return result;
 }
 
-int	main(int argc, char **argv){
-	if (argc != 4){
-		std::cerr << "\033[31mProvide with correct arguments!\033[0m 😡" << std::endl;
-		return (1);
+int saveChanges(const std::string& content, const std::string& fileName) {
+	if (content.empty())
+		return 1;
+	std::string outFileName = fileName + ".replace";
+	std::ofstream outPut(outFileName.c_str());
+	if (!outPut.is_open()) {
+		std::cerr << "\033[31mFailed to open the output file.🔒\033[0m\n";
+		return 1;
 	}
-	std::ifstream	readFile(argv[1]);
-	if (!readFile.is_open()){
-		return (perror("\033[31mNot possible to read file!\n\033[31m 🤷‍♂️"), 1);
+	outPut << content;
+	outPut.close();
+	std::cout << "\033[32mFile saved successfully: '" << outFileName << "'.\033[0m\n";
+	return (0);
+}
+
+int main(int argc, char** argv) {
+	if (argc != 4) {
+		std::cerr << "\033[31mProvide correct arguments!\033[0m 😡" << std::endl;
+		return 1;
 	}
-	std::string	findText = argv[2];
-	std::string	replaceText = argv[3];
-	if (!performText(readFile, argv)){
-		std::cerr << "\033[31mFailed to replace\033[0m  😭" << std::endl;
-		return (readFile.close(), 1);
+
+	std::string search = argv[2];
+	std::string replace = argv[3];
+	if (search == replace) {
+		std::cerr << "\033[31mAre you serious? You gave me the SAME input twice 😡\033[0m" << std::endl;
+		return 1;
 	}
-	return (readFile.close(), 0);
+
+	std::ifstream infile(argv[1]);
+	if (!infile.is_open()) {
+		std::cerr << "\033[31mNot possible to read file! 🤷‍♂️\033[0m" << std::endl;
+		return 1;
+	}
+
+	std::string line;
+	std::string content;
+	while (std::getline(infile, line)) {
+		content += line + '\n';
+	}
+	infile.close();
+
+	std::string updated = manualReplace(content, search, replace);
+	if (updated.empty()) {
+		std::cerr << "\033[33mNo changes made or input was invalid. Stopping.\033[0m 😤🛑📛\n";
+		return 1;
+	}
+
+	saveChanges(updated, argv[1]);
+
+	return 0;
 }

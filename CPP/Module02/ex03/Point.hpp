@@ -5,33 +5,28 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/18 12:00:18 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/02/18 13:24:24 by mukibrok         ###   ########.fr       */
+/*   Created: 2025/07/15 19:10:45 by mukibrok          #+#    #+#             */
+/*   Updated: 2025/07/15 19:27:14 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#ifndef _POINT_H_
-
-# define _POINT_H_
-
 #include "Fixed.hpp"
+#include <iostream>
 
-class	Point{
+class Point{
 	private:
-		Fixed const	_x;
-		Fixed const	_y;
-	
+		const Fixed x;	
+		const Fixed y;
 	public:
-		Point();
-		Point(const float x, const float y);
-		Point(const Point	&other);
+		Point(); // default constructor initialize to 0
+		Point(const float _x, const float _y);
+		Point(const Point& other);
+		Point& operator=(const Point& other); 
 		~Point();
-
-		Fixed const	getX(void) const;
-		Fixed const	getY(void) const;
-		Point&	operator=(const Point &other);
+		Fixed getX() const;
+		Fixed getY() const;
 };
 
-#endif
+bool bsp( Point const a, Point const b, Point const c, Point const point);

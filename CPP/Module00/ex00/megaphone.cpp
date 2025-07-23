@@ -5,29 +5,33 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/03 19:49:08 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/02/04 14:39:51 by mukibrok         ###   ########.fr       */
+/*   Created: 2025/07/03 13:38:40 by mukibrok          #+#    #+#             */
+/*   Updated: 2025/07/08 12:21:15 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <cctype>
 
-int	main(int argc, char **argv){
-	using namespace std;
-	if (argc != 1){
-		for (int i = 1; argv[i]; i++){
-			for (int j = 0; argv[i][j]; j++){
-			cout << static_cast<char> (toupper(argv[i][j]));
-			}
-			if (argv[i] != NULL)
-				cout << ' ';
+int	main(int argc, char **argv)
+{
+	if (argc == 1)
+	{
+		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *\n";
+		return (1);
+	}
+	int	i = 0;
+	while (++i < argc)
+	{
+		int j = 0;
+		while (argv[i][j])
+		{
+			if (islower(argv[i][j]))
+				std::cout << static_cast<char> (std::toupper(argv[i][j]));
+			else
+				std::cout << argv[i][j];
+			j++;
 		}
-		cout << endl;
 	}
-	else{
-		string	text = "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
-		cout << text << endl;
-	}
+	std::cout << std::endl;
 }
-

@@ -3,29 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   HumanB.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mukhammad-ibrokhimov <mukhammad-ibrokhi    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/13 19:02:59 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/02/13 20:41:03 by mukibrok         ###   ########.fr       */
+/*   Created: 2025/07/06 17:27:16 by mukhammad-i       #+#    #+#             */
+/*   Updated: 2025/07/06 18:10:20 by mukhammad-i      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #pragma once
-#ifndef _HUMAN_B_H_
-# define _HUMAN_B_H_
-# include "HumanA.hpp"
-# include <iostream>
 
-class	HumanB{
-	private:
-		std::string	_name;
-		Weapon		*_typeOfWeapon;
-	public:
-		HumanB(std::string name);
-		~HumanB();
+#include "Weapon.hpp"
 
-		void	setWeapon(Weapon &weapon);
-		void	attack(void);
+class HumanB{
+    private:
+        Weapon  *weapon;
+        std::string name;
+
+    public:
+        HumanB(std::string _name);
+        ~HumanB();
+
+        void    setWeapon(Weapon& _type);
+        void    attack(void);
 };
-
-#endif

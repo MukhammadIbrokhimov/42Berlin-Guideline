@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   randomChump.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hta-rezi2 <hta-rezi2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/12 13:15:53 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/02/12 13:16:45 by mukibrok         ###   ########.fr       */
+/*   Created: 2025/07/05 18:15:41 by mukhammad-i       #+#    #+#             */
+/*   Updated: 2025/07/06 03:54:31 by hta-rezi2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ZombieClass.hpp"
+#include "Zombie.hpp"
 
-void	randomChump(std::string name){
-	Zombie	*new_zombie = newZombie(name);
-	new_zombie->announce();
-	delete new_zombie;
+void randomChump( std::string name ){
+    Zombie *zombie = newZombie(name);
+    zombie->announce();
+    delete(zombie);
 }

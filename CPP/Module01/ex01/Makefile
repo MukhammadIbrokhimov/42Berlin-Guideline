@@ -11,10 +11,10 @@ UNDERLINE = \033[4m     # Underlined text
 # Variables
 CC      = c++
 CFLAGS  = -Wall -Wextra -Werror -std=c++98
-SRC     = $(wildcard *.cpp)
+SRC     = main.cpp zombieHorde.cpp Zombie.cpp
 OBJ_DIR = obj
 OBJ     = $(patsubst %.cpp,$(OBJ_DIR)/%.o,$(SRC))
-EXEC    = brain
+EXEC    = horde
 
 # Default rule
 all: $(EXEC)

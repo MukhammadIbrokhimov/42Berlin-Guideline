@@ -3,35 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
+/*   By: muxammad <muxammad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/15 16:17:10 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/02/15 18:20:36 by mukibrok         ###   ########.fr       */
+/*   Created: 2025/07/09 17:22:31 by muxammad          #+#    #+#             */
+/*   Updated: 2025/07/09 17:34:48 by muxammad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#ifndef _FIXED_H_
+#include "iostream"
 
-# define _FIXED_H_
-
-# include <iostream>
-# include <string>
-
-class Fixed{
+class Fixed {
 	private:
-		static const int	_fractBits;
-		int					_fixedNumber;
-
-		public:
-		Fixed( void );
+		int	fixedPoint;
+		const static int fractional_bits;
+	
+	public:
+		Fixed();
+		Fixed(const Fixed& other);
+		Fixed& operator=(const Fixed& other);
 		~Fixed();
-		Fixed( const Fixed& other );
 
-		Fixed	&operator=( const Fixed &other );
-		int		getRawBits( void ) const;
-		void	setRawBits( int  const raw );
+		int	getRawBits(void) const;
+		void	setRawBits(const int raw);
 };
-
-#endif

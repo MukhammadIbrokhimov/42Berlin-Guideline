@@ -5,28 +5,22 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/19 18:47:25 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/02/21 20:59:59 by mukibrok         ###   ########.fr       */
+/*   Created: 2025/07/17 16:21:39 by mukibrok          #+#    #+#             */
+/*   Updated: 2025/07/22 14:00:31 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#ifndef _SCAV_TRAP_H_
+#include "ClapTrap.hpp"
 
-# define _SCAV_TRAP_H_
-
-# include "ClapTrap.hpp"
-
-class ScavTrap: public ClapTrap{
-public:
-	ScavTrap(std::string name);
-	~ScavTrap();
-
-	ScavTrap(const ScavTrap &other);
-	ScavTrap&	operator=(const ScavTrap &other);
-
-	void	guardGate(void);
+class ScavTrap: public ClapTrap {
+	public:
+		ScavTrap();
+		ScavTrap(std::string name);
+		ScavTrap(const ScavTrap &other);
+		ScavTrap&	operator=(const ScavTrap &other);
+		~ScavTrap();
+		void	attack(const std::string& target);
+		void	guardGate();
 };
-
-#endif

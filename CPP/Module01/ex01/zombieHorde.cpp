@@ -3,24 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   zombieHorde.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hta-rezi2 <hta-rezi2@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/12 13:30:07 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/02/12 14:14:07 by mukibrok         ###   ########.fr       */
+/*   Created: 2025/07/06 04:20:02 by hta-rezi2         #+#    #+#             */
+/*   Updated: 2025/07/06 05:07:28 by hta-rezi2        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
-Zombie	*zombieHorde(int N, std::string name){
-	if (N < 1){
-		std::cout << "Not possible to create a Zombie !!!" << std::endl;
-		return (NULL);
-	}
-	Zombie	*ZombieHorde = new Zombie[N];
-	for (int i = 0; i < N; i++){
-		ZombieHorde[i].setName(name);
-		ZombieHorde[i].announce();
-	}
-	return ZombieHorde;
+Zombie* zombieHorde( int N, std::string name ){
+    Zombie *zombie = new Zombie[N];
+    for (int i = 0; i < N; i++){
+        new(&zombie[i]) Zombie(name);
+    }
+    return zombie;
 }

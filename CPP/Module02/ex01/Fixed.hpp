@@ -5,39 +5,34 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/16 17:04:56 by muxammad          #+#    #+#             */
-/*   Updated: 2025/02/17 15:14:50 by mukibrok         ###   ########.fr       */
+/*   Created: 2025/07/09 17:22:31 by muxammad          #+#    #+#             */
+/*   Updated: 2025/07/15 17:37:27 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#ifndef _FIXED_H_
+#include <cmath>
+#include "iostream"
 
-# define _FIXED_H_
+class Fixed {
+	private:
+		int	fixedPoint;
+		const static int fractional_bits;
+	
+	public:
+		Fixed();
+		Fixed(const int value);
+		Fixed(const float value);
+		Fixed(const Fixed& other);
+		Fixed& operator=(const Fixed& other);
+		~Fixed();
 
-# include <iostream>
-# include <cmath>
-
-class Fixed
-{
-private:
-	static const int	_fractBits;
-	int					_value;
-public:
-	Fixed ( void );
-	Fixed( const int value );
-	Fixed( const float value );
-	Fixed( const Fixed& other );
-	~Fixed();
-
-	Fixed&	operator=( Fixed const &other );
-	int	getRawBits( void ) const;
-	void setRawBits( int const raw);
-	float toFloat( void ) const;
-	int toInt( void ) const;
-
-	friend std::ostream& operator<<(std::ostream &os, const Fixed &other);
+		int		getRawBits(void) const;
+		void	setRawBits(const int raw);
+		float	toFloat(void) const;
+		int		toInt(void) const;
 };
 
-#endif
+// Operator overload (non-member)
+std::ostream&	operator<<(std::ostream &out, const Fixed &value);

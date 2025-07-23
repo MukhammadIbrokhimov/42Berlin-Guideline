@@ -5,28 +5,22 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/13 19:04:44 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/02/13 20:44:18 by mukibrok         ###   ########.fr       */
+/*   Created: 2025/07/06 17:01:52 by mukhammad-i       #+#    #+#             */
+/*   Updated: 2025/07/09 18:50:43 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#ifndef _WEAPON_H_
-#define _WEAPON_H_
+
 #include <iostream>
 
 class Weapon{
-	private:
-		std::string	_type;
-
-	public:
-		Weapon();
-		Weapon(std::string type);
-		~Weapon();
-
-		std::string	getType(void) const;
-
-		void	setType(std::string weapon);
+    private:
+        std::string type;
+    
+    public:
+        Weapon(std::string _type);
+        ~Weapon();
+        const std::string& getType(void);
+        void setType(std::string _type);
 };
-
-#endif

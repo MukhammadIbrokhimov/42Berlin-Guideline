@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
+/*   By: muxammad <muxammad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 20:42:37 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/03/18 19:53:13 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/03/28 14:31:44 by muxammad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	create_philo(t_data *philo)
 			printf("%s%sThread Joining was unsuccessfull%s\n", RED, BOLD, RESET);
 	}
 }
+
 
 int main(int argc, char **argv)
 {

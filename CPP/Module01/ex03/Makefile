@@ -11,10 +11,10 @@ UNDERLINE = \033[4m     # Underlined text
 # Variables
 CC      = c++
 CFLAGS  = -Wall -Wextra -Werror -std=c++98
-SRC     = $(wildcard *.cpp)
+SRC     = main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
 OBJ_DIR = obj
 OBJ     = $(patsubst %.cpp,$(OBJ_DIR)/%.o,$(SRC))
-EXEC    = NotSureYet
+EXEC    = attack
 
 # Default rule
 all: $(EXEC)

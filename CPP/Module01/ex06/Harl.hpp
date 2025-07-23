@@ -5,31 +5,34 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/15 11:34:38 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/02/15 12:18:46 by mukibrok         ###   ########.fr       */
+/*   Created: 2025/07/08 15:59:31 by mukibrok          #+#    #+#             */
+/*   Updated: 2025/07/09 18:58:06 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#ifndef	_HARL_H_
+#include <iostream>
 
-# define	_HARL_H_
+// Color definitions
+#define RESET      "\033[0m"        // Reset color
+#define GREEN      "\033[32m"       // Green text
+#define CYAN       "\033[36m"       // Cyan text
+#define BLUE       "\033[34m"       // Blue text
+#define YELLOW     "\033[33m"       // Yellow text
+#define BOLD       "\033[1m"        // Bold text
+#define RED        "\033[31m"
 
-# include	<iostream>
-# include	<algorithm>
-
-class	Harl{
+class Harl{
 	private:
-		void	debug( void );
-		void	info( void );
-		void	warning( void );
-		void	error( void );
-	
+		void debug(void);
+		void info(void);
+		void warning(void);
+		void error(void);
+
 	public:
 		Harl();
 		~Harl();
-		void	complain( std::string level );
+		void complain(std::string level);
+		void harlFilter(std::string level);
 };
-
-#endif

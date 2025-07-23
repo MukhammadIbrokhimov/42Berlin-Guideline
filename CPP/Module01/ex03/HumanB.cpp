@@ -3,29 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   HumanB.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mukhammad-ibrokhimov <mukhammad-ibrokhi    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/13 19:42:25 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/02/13 20:41:43 by mukibrok         ###   ########.fr       */
+/*   Created: 2025/07/06 17:47:34 by mukhammad-i       #+#    #+#             */
+/*   Updated: 2025/07/06 18:11:02 by mukhammad-i      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "HumanB.hpp"
-#include "HumanA.hpp"
-#include <iostream>
 
-HumanB::HumanB(std::string name)
-	: _name(name), _typeOfWeapon(NULL){}
+HumanB::HumanB(std::string _name): weapon(NULL), name(_name) {}
 
-HumanB::~HumanB(){}
-
-void	HumanB::setWeapon(Weapon &weapon){
-	_typeOfWeapon = &weapon;
-}
+HumanB::~HumanB(){};
 
 void HumanB::attack() {
-	if (_typeOfWeapon)
-		std::cout << _name << " attacks with their " << _typeOfWeapon->getType() << std::endl;
-	else
-		std::cout << _name << " has no weapon!" << std::endl;
+    if (weapon)
+        std::cout << name << " attacks with their " << weapon->getType() << std::endl;
+    else
+        std::cout << name << " has no weapon to attack with!" << std::endl;
+}
+
+void    HumanB::setWeapon(Weapon& _type){
+    weapon = &_type;
 }

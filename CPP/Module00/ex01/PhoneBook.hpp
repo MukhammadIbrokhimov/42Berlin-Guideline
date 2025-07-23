@@ -5,14 +5,21 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/04 14:44:20 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/02/05 14:10:18 by mukibrok         ###   ########.fr       */
+/*   Created: 2025/07/03 15:15:44 by mukibrok          #+#    #+#             */
+/*   Updated: 2025/07/03 19:01:50 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK
+#pragma once
 
-# define PHONEBOOK
+#include <iostream>
+#include <ctype.h>
+#include <stdio.h>
+#include <string.h>
+#include <iomanip>
+
+#include "Contact.hpp"
+
 # define RESET   "\033[0m"       // Reset color
 # define RED     "\033[31m"      // Red text
 # define GREEN   "\033[32m"      // Green text
@@ -21,62 +28,23 @@
 # define CYAN    "\033[36m"      // Cyan text
 # define BOLD    "\033[1m"       // Bold text
 # define UNDERLINE "\033[4m"     // Underlined text
-
-# include <iostream>
-# include <stdio.h>
-
-// ************************************************************************** //
-//                               Contact Class                                //
-// ************************************************************************** //
-
-class	Contact{
-
-	private:
-		std::string	first_name;
-		std::string	last_name;
-		std::string	nick_name;
-		std::string	phone_number;
-		std::string	darkest_secret;
-
-	public:
-		Contact(){};
-
-		~Contact(){};
-
-	// SetContact should take parameters
-	void SetContact(const std::string fname, const std::string lname,
-					const std::string nname, const std::string pnumber,
-					const std::string dsecret);
-
-		// Getter methods
-		std::string GetName() const;
-		std::string GetLastName() const;
-		std::string GetNickName() const;
-		std::string GetPhoneNumber() const;
-		std::string GetSecret() const;
-};
-
-// ************************************************************************** //
-//                               PhoneBook Class                                //
-// ************************************************************************** //
+# define MAGENTA "\033[35m"
 
 class PhoneBook{
 	private:
-		Contact	persons[8];
-		static int		quantity;
-
-	public:
-		PhoneBook(){};
+		Contact book[8];
+		static int quantity;
 	
-	void	AddBook(const Contact &person);
-
-	int	DisplayValue(int index);
+	public:
+		PhoneBook();
+		~PhoneBook();
+		void	add(const Contact &person);
+		int	displayValue(int index) const;
+		void	displayAll(void) const;
 };
 
 void	printMenu();
-void	SearchContact(PhoneBook &book);
-void	ft_upper(std::string &command);
-bool	ftis_digit(std::string number);
 bool	addContact(PhoneBook &book);
-
-#endif
+void	is_upper(std::string &command);
+void	SearchContact(PhoneBook &book);
+std::string formatField(const std::string& str);

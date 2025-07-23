@@ -5,33 +5,33 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/22 21:54:19 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/02/22 23:00:30 by mukibrok         ###   ########.fr       */
+/*   Created: 2025/07/22 14:23:50 by mukibrok          #+#    #+#             */
+/*   Updated: 2025/07/22 15:29:19 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#ifndef _DIAMOND_TRAP_HPP_
-#define _DIAMON_TRAP_HPP_
+# include "ScavTrap.hpp"
+# include "FragTrap.hpp"
+# include "ClapTrap.hpp"
 
-#include "ClapTrap.hpp"
-#include "FragTrap.hpp"
-#include "ScavTrap.hpp"
-
-class DiamondTrap: public FragTrap, public ScavTrap{
+class DiamondTrap: public ScavTrap, public FragTrap {
 	private:
-		std::string _name;
+		std::string	_name;
+
 	public:
-		DiamondTrap(std::string name);
+		DiamondTrap();
+		DiamondTrap(const std::string name);
+		DiamondTrap(const DiamondTrap& other);
+		DiamondTrap& operator=(const DiamondTrap& other);
+
 		~DiamondTrap();
 
-		DiamondTrap(const DiamondTrap &other);
-		DiamondTrap& operator=(const DiamondTrap &other);
-
 		using ScavTrap::attack;
-		void	whoAmi();
+		void attack(const std::string& target);
+		void whoAmI();
+		// Getters to access the shadowed name
+		std::string getDiamondName() const;
+		std::string getClapTrapName() const;
 };
-
-
-#endif

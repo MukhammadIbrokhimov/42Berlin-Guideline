@@ -5,89 +5,104 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/15 11:34:35 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/02/15 12:42:38 by mukibrok         ###   ########.fr       */
+/*   Created: 2025/07/08 16:04:29 by mukibrok          #+#    #+#             */
+/*   Updated: 2025/07/09 19:01:08 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Harl.hpp"
 
-Harl::Harl(){}
+Harl::Harl() {}
+Harl::~Harl() {}
 
-Harl::~Harl(){}
-
-void Harl::debug(void) {
-	std::cout << "\033[1;36m"   // Bright cyan
-			<< "--------------------------------------------" << std::endl
-			<< "[ DEBUG ]" << std::endl
-			<< "I love having extra bacon for my" << std::endl
-			<< "7XL-double-cheese-triple-pickle-specialketchup burger." << std::endl
-			<< "I really do!" << std::endl
-			<< "--------------------------------------------" << std::endl
-			<< "\033[0m";    // Reset color
+void	Harl::debug(void) {
+	std::cout << BOLD << GREEN <<
+	"[ DEBUG ]"
+	<< std::endl;
+	std::cout << GREEN <<
+	"I love having extra bacon for my 7XL-double-cheese-triple-pickle-specialketchup burger. I really do!"
+	<< RESET << std::endl;
 }
 
-void Harl::info(void) {
-	std::cout << "\033[1;32m"   // Bright green
-			<< "--------------------------------------------" << std::endl
-			<< "[ INFO ]" << std::endl
-			<< "I cannot believe adding extra bacon costs more money." << std::endl
-			<< "You didn’t put enough bacon in my burger! If you did," << std::endl
-			<< "I wouldn’t be asking for more!" << std::endl
-			<< "--------------------------------------------" << std::endl
-			<< "\033[0m";
+void	Harl::info(void) {
+	std::cout << BOLD << BLUE <<
+	"[ DEBUG ]"
+	<< std::endl;
+	std::cout << BLUE <<
+	"I cannot believe adding extra bacon costs more money. You didnt put"
+	" enough bacon in my burger! If you did, I wouldnt be asking for more!"
+	<< RESET << std::endl;
 }
 
-void Harl::warning(void) {
-	std::cout << "\033[1;33m"   // Bright yellow
-			<< "--------------------------------------------" << std::endl
-			<< "[ WARNING ]" << std::endl
-			<< "I think I deserve to have some extra bacon for free." << std::endl
-			<< "I’ve been coming for years whereas you started working" << std::endl
-			<< "here since last month." << std::endl
-			<< "--------------------------------------------" << std::endl
-			<< "\033[0m";
+void	Harl::warning(void) {
+	std::cout << BOLD << YELLOW <<
+	"[ DEBUG ]"
+	<< std::endl;
+	std::cout << YELLOW <<
+	"I think I deserve to have some extra bacon for free. I’ve been coming for"
+	" years, whereas you started working here just last month."
+	<< RESET << std::endl;
 }
 
-void Harl::error(void) {
-	std::cout << "\033[1;31m"   // Bright red
-			<< "--------------------------------------------" << std::endl
-			<< "[ ERROR ]" << std::endl
-			<< "This is unacceptable! I want to speak to the manager now." << std::endl
-			<< "--------------------------------------------" << std::endl
-			<< "\033[0m";
+void	Harl::error(void) {
+	std::cout << BOLD << RED <<
+	"[ DEBUG ]"
+	<< std::endl;
+	std::cout << RED <<
+	"This is unacceptable! I want to speak to the manager now."
+	<< RESET << std::endl;
 }
 
-void Harl::complain(std::string command){
-	typedef	void(Harl::*MyFunct)();
-	typedef	unsigned long	ul;
-
-	struct Level{
-		std::string	name;
-		MyFunct	funct;
-	};
-
-	Level commands[] = {
-		{"DEBUG", &Harl::debug},
-		{"INFO", &Harl::info},
-		{"WARNING", &Harl::warning},
-		{"ERROR", &Harl::error},
-	};
-	ul	sizeCommand = sizeof(commands) / sizeof(commands[0]);
-	ul j = 0;;
-	for (ul i = 0; i < sizeCommand; i++){
-		if (commands[i].name == command){
-			j = i;
-			for (; j < sizeCommand; j++){
-				(this->*(commands[j].funct))();
+void	Harl::complain(std::string level) {
+	std::string levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+	void (Harl::*functions[])() = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
+	for (int i = 0; i < 4; i++) {
+		if (levels[i] == level) {
+			for (int j = 0; j <= i; j++) {
+				(this->*functions[j])();
+				if (j != i)
+					std::cout << std::endl;
 			}
-			break;
+			return ;
 		}
 	}
-	if (j == 0){
-		std::cout << "--------------------------------------------" << std::endl;
-		std::cout << "[ " << command << " ]" << std::endl;
-		std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
-		std::cout << "--------------------------------------------" << std::endl;		
+	std::cout << RED << "no any given level here !" << RESET << std::endl;
+}
+
+void Harl::harlFilter(std::string level) {
+	int levelIndex = -1;
+	std::string levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+	void (Harl::*functions[])() = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
+
+	for (int i = 0; i < 4; i++) {
+		if (levels[i] == level) {
+			for (int j = 0; j <= i; j++) {
+				(this->*functions[j])();
+				if (j != i)
+					std::cout << std::endl;
+			}
+			return ;
+		}
+	}
+
+	switch (levelIndex) {
+		case 0:
+			this->debug();
+			std::cout << std::endl;
+			// fall through
+		case 1:
+			this->info();
+			std::cout << std::endl;
+			// fall through
+		case 2:
+			this->warning();
+			std::cout << std::endl;
+			// fall through
+		case 3:
+			this->error();
+			break;
+		default:
+			std::cout << RED << "no any given level here !" << RESET << std::endl;
+			break;
 	}
 }

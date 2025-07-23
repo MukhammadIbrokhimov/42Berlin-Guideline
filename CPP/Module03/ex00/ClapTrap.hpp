@@ -5,39 +5,50 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/18 14:04:56 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/02/21 20:41:54 by mukibrok         ###   ########.fr       */
+/*   Created: 2025/07/17 15:13:15 by mukibrok          #+#    #+#             */
+/*   Updated: 2025/07/22 13:24:22 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #pragma once
 
-# ifndef _CLAP_TRAP_H_
+#define RED     "\033[31m"
+#define GREEN   "\033[32m"
+#define BLUE    "\033[34m"
+#define CYAN    "\033[36m"
+#define YELLOW  "\033[33m"
+#define RESET   "\033[0m"
+#include <iostream>
 
-# define _CLAP_TRAP_H_
-
-# include <iostream>
-# include <string.h>
-
-class ClapTrap{
+class ClapTrap {
 	private:
-		std::string			_name;
-		unsigned int	_hitPoints;
-		unsigned int	_energyPoints;
-		unsigned int	_attackDamage;
+		std::string	_name;
+		int			_hitPoints;
+		int			_energyPoints;
+		int			_attackDamage;
 	
 	public:
+		// default constructors
+		ClapTrap();
 		ClapTrap(std::string name);
+		ClapTrap(const ClapTrap &other);
+		ClapTrap&	operator=(const ClapTrap &other);
+
+		// destructor
 		~ClapTrap();
 
-		ClapTrap(const ClapTrap &other);
-		ClapTrap& operator=(const ClapTrap &other);
-		void	attack(const std::string &target);
+		//getter
+		std::string	getName(void);
+		int			getHitPoints(void);
+		int			getEnergyPoints(void);
+		int			getAttackDamage(void);
+
+		// extra member functions
+		void	attack(const std::string& target);
 		void	takeDamage(unsigned int amount);
 		void	beRepaired(unsigned int amount);
-		void	aboutClapTrap(void);
+
+		void	printAbout(void);
+
 
 };
-
-#endif

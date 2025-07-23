@@ -5,52 +5,50 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/18 14:04:56 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/02/22 22:47:46 by mukibrok         ###   ########.fr       */
+/*   Created: 2025/07/17 15:13:15 by mukibrok          #+#    #+#             */
+/*   Updated: 2025/07/22 13:39:32 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #pragma once
 
-#ifndef CLAPTRAP_HPP
-#define CLAPTRAP_HPP
+#define RED     "\033[31m"
+#define GREEN   "\033[32m"
+#define BLUE    "\033[34m"
+#define CYAN    "\033[36m"
+#define YELLOW  "\033[33m"
+#define RESET   "\033[0m"
 #include <iostream>
-#include <string>
 
-class ClapTrap{
+class ClapTrap {
 	protected:
-		std::string			_name;
-		unsigned int	_hitPoints;
-		unsigned int	_energyPoints;
-		unsigned int	_AttackDamage;
+		std::string	_name;
+		int			_hitPoints;
+		int			_energyPoints;
+		int			_attackDamage;
 	
 	public:
+		// default constructors
 		ClapTrap();
 		ClapTrap(std::string name);
+		ClapTrap(const ClapTrap &other);
+		ClapTrap&	operator=(const ClapTrap &other);
+
+		// destructor
 		virtual ~ClapTrap();
 
-		ClapTrap(const ClapTrap &other);
-		ClapTrap& operator=(const ClapTrap &other);
+		//getter
+		std::string	getName(void) const;
+		int			getHitPoints(void) const;
+		int			getEnergyPoints(void) const;
+		int			getAttackDamage(void) const;
 
-		void	attack(const std::string &target);
+		// extra member functions
+		virtual void	attack(const std::string& target);
 		void	takeDamage(unsigned int amount);
 		void	beRepaired(unsigned int amount);
-		void	aboutClapTrap(void);
 
-		// setter
-		void	setHitPoints(unsigned int value);
-		void	setEnergyPoints(unsigned int value);
-		void	setAttackDamage(unsigned int value);
-		void	setName(std::string name);
+		void	printAbout(void);
 
-		// getter
-
-		unsigned int	getHitPoints(void) const;
-		unsigned int	getEnergyPoints(void) const;
-		unsigned int	getAttackDamage(void) const;
-		std::string	getName(void) const;
 
 };
-
-#endif

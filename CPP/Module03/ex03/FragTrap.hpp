@@ -5,26 +5,22 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/22 18:42:39 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/02/22 22:48:11 by mukibrok         ###   ########.fr       */
+/*   Created: 2025/07/17 16:21:39 by mukibrok          #+#    #+#             */
+/*   Updated: 2025/07/22 15:00:16 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#ifndef FRAGTRAP_HPP
-#define FRAGTRAP_HPP
 
-# include "ClapTrap.hpp"
+#include "ClapTrap.hpp"
 
-class FragTrap: virtual public ClapTrap{
+class FragTrap: virtual public ClapTrap {
 	public:
+		FragTrap();
 		FragTrap(std::string name);
-		~FragTrap();
-
 		FragTrap(const FragTrap &other);
 		FragTrap&	operator=(const FragTrap &other);
-
+		~FragTrap();
+		void	attack(const std::string& target);
 		void	highFivesGuys(void);
 };
-
-#endif

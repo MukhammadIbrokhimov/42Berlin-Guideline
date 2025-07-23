@@ -3,20 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
+/*   By: muxammad <muxammad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/15 11:04:15 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/02/15 11:05:12 by mukibrok         ###   ########.fr       */
+/*   Created: 2025/07/08 16:04:49 by mukibrok          #+#    #+#             */
+/*   Updated: 2025/07/09 12:38:55 by muxammad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Harl.hpp"
 
-int	main(void){
-	Harl	harl;
+int main(int argc, char **argv) {
+	if (argc < 2){
+		std::cout << RED << "Give me only one level" << RESET << std::endl;
+		return 1;
+	}
 
-	harl.complain("info");
-	harl.complain("debug");
-	harl.complain("warning");
-	harl.complain("error");
+	Harl harl;
+
+	harl.complain(argv[1]);
 }

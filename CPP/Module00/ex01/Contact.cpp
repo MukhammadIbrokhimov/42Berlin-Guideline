@@ -5,25 +5,30 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/05 11:03:17 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/02/05 11:11:55 by mukibrok         ###   ########.fr       */
+/*   Created: 2025/07/03 18:09:12 by mukibrok          #+#    #+#             */
+/*   Updated: 2025/07/03 18:50:47 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
-void Contact::SetContact(const std::string fname, const std::string lname,
-				const std::string nname, const std::string pnumber,
-				const std::string dsecret){
+Contact::Contact() {}
+Contact::~Contact() {}
+
+void	Contact::setData(std::string fname,
+							std::string lname,
+							std::string nname,
+							std::string pnumber,
+							std::string secret){
 	first_name = fname;
 	last_name = lname;
 	nick_name = nname;
 	phone_number = pnumber;
-	darkest_secret = dsecret;
+	darkest_secret = secret;
 }
-		
-std::string Contact::GetName() const { return first_name; };
-std::string Contact::GetLastName() const { return last_name; };
-std::string Contact::GetNickName() const { return nick_name; };
-std::string Contact::GetPhoneNumber() const { return phone_number; };
-std::string Contact::GetSecret() const { return darkest_secret; };
+
+std::string	Contact::getFirstName(void) const { return first_name; };
+std::string	Contact::getLastName(void) const { return last_name; };
+std::string	Contact::getNickName(void) const { return nick_name; };
+std::string	Contact::getDarkestSecret(void) const { return darkest_secret; };
+std::string	Contact::getPhoneNumber(void) const { return phone_number; };
