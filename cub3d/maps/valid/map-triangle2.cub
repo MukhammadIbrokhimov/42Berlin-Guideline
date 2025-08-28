@@ -1,0 +1,18 @@
+NO ./textures/gray.xpm
+WE ./textures/purple.xpm
+SO ./textures/red.xpm
+EA ./textures/yellow.xpm
+
+F 220,111,119
+C 225,111,0
+    1111111
+    1000001
+    1000001
+    1000001
+    1000001
+    1000001
+    1000001
+    100S001
+    1000011
+    11111111
+       1
