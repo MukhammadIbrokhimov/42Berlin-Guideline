@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_statistics.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gansari <gansari@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 19:48:57 by mukibrok          #+#    #+#             */
-/*   Updated: 2025/08/22 13:48:30 by gansari          ###   ########.fr       */
+/*   Updated: 2025/09/02 15:36:08 by mukibrok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 void	set_player_position(t_game *game, char direction,
 		int row, int col)
 {
-	game->player.pos_y = (double)row;
-	game->player.pos_x = (double)col;
+	game->player.pos_y = (double)row + 0.5;
+	game->player.pos_x = (double)col + 0.5;
 	game->player.initial_dir = direction;
 	if (direction == 'N')
 	{
@@ -57,6 +57,8 @@ int	scan_row(char *row, t_scan_data *data)
 				data->row, data->base + c);
 			(*data->player_count)++;
 		}
+		if (!is_character_valid(row[c], "10 \nNSEW"))
+			(*data->player_count)++;
 		c++;
 	}
 	return (c);
