@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mukibrok <mukibrok@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gansari <gansari@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 13:25:55 by gansari           #+#    #+#             */
-/*   Updated: 2025/08/28 11:59:40 by mukibrok         ###   ########.fr       */
+/*   Updated: 2025/09/01 17:44:57 by gansari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@
 # define ERR_INVALID "Invalid map"
 # define ERR_NO_PLAYER "No player found in map"
 # define ERR_MULTI_PLAYER "Multiple players found"
-# define ERR_MAP_NOT_CLOSED "Map is not surrounded by walls"
+# define ERR_MAP_NOT_CLOSED "Error\nMap is not surrounded by walls\n"
 # define ERR_INVALID_CHAR "Invalid character in map"
 # define ERR_MISSING_TEXTURE "Missing texture path"
 # define ERR_INVALID_COLOR "Invalid color format"
@@ -63,8 +63,8 @@
 # define TEXTURE_SIZE	128		/* Size of wall textures (128x128) */
 
 /* Movement and rotation speeds */
-# define MOVE_SPEED		0.04	/* Player movement speed */
-# define ROTATION_SPEED	0.04	/* Player rotation speed */
+# define MOVE_SPEED		0.02	/* Player movement speed */
+# define ROTATION_SPEED	0.03	/* Player rotation speed */
 
 /* Minimap settings */
 # define MINIMAP_SCALE	7		/* Scale factor for minimap */
@@ -140,6 +140,7 @@ int		clean_exit_program(t_game *game);
 void	handle_parsing_error(t_game *game, char *error_message);
 int		read_and_parse_map_file(int file_descriptor, t_game *game);
 int		parse_map_file(t_game *game, int file_descriptor);
+void	normalize_map_dimensions(t_game *g);
 
 /* ========================================================================== */
 /*                            PARSING UTILITIES                              */
@@ -164,6 +165,7 @@ int		validate_vertical_walls(t_game *game, int start_row, int start_col);
 int		validate_map_line(t_game *game, char *line_to_check, int start_col);
 int		validate_horizontal_walls(t_game *game, int start_row, int start_col);
 bool	validate_map_walls(t_game *game);
+int		validate_parsed_map(t_game *game);
 
 /* ========================================================================== */
 /*                          MAP STATISTICS                                   */
@@ -214,6 +216,11 @@ void	process_movement_input(t_game *game);
 void	move_player_with_collision(t_game *game, double delta_x,
 			double delta_y);
 void	rotate_player_view(t_game *game, double rotation_speed);
+void	handle_diagonal_movement(t_game *game, double new_x, double new_y);
+void	handle_single_axis_movement(t_game *game, double delta_x,
+			double delta_y);
+void	revert_invalid_position(t_game *game, double delta_x, double delta_y);
+int		is_wall_at_position(t_game *game, int x, int y);
 
 /* ========================================================================== */
 /*                            RAYCASTING ENGINE                              */
@@ -239,6 +246,8 @@ int		get_texture_color(t_game *game, int tex_x, int tex_y,
 void	put_pixel_to_image(t_game *game, int x, int y, int color);
 void	draw_wall_column(t_game *game, int screen_x);
 int		render_frame(t_game *game);
+void	calculate_texture_coordinates(t_game *game, int line_start,
+			int line_height);
 
 /* ========================================================================== */
 /*                           BACKGROUND RENDERING                            */
